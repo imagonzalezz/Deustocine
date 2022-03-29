@@ -19,6 +19,8 @@ local.properties
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 
+.project
+
 # External tool builders
 .externalToolBuilders/
 
