@@ -4,11 +4,15 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import javax.sql.DataSource;
+
+import org.datanucleus.store.rdbms.datasource.dbcp2.BasicDataSource;
+
 public class Conexion {
 
 	// Conectamos con la base de datos
 
-	public Connection conectar() {
+	public static Connection conectar() {
 		Connection connection = null;
 
 		
@@ -28,8 +32,28 @@ public class Conexion {
 			System.out.println("sin conexion");	
 		}
 		return connection;}
-
 	
+	
+	
+//		private static BasicDataSource dataSource=null;
+//		
+//		private static DataSource getDataSource() {
+//			if (dataSource==null) {
+//				dataSource= new BasicDataSource();
+//				dataSource.setDriverClassName("com.mysql.jc.jdbc.Driver");
+//				dataSource.setUsername("root");
+//				dataSource.setPassword("deusto");
+//				dataSource.setUrl("jdbc:mysql://localhost:3306/deustocinedb");
+//			
+//			}
+//			return dataSource;
+//		}
+//		
+//		public static Connection getConnection() throws SQLException {
+//			return getDataSource().getConnection();
+//		}
+//
+//	
 
 
 }

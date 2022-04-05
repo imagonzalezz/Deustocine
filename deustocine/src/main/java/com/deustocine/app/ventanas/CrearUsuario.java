@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import com.deustocine.app.conexion.Conexion;
 
@@ -25,6 +26,9 @@ public class CrearUsuario extends JFrame {
 	private JTextField corr;
 	private JPasswordField passwordField;
 
+	DefaultTableModel modelo;
+	private JLabel lblNewLabel_1;
+	private JTextField txtDni;
 	/**
 	 * Launch the application.
 	 */
@@ -44,6 +48,9 @@ public class CrearUsuario extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
+	
+	
 	public CrearUsuario() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -77,32 +84,41 @@ public class CrearUsuario extends JFrame {
 		JLabel lblContrasea = new JLabel("Contraseña");
 		lblContrasea.setBounds(27, 161, 62, 14);
 		contentPane.add(lblContrasea);
-
+		
+		lblNewLabel_1 = new JLabel("New label");
+		lblNewLabel_1.setBounds(27, 11, 49, 14);
+		contentPane.add(lblNewLabel_1);
+		
+		txtDni = new JTextField();
+		txtDni.setBounds(143, 8, 96, 20);
+		contentPane.add(txtDni);
+		txtDni.setColumns(10);
+		
 		JButton btnNewButton = new JButton("Crear usuario");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Conexion mysql= new Conexion();
 				Connection cn= mysql.conectar();
 				String sSQL="";
-				String nombre, correo, contrasenya;
-				nombre= nom.getText();
+				String nombres, correo, contrasenya,dni;
+				dni= txtDni.getText();
+				nombres= nom.getText();
 				correo= corr.getText();
 				contrasenya= passwordField.getText();
 
-				sSQL= "INSERT INTO usuarios(nombre,correo,contrasenya)"+
+				sSQL= "INSERT INTO usuarios(nombres,correo,contrasenya)"+
 						"VALUES (?,?,?)";
 				try {
 					PreparedStatement pst= cn.prepareStatement(sSQL);
-					
-					pst.setString(1, nombre);
-					pst.setString(2, correo);
-					pst.setString(3, contrasenya);
+					pst.setString(1, dni);
+
+					pst.setString(2, nombres);
+					pst.setString(3, correo);
 					
 					int n=pst.executeUpdate();
 					
 					if (n>0) {
 						System.out.println("El registro se ha completado");
-						//CargarTabla();
 						
 					}
 					
@@ -115,5 +131,9 @@ public class CrearUsuario extends JFrame {
 		});
 		btnNewButton.setBounds(273, 209, 118, 23);
 		contentPane.add(btnNewButton);
+		
+		
+		
+		;
 	}
 }

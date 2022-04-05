@@ -2,6 +2,7 @@ package com.deustocine.app.domain;
 
 public class Usuario {
 	
+	private String dni;
 	private String usuario;
 	private String contrasenya;
 	private double puntos = 0;
@@ -44,6 +45,14 @@ public class Usuario {
 	@Override
 	public String toString() {
 		return "Usuario [usuario=" + usuario + ", contrasenya=" + contrasenya + ", puntos=" + puntos + "]";
+	}
+
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
 	}
 	
 	
