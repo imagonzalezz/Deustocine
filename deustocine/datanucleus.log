@@ -180,3 +180,15 @@
 11:33:43,953 (main) INFO  [DataNucleus.Enhancer] - DataNucleus Enhancer (versión 6.0.0.m4) para el API "JDO" utilisando el JRE "{2}"
 11:33:44,045 (main) INFO  [DataNucleus.Enhancer] - DataNucleus Enhancer ha terminado con exito para 0 clases.
 11:33:44,045 (main) INFO  [DataNucleus.Enhancer] - DataNucleus Enhancer ha terminado sin enhance ninguna clase. Compruebe el LOG para los detalles.
+18:03:36,104 (main) INFO  [DataNucleus.Enhancer] - DataNucleus Enhancer (versión 6.0.0.m4) para el API "JDO" utilisando el JRE "{2}"
+18:03:36,444 (main) INFO  [DataNucleus.Enhancer] - DataNucleus Enhancer ha terminado con exito para 0 clases.
+18:03:36,445 (main) INFO  [DataNucleus.Enhancer] - DataNucleus Enhancer ha terminado sin enhance ninguna clase. Compruebe el LOG para los detalles.
+10:22:19,018 (main) INFO  [DataNucleus.Enhancer] - DataNucleus Enhancer (versión 6.0.0.m4) para el API "JDO" utilisando el JRE "{2}"
+10:22:19,218 (main) INFO  [DataNucleus.Enhancer] - DataNucleus Enhancer ha terminado con exito para 0 clases.
+10:22:19,218 (main) INFO  [DataNucleus.Enhancer] - DataNucleus Enhancer ha terminado sin enhance ninguna clase. Compruebe el LOG para los detalles.
+11:22:43,429 (main) INFO  [DataNucleus.Enhancer] - DataNucleus Enhancer (versión 6.0.0.m4) para el API "JDO" utilisando el JRE "{2}"
+11:22:43,526 (main) INFO  [DataNucleus.Enhancer] - DataNucleus Enhancer ha terminado con exito para 0 clases.
+11:22:43,526 (main) INFO  [DataNucleus.Enhancer] - DataNucleus Enhancer ha terminado sin enhance ninguna clase. Compruebe el LOG para los detalles.
+11:23:19,767 (main) INFO  [DataNucleus.Enhancer] - DataNucleus Enhancer (versión 6.0.0.m4) para el API "JDO" utilisando el JRE "{2}"
+11:23:19,864 (main) INFO  [DataNucleus.Enhancer] - DataNucleus Enhancer ha terminado con exito para 0 clases.
+11:23:19,865 (main) INFO  [DataNucleus.Enhancer] - DataNucleus Enhancer ha terminado sin enhance ninguna clase. Compruebe el LOG para los detalles.
