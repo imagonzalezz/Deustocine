@@ -1,19 +1,29 @@
 package com.deustocine.app.domain;
 
+import javax.jdo.annotations.ForeignKey;
+import javax.jdo.annotations.PersistenceAware;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.PrimaryKey;
+
+@PersistenceCapable
 public class Entrada {
 	
+	@PrimaryKey
+	private int cod;
+	@ForeignKey
 	private Usuario usuario;
-	private Asiento asiento;
+	@ForeignKey
+	private Sesion sesion;
 	
 	public Entrada() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Entrada(Usuario usuario, Asiento asiento) {
+	public Entrada(Usuario usuario, Sesion sesion) {
 		super();
 		this.usuario = usuario;
-		this.asiento = asiento;
+		this.sesion = sesion;
 	}
 
 	public Usuario getUsuario() {
@@ -24,17 +34,17 @@ public class Entrada {
 		this.usuario = usuario;
 	}
 
-	public Asiento getAsiento() {
-		return asiento;
+	public Sesion getSesion() {
+		return sesion;
 	}
 
-	public void setAsiento(Asiento asiento) {
-		this.asiento = asiento;
+	public void setAsiento(Sesion sesion) {
+		this.sesion = sesion;
 	}
 
 	@Override
 	public String toString() {
-		return "Entrada [usuario=" + usuario + ", asiento=" + asiento + "]";
+		return "Entrada [usuario=" + usuario + ", sesion=" + sesion + "]";
 	}
 	
 	

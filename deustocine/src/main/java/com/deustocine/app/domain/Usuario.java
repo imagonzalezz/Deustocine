@@ -1,8 +1,14 @@
 package com.deustocine.app.domain;
 
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.PrimaryKey;
+
+@PersistenceCapable
 public class Usuario {
 	
+	@PrimaryKey
 	private String dni;
+	
 	private String usuario;
 	private String contrasenya;
 	private double puntos = 0;

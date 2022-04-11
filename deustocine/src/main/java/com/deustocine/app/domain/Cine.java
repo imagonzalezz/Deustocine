@@ -2,8 +2,18 @@ package com.deustocine.app.domain;
 
 import java.util.ArrayList;
 
-public class Cine {
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
+@PersistenceCapable
+public class Cine {
+	
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.INCREMENT)
+	
+	private int cod;
 	private String nombre;
 	private String direccion;
 	private int telefono;

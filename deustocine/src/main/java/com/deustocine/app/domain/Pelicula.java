@@ -3,7 +3,17 @@ package com.deustocine.app.domain;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+@PersistenceCapable
 public class Pelicula {
+	
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.INCREMENT)
+	private int cod;
 	
 	private String titulo;
 	private String director;

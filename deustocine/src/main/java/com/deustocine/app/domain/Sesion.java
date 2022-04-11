@@ -5,10 +5,22 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.TreeMap;
 
+import javax.jdo.annotations.ForeignKey;
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+@PersistenceCapable
 public class Sesion {
 	
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.INCREMENT)
+	private int cod;
+	@ForeignKey
+	private Cine cine;
+	@ForeignKey
 	private Pelicula pelicula;
-	private Sala sala;
 	private Date fechaHora;
 	private double precio;
 	private double puntosObtiene;
@@ -18,11 +30,10 @@ public class Sesion {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Sesion(Pelicula pelicula, Sala sala, Date fechaHora, double precio, double puntosObtiene,
+	public Sesion(Pelicula pelicula, Date fechaHora, double precio, double puntosObtiene,
 			double valorPuntos) {
 		super();
 		this.pelicula = pelicula;
-		this.sala = sala;
 		this.fechaHora = fechaHora;
 		this.precio = precio;
 		this.puntosObtiene = puntosObtiene;
@@ -35,14 +46,6 @@ public class Sesion {
 
 	public void setPelicula(Pelicula pelicula) {
 		this.pelicula = pelicula;
-	}
-
-	public Sala getSala() {
-		return sala;
-	}
-
-	public void setSala(Sala sala) {
-		this.sala = sala;
 	}
 
 	public Date getFechaHora() {
@@ -79,7 +82,7 @@ public class Sesion {
 
 	@Override
 	public String toString() {
-		return "Sesion [pelicula=" + pelicula + ", sala=" + sala + ", fechaHora=" + fechaHora + ", precio=" + precio
+		return "Sesion [cod=" + cod + ", pelicula=" + pelicula + ", fechaHora=" + fechaHora + ", precio=" + precio
 				+ ", puntosObtiene=" + puntosObtiene + ", valorPuntos=" + valorPuntos + "]";
 	}
 	
