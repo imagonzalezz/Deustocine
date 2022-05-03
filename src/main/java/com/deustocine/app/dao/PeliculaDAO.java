@@ -20,11 +20,11 @@ public class PeliculaDAO {
 		pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 	}
 	
-	public void storePelicula(Pelicula pelicula) {
-		this.storeObject(pelicula);
+	public void guardarPelicula(Pelicula pelicula) {
+		this.guardarObjeto(pelicula);
 	}
 	
-	public void storeObject(Object object) {
+	public void guardarObjeto(Object object) {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 
@@ -44,7 +44,7 @@ public class PeliculaDAO {
 		}
 	}
 	
-	public void deleteAllProductos() {
+	public void borrarProductos() {
 		System.out.println("- Cleaning the DB...");
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
@@ -60,7 +60,7 @@ public class PeliculaDAO {
 
 			// Deleting All Products - Copies in Books will be deleted due to 'delete on cascade'
 			Query<Pelicula> query2 = pm.newQuery(Pelicula.class);
-			System.out.println(" * '" + query2.deletePersistentAll() + "' products deleted from the DB.");
+			System.out.println(" * '" + query2.deletePersistentAll() + "' peliculas deleted from the DB.");
 
 			tx.commit();
 		} catch (Exception ex) {
@@ -89,7 +89,7 @@ public class PeliculaDAO {
 		List<Pelicula> peliculas = new ArrayList<>();
 
 		try {
-			System.out.println("   * Retrieving an Extent for Products.");
+			System.out.println("   * Retrieving an Extent for Peliculas.");
 
 			tx.begin();
 			Extent<Pelicula> extent = pm.getExtent(Pelicula.class, true);
@@ -112,7 +112,7 @@ public class PeliculaDAO {
 		return peliculas;
 	}
 	
-	public void updatePelicula(Pelicula pelicula) {
+	public void actualizarPelicula(Pelicula pelicula) {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 
@@ -129,6 +129,10 @@ public class PeliculaDAO {
 
 			pm.close();
 		}
+	}
+	
+	public void setPmf(PersistenceManagerFactory pmf) {
+		this.pmf = pmf;
 	}
 	
 	
