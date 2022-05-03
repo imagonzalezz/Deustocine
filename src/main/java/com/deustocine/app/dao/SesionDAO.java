@@ -83,6 +83,9 @@ public class SesionDAO {
 		}
 		
 	}
+	public void setPmf(PersistenceManagerFactory pmf) {
+		this.pmf = pmf;
+	}
 	
 	public List<Sesion> getSesiones(){
 		PersistenceManager pm = pmf.getPersistenceManager();
