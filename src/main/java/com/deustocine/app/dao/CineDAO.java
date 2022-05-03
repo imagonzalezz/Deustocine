@@ -43,6 +43,9 @@ public class CineDAO {
 			pm.close();
 		}
 	}
+	public void setPmf(PersistenceManagerFactory pmf) {
+		this.pmf = pmf;
+	}
 	
 	public void borrarProductos() {
 		System.out.println("- Borrando BD...");
