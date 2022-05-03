@@ -21,7 +21,6 @@ public class Pelicula {
 	private Date fechaSalida;
 	private String genero;
 	private String portada;
-	private SimpleDateFormat sdf;
 	
 	public Pelicula() {
 		super();
@@ -36,7 +35,12 @@ public class Pelicula {
 		this.portada = portada;
 	}
 	
-	
+	public int getCod() {
+		return cod;
+	}
+	public void setCod(int cod) {
+		this.cod = cod;
+	}
 	public String getTitulo() {
 		return titulo;
 	}
