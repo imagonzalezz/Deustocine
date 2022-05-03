@@ -1,58 +1,135 @@
 package com.deustocine.app.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-import com.deustocine.app.conexion.Conexion;
+import javax.jdo.Extent;
+import javax.jdo.JDOHelper;
+import javax.jdo.PersistenceManager;
+import javax.jdo.PersistenceManagerFactory;
+import javax.jdo.Query;
+import javax.jdo.Transaction;
+
 import com.deustocine.app.domain.Cine;
-import com.mysql.cj.xdevapi.PreparableStatement;
 
 public class CineDAO {
-	private Connection connection;
-	private PreparedStatement statement;
-	private boolean estadoOperacion;
 
-	public boolean guardar(Cine cine) throws SQLException {
-		String sql = null;// sentencia que va a persistir nuestro producto en la tabla
-		estadoOperacion=false; //conexion no realizada
-		
-//		connection= obtenerConexion();
-		sql="INSERT INT Cine (cod, nombre, direccion, telefono) VALUES(?,?,?,?)";
-		
-		
-		
-		
-		return true;
+	private PersistenceManagerFactory pmf;
 
-	}
-
-	// editar cine pasado por parametro
-	public boolean editar(Cine cine) {
-
-		return true;
-	}
-	// eliminar cine pasado por parametro
-	public boolean eliminar(Cine cine) {
-
-		return true;
+	public CineDAO() {
+		pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 	}
 	
-	//obtener lista de cines de la BD
-	public List<Cine> obtenerCines () {
-
-		return null;
+	public void guardarCine(Cine cine) {
+		this.guardarObjeto(cine);
 	}
 	
-	//obtener cine de la BD
-	public Cine obtenerCine() {
-		
-		return null;
-		
+	public void guardarObjeto(Object objeto) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+
+		try {
+			tx.begin();
+			System.out.println("   * Guardando cine: " + objeto);
+			pm.makePersistent(objeto);
+			tx.commit();
+		} catch (Exception ex) {
+			System.out.println("   $ Error al guardar objeto: " + ex.getMessage());
+		} finally {
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+
+			pm.close();
+		}
 	}
-//	public Connection obtenerConexion()throws SQLException{
-//
-//		return Conexion.getConnection();
-//	}
+	
+	public void borrarProductos() {
+		System.out.println("- Borrando BD...");
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try {
+			tx.begin();
+			
+			// Getting ready for removing objects - Remove Relationships between User and other things
+			Extent<Cine> extentU = pm.getExtent(Cine.class, true);
+			
+		
+			// Updating the database so changes are considered before commit
+			pm.flush();
+
+			// Deleting All Products - Copies in Books will be deleted due to 'delete on cascade'
+			Query<Cine> query2 = pm.newQuery(Cine.class);
+			System.out.println(" * '" + query2.deletePersistentAll() + "' productos eliminados de la BD.");
+
+			tx.commit();
+		} catch (Exception ex) {
+			System.err.println(" $ Error borrando la bd: " + ex.getMessage());
+			ex.printStackTrace();
+		} finally {
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+
+			if (pm != null && !pm.isClosed()) {
+				pm.close();
+			}
+		}
+	}
+	
+	public List<Cine> getCines() {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		/*
+		 * By default only 1 level is retrieved from the db so if we wish to fetch more
+		 * than one level, we must indicate it
+		 */
+		pm.getFetchPlan().setMaxFetchDepth(3);
+
+		Transaction tx = pm.currentTransaction();
+		List<Cine> cines = new ArrayList<>();
+
+		try {
+			System.out.println("   * Recuperando productos.");
+
+			tx.begin();
+			Extent<Cine> extent = pm.getExtent(Cine.class, true);
+
+			for (Cine c : extent) {
+				cines.add(c);
+			}
+
+			tx.commit();
+		} catch (Exception ex) {
+			System.out.println("   $ Error recuperando productos: " + ex.getMessage());
+		} finally {
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+
+			pm.close();
+		}
+
+		return cines;
+	}
+	
+	public void actualizarCine(Cine cine) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+
+		try {
+			tx.begin();
+			pm.makePersistent(cine);
+			tx.commit();
+		} catch (Exception ex) {
+			System.out.println("   $ Error actualizando el cine: " + ex.getMessage());
+		} finally {
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+
+			pm.close();
+		}
+	}
+	
+	
 }
