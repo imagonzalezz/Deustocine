@@ -26,7 +26,7 @@ public class CineDAOTest {
 		cdao = new CineDAO();
 		cdao.setPmf(pmf);
 		c= new Cine();
-		c.setPrecio(5);
+		c.setTelefono(999999999);
 	}
 
 	
