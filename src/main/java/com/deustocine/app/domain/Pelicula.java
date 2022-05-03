@@ -1,5 +1,6 @@
 package com.deustocine.app.domain;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -20,6 +21,7 @@ public class Pelicula {
 	private Date fechaSalida;
 	private String genero;
 	private String portada;
+	private SimpleDateFormat sdf;
 	
 	public Pelicula() {
 		super();
@@ -70,6 +72,8 @@ public class Pelicula {
 		return "Pelicula [titulo=" + titulo + ", director=" + director + ", fechaSalida=" + fechaSalida + ", genero="
 				+ genero + ", portada=" + portada + "]";
 	}
+
+    
 	
 	
 
