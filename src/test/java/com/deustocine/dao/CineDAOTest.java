@@ -27,6 +27,7 @@ public class CineDAOTest {
 		cdao.setPmf(pmf);
 		c= new Cine();
 		c.setTelefono(999999999);
+		c.setNombre("ABC");
 	}
 
 	
