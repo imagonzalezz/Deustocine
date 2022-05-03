@@ -12,6 +12,7 @@ public class Cine {
 	
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.INCREMENT)
+	//commit
 	
 	private int cod;
 	private String nombre;
