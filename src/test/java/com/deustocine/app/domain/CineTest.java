@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.deustocine.app.domain.Cine;
-
+//Test clase Cine
 public class CineTest {
 
 	private Cine c, c2;
