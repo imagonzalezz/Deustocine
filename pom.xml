@@ -217,5 +217,11 @@
 		<config.files.dir>${basedir}/src/main/resources</config.files.dir>
 		<sonar.organization>imagonzalezz</sonar.organization>
  		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<server.hostname>127.0.0.1</server.hostname>
+		<server.port>8080</server.port>
+		<demo.data>${basedir}/src/main/resources/demoData.csv</demo.data>
+		<policy.file>${basedir}/security/java.policy</policy.file>
+		<doxygen.config.file>${basedir}/src/main/resources/Doxyfile</doxygen.config.file>
+		<java.home.dir>C:\Program Files\Eclipse Foundation\jdk-17.0.0.35-hotspot</java.home.dir>
 	</properties>
 </project>
