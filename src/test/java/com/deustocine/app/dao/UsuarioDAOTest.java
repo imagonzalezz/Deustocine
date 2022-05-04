@@ -1,4 +1,4 @@
-package com.deustocine.dao;
+package com.deustocine.app.dao;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

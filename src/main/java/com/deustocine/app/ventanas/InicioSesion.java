@@ -1,6 +1,7 @@
 package com.deustocine.app.ventanas;
 
 import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -8,6 +9,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.deustocine.app.conexion.Conexion;
+
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.WebTarget;
 
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
@@ -21,6 +25,7 @@ public class InicioSesion extends JFrame {
 	private JPanel contentPane;
 	private JPasswordField passwordField;
 	private JTextField textField;
+
 
 	/**
 	 * Launch the application.
@@ -41,7 +46,7 @@ public class InicioSesion extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public InicioSesion() {
+	public InicioSesion(Client cliente, WebTarget webTarget) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -83,4 +88,9 @@ public class InicioSesion extends JFrame {
 		btnNewButton.setBounds(138, 201, 115, 29);
 		contentPane.add(btnNewButton);
 	}
+
+	public InicioSesion() {
+		// TODO Auto-generated constructor stub
+	}
+
 }
