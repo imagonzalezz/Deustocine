@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
@@ -85,9 +86,21 @@ public class Pelicula {
 		return "Pelicula [titulo=" + titulo + ", director=" + director + ", fechaSalida=" + fechaSalida + ", genero="
 				+ genero + ", portada=" + portada + "]";
 	}
-
-    
-	
+	@Override
+	public int hashCode() {
+		return Objects.hash(cod);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pelicula other = (Pelicula) obj;
+		return cod == other.cod;
+	}
 	
 
 }
