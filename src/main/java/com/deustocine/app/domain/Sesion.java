@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.TreeMap;
 
 import javax.jdo.annotations.ForeignKey;
@@ -48,6 +49,14 @@ public class Sesion {
 		this.precio = precio;
 		this.puntosObtiene = puntosObtiene;
 		this.valorPuntos = valorPuntos;
+	}
+	
+	public int getCod() {
+		return cod;
+	}
+
+	public void setCod(int cod) {
+		this.cod = cod;
 	}
 
 	public Pelicula getPelicula() {
@@ -95,5 +104,28 @@ public class Sesion {
 		return "Sesion [cod=" + cod + ", pelicula=" + pelicula + ", fechaHora=" + fechaHora + ", precio=" + precio
 				+ ", puntosObtiene=" + puntosObtiene + ", valorPuntos=" + valorPuntos + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(cine, cod, dateFormat, fechaHora, pelicula, precio, puntosObtiene, sdf, valorPuntos);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Sesion other = (Sesion) obj;
+		return Objects.equals(cine, other.cine) && cod == other.cod && Objects.equals(dateFormat, other.dateFormat)
+				&& Objects.equals(fechaHora, other.fechaHora) && Objects.equals(pelicula, other.pelicula)
+				&& Double.doubleToLongBits(precio) == Double.doubleToLongBits(other.precio)
+				&& Double.doubleToLongBits(puntosObtiene) == Double.doubleToLongBits(other.puntosObtiene)
+				&& Objects.equals(sdf, other.sdf)
+				&& Double.doubleToLongBits(valorPuntos) == Double.doubleToLongBits(other.valorPuntos);
+	}
+	
 	
 }
