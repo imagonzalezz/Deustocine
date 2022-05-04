@@ -1,5 +1,6 @@
 package com.deustocine.app.domain;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,6 +12,9 @@ import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
 public class Pelicula {
+	
+	private String dateFormat = "dd/MM/YYYY";
+	private SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
 	
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.INCREMENT)
@@ -26,11 +30,16 @@ public class Pelicula {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Pelicula(String titulo, String director, Date fechaSalida, String genero, String portada) {
+	public Pelicula(String titulo, String director, String fechaSalida, String genero, String portada) {
 		super();
 		this.titulo = titulo;
 		this.director = director;
-		this.fechaSalida = fechaSalida;
+		try {
+			this.fechaSalida = sdf.parse(fechaSalida);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.genero = genero;
 		this.portada = portada;
 	}
