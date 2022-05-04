@@ -1,6 +1,7 @@
 package com.deustocine.app.domain;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
@@ -24,11 +25,19 @@ public class Cine {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Cine(String nombre, String direccion, int telefono) {
+	public Cine(int cod, String nombre, String direccion, int telefono) {
 		super();
+		this.cod = cod;
 		this.nombre = nombre;
 		this.direccion = direccion;
 		this.telefono = telefono;
+	}
+	public int getCod() {
+		return cod;
+	}
+
+	public void setCod(int cod) {
+		this.cod = cod;
 	}
 
 	public String getNombre() {
@@ -59,5 +68,23 @@ public class Cine {
 	public String toString() {
 		return "Cine [nombre=" + nombre + ", direccion=" + direccion + ", telefono=" + telefono + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(cod);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cine other = (Cine) obj;
+		return cod == other.cod;
+	}
+	
 	
 }
