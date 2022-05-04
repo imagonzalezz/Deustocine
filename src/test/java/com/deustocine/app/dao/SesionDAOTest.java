@@ -1,4 +1,4 @@
-package com.deustocine.dao;
+package com.deustocine.app.dao;
 
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
@@ -10,18 +10,12 @@ import javax.jdo.Transaction;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
 
-import com.deustocine.app.dao.PeliculaDAO;
 import com.deustocine.app.dao.SesionDAO;
-import com.deustocine.app.domain.Pelicula;
 import com.deustocine.app.domain.Sesion;
 
-@RunWith(MockitoJUnitRunner.class)
-public class PeliculaDAOTest {
-
+public class SesionDAOTest {
 	@Mock
 	PersistenceManagerFactory pmf;
 	@Mock
@@ -29,27 +23,30 @@ public class PeliculaDAOTest {
 	@Mock
 	Transaction ts;
 	
-	PeliculaDAO pDao;
-	Pelicula p;
+	SesionDAO sdao;
+	Sesion s;
 	
 	@Before
 	public void setup() {
-		pDao = new PeliculaDAO();
-		pDao.setPmf(pmf);
-		p = new Pelicula();
-		p.setCod(1);
+		sdao = new SesionDAO();
+		sdao.setPmf(pmf);
+		s= new Sesion();
+		s.setPrecio(5);
 	}
 	
 	@Test
-	public void testGuardarPelicula() {
-		Pelicula p2 = new Pelicula();
+	public void testGuardar() {
 		when(pmf.getPersistenceManager()).thenReturn(pm);
 		when(pm.currentTransaction()).thenReturn(ts);
-		when(pm.makePersistent(p2)).thenThrow(JDOUserException.class);
+		when(pm.makePersistent(s)).thenThrow(JDOUserException.class);
 		when(ts.isActive()).thenReturn(true);
-		pDao.guardarPelicula(p2);
+		sdao.guardarSesion(s);
 		when(ts.isActive()).thenReturn(false);
-		pDao.guardarPelicula(p);
+		sdao.guardarSesion(s);
 		assertTrue(true);
 	}
+	
+
+	
+
 }

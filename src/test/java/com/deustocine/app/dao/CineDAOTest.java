@@ -1,4 +1,4 @@
-package com.deustocine.dao;
+package com.deustocine.app.dao;
 
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
@@ -12,10 +12,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
-import com.deustocine.app.dao.SesionDAO;
-import com.deustocine.app.domain.Sesion;
+import com.deustocine.app.dao.CineDAO;
+import com.deustocine.app.domain.Cine;
 
-public class SesionDAOTest {
+public class CineDAOTest {
 	@Mock
 	PersistenceManagerFactory pmf;
 	@Mock
@@ -23,29 +23,29 @@ public class SesionDAOTest {
 	@Mock
 	Transaction ts;
 	
-	SesionDAO sdao;
-	Sesion s;
+	CineDAO cdao;
+	Cine c;
 	
 	@Before
 	public void setup() {
-		sdao = new SesionDAO();
-		sdao.setPmf(pmf);
-		s= new Sesion();
-		s.setPrecio(5);
+		cdao = new CineDAO();
+		cdao.setPmf(pmf);
+		c= new Cine();
+		c.setTelefono(999999999);
+		c.setNombre("ABC");
 	}
 	
 	@Test
 	public void testGuardar() {
 		when(pmf.getPersistenceManager()).thenReturn(pm);
 		when(pm.currentTransaction()).thenReturn(ts);
-		when(pm.makePersistent(s)).thenThrow(JDOUserException.class);
+		when(pm.makePersistent(c)).thenThrow(JDOUserException.class);
 		when(ts.isActive()).thenReturn(true);
-		sdao.guardarSesion(s);
+		cdao.guardarCine(c);
 		when(ts.isActive()).thenReturn(false);
-		sdao.guardarSesion(s);
+		cdao.guardarCine(c);
 		assertTrue(true);
 	}
-	
 
 	
 
