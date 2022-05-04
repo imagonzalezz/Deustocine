@@ -11,6 +11,7 @@ import javax.jdo.Query;
 import javax.jdo.Transaction;
 
 import com.deustocine.app.domain.Cine;
+import com.deustocine.app.domain.Usuario;
 
 public class CineDAO {
 
@@ -43,8 +44,13 @@ public class CineDAO {
 			pm.close();
 		}
 	}
+	
 	public void setPmf(PersistenceManagerFactory pmf) {
 		this.pmf = pmf;
+	}
+	
+	public PersistenceManagerFactory getPmf() {
+		return this.pmf;
 	}
 	
 	public void borrarProductos() {
@@ -132,6 +138,23 @@ public class CineDAO {
 
 			pm.close();
 		}
+	}
+	public Cine getCine(int cod) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Cine cine = null;
+
+		try {
+			cine=pm.getObjectById(Cine.class, cod);
+			pm.makeTransient(cine);
+
+		} catch (Exception ex) {
+			System.out.println("   $ Error no existe ese cine: " + ex.getMessage());
+			return null;
+		} finally {
+			pm.close();
+		}
+
+		return cine;
 	}
 	
 	
