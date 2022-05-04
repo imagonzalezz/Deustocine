@@ -8,11 +8,11 @@ mvn clean install
 _Crear una base de datos llamada deustocinedb en MySQL y dar permisos al usuario por defecto_
 
 ```
-DROP SCHEMA IF EXISTS deustocine;
+DROP SCHEMA IF EXISTS deustocinedb;
 
 DROP USER 'root'@'localhost';
 
-CREATE SCHEMA deustocine;
+CREATE SCHEMA deustocinedb;
 
 CREATE USER 'root'@'localhost' IDENTIFIED BY 'root';
 GRANT ALL ON deustocine.* TO 'root'@'localhost';
