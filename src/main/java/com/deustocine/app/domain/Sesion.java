@@ -1,5 +1,7 @@
 package com.deustocine.app.domain;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -13,6 +15,9 @@ import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
 public class Sesion {
+	
+	private String dateFormat = "dd/MM/YYYY HH:mm";
+	private SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
 	
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.INCREMENT)
@@ -30,11 +35,16 @@ public class Sesion {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Sesion(Pelicula pelicula, Date fechaHora, double precio, double puntosObtiene,
+	public Sesion(Pelicula pelicula, String fechaHora, double precio, double puntosObtiene,
 			double valorPuntos) {
 		super();
 		this.pelicula = pelicula;
-		this.fechaHora = fechaHora;
+		try {
+			this.fechaHora = sdf.parse(fechaHora);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.precio = precio;
 		this.puntosObtiene = puntosObtiene;
 		this.valorPuntos = valorPuntos;
