@@ -9,5 +9,5 @@ DROP USER 'root'@'localhost';
 CREATE SCHEMA deustocinedb;
 
 /* CREATE THE USER 'root' AT LOCAL SERVER WITH PASSWORD 'root' */
-CREATE USER 'root'@'localhost' IDENTIFIED BY 'root';
-GRANT ALL ON deustocine.* TO 'root'@'localhost';
+CREATE USER 'root'@'localhost' IDENTIFIED BY 'deusto';
+GRANT ALL ON deustocinedb.* TO 'root'@'localhost';
