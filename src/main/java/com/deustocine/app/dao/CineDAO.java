@@ -53,38 +53,7 @@ public class CineDAO {
 		return this.pmf;
 	}
 	
-	public void borrarProductos() {
-		System.out.println("- Borrando BD...");
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx = pm.currentTransaction();
-		try {
-			tx.begin();
-			
-			// Getting ready for removing objects - Remove Relationships between User and other things
-			Extent<Cine> extentU = pm.getExtent(Cine.class, true);
-			
-		
-			// Updating the database so changes are considered before commit
-			pm.flush();
-
-			// Deleting All Products - Copies in Books will be deleted due to 'delete on cascade'
-			Query<Cine> query2 = pm.newQuery(Cine.class);
-			System.out.println(" * '" + query2.deletePersistentAll() + "' productos eliminados de la BD.");
-
-			tx.commit();
-		} catch (Exception ex) {
-			System.err.println(" $ Error borrando la bd: " + ex.getMessage());
-			ex.printStackTrace();
-		} finally {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-
-			if (pm != null && !pm.isClosed()) {
-				pm.close();
-			}
-		}
-	}
+	
 	
 	public List<Cine> getCines() {
 		PersistenceManager pm = pmf.getPersistenceManager();
