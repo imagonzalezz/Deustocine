@@ -48,7 +48,12 @@ public class PeliculaDAOTest {
 		p.setCod(1);
 	}
 
-	
+	@Test
+	public void testPmf() {
+		pDao.setPmf(pmf);
+		assertEquals(pmf, pDao.getPmf());
+	}
+
 	@Test
 	public void testGuardarPelicula() {
 		when(pmf.getPersistenceManager()).thenReturn(pm);

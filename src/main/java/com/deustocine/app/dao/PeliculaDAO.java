@@ -44,38 +44,7 @@ public class PeliculaDAO {
 		}
 	}
 	
-	public void borrarProductos() {
-		System.out.println("- Cleaning the DB...");
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx = pm.currentTransaction();
-		try {
-			tx.begin();
-			
-			// Getting ready for removing objects - Remove Relationships between User and other things
-			Extent<Pelicula> extentU = pm.getExtent(Pelicula.class, true);
-			
-		
-			// Updating the database so changes are considered before commit
-			pm.flush();
-
-			// Deleting All Products - Copies in Books will be deleted due to 'delete on cascade'
-			Query<Pelicula> query2 = pm.newQuery(Pelicula.class);
-			System.out.println(" * '" + query2.deletePersistentAll() + "' peliculas deleted from the DB.");
-
-			tx.commit();
-		} catch (Exception ex) {
-			System.err.println(" $ Error cleaning the DB: " + ex.getMessage());
-			ex.printStackTrace();
-		} finally {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-
-			if (pm != null && !pm.isClosed()) {
-				pm.close();
-			}
-		}
-	}
+	
 	
 	public List<Pelicula> getPeliculas() {
 		PersistenceManager pm = pmf.getPersistenceManager();
@@ -111,7 +80,9 @@ public class PeliculaDAO {
 		return peliculas;
 	}
 	
-	
+	public PersistenceManagerFactory getPmf() {
+		return this.pmf;
+	}
 	public void setPmf(PersistenceManagerFactory pmf) {
 		this.pmf = pmf;
 	}

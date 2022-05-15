@@ -26,7 +26,7 @@ public class SesionDAO {
 	}
 	
 	public void guardarSesion(Sesion s) {
-		this.guardarSesion(s);
+		this.guardarObjeto(s);
 	}
 	
 	public void borrarSesiones() {
