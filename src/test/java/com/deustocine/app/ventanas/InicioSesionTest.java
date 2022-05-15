@@ -5,8 +5,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.mockito.Mock;
 
-import jakarta.ws.rs.client.Client;
-import jakarta.ws.rs.client.WebTarget;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.WebTarget;
 
 public class InicioSesionTest {
 	@Mock

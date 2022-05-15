@@ -1,7 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.deustocine.app</groupId>
@@ -9,45 +8,24 @@
 	<packaging>jar</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<name>deustocine</name>
+	<url>http://maven.apache.org</url>
 
-
-	
-
-
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.glassfish.jersey</groupId>
-				<artifactId>jersey-bom</artifactId>
-				<version>${jersey.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+	<properties>
+		<jersey.version>3.0.1</jersey.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<config.files.dir>${basedir}/src/main/resources</config.files.dir>
+		<sonar.organization>imagonzalezz</sonar.organization>
+ 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<server.hostname>127.0.0.1</server.hostname>
+		<server.port>8080</server.port>
+		<demo.data>${basedir}/src/main/resources/demoData.csv</demo.data>
+		<policy.file>${basedir}/security/java.policy</policy.file>
+		<doxygen.config.file>${basedir}/src/main/resources/Doxyfile</doxygen.config.file>
+		<java.home.dir>C:\Program Files\Eclipse Foundation\jdk-17.0.0.35-hotspot</java.home.dir>
+		<java.version>1.17</java.version>
+	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.glassfish.jersey.containers</groupId>
-			<artifactId>jersey-container-grizzly2-http</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.glassfish.jersey.inject</groupId>
-			<artifactId>jersey-hk2</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.glassfish.jersey.media</groupId>
-			<artifactId>jersey-media-json-binding</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
-		</dependency>
-
 		<dependency>
 			<groupId>org.datanucleus</groupId>
 			<artifactId>datanucleus-core</artifactId>
@@ -56,12 +34,12 @@
 		<dependency>
 			<groupId>org.datanucleus</groupId>
 			<artifactId>datanucleus-api-jdo</artifactId>
-			<version>[5.1.4, 5.9)</version>
+			<version>[5.1.4, 5.9]</version>
 		</dependency>
 		<dependency>
 			<groupId>org.datanucleus</groupId>
 			<artifactId>datanucleus-rdbms</artifactId>
-			<version>[5.1.6, 5.9)</version>
+			<version>[5.1.6, 5.9]</version>
 		</dependency>
 		<dependency>
 			<groupId>org.datanucleus</groupId>
@@ -74,42 +52,110 @@
 			<version>8.0.23</version>
 		</dependency>
 		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-server</artifactId>
+			<version>2.35</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-servlet</artifactId>
+			<version>2.35</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-common</artifactId>
+			<version>2.35</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.inject</groupId>
+			<artifactId>jersey-hk2</artifactId>
+			<version>2.35</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-json-jackson</artifactId>
+			<version>2.35</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>[1.2.17, )</version>
+		</dependency>
+		<dependency>
+			<groupId>org.databene</groupId>
+			<artifactId>contiperf</artifactId>
+			<version>2.3.4</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.25</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.25</version>
+			<scope>compile</scope>
+		</dependency> 
+		<dependency>
+		    <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-surefire-plugin</artifactId>
+		    <version>3.0.0-M5</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
 			<version>2.18.0</version>
 		</dependency>
+		
+
 	</dependencies>
 
 	<build>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		
+		<resources>
+			<resource>
+				<directory>${config.files.dir}</directory>
+				<includes>
+					<include>**/*.jdo</include>
+					<include>**/*.orm</include>
+					<include>**/*.properties</include>
+				</includes>
+			</resource>
+		</resources>
+		
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.5.1</version>
-				<inherited>true</inherited>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>3.0.0</version>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<filesets>
+						<fileset>
+							<directory>${basedir}</directory>
+							<includes>
+								<include>*.log</include>
+								<include>*.ods</include>
+							</includes>
+						</fileset>
+					</filesets>
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.2.1</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>java</goal>
-						</goals>
-					</execution>
-				</executions>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.7.0</version>
 				<configuration>
-					<mainClass>com.example.Main</mainClass>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -119,10 +165,27 @@
 				<configuration>
 					<log4jConfiguration>${config.files.dir}/log4j.properties</log4jConfiguration>
 					<verbose>true</verbose>
-					<props>${config.files.dir}/datanucleus.properties</props>
+					<fork>false</fork>
+                    <props>${config.files.dir}/datanucleus.properties</props>
 				</configuration>
+				
 			</plugin>
 			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.4.19.v20190610</version>
+            </plugin>
+            <plugin>
+		        <groupId>com.soebes.maven.plugins</groupId>
+		        <artifactId>doxygen-maven-plugin</artifactId>
+		        <version>1.1.0</version>
+		        <configuration>
+		        	<configurationFile>${doxygen.config.file}</configurationFile>
+		        </configuration>
+		     </plugin>
+            
+            
+            <plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.6</version>
@@ -141,32 +204,87 @@
 					</execution>
 				</executions>
 			</plugin>
+			
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-				<version>3.9.1</version>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/docs</outputDirectory>
+								<resources>     
+									<resource>
+									<directory>${basedir}/target/site</directory>
+									<filtering>true</filtering>
+									</resource>
+								</resources>     
+						</configuration>            
+					</execution>
+					<execution>
+						<id>copy-resources-2</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/docs/doxygen</outputDirectory>
+								<resources>          
+									<resource>
+									<directory>${basedir}/target/doxygen</directory>
+									<filtering>true</filtering>
+									</resource>
+								</resources>      
+						</configuration>            
+					</execution>
+					<execution>
+						<id>copy-resources-3</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/docs/contiperf-report</outputDirectory>
+								<resources>          
+									<resource>
+									<directory>${basedir}/target/contiperf-report</directory>
+									<filtering>true</filtering>
+									</resource>
+								</resources>      
+						</configuration>            
+					</execution>
+				</executions>
 			</plugin>
+            
 		</plugins>
 	</build>
 
 	<profiles>
 		<profile>
-			<id>cliente</id>
+			<id>client</id>
 			<build>
 				<plugins>
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>exec-maven-plugin</artifactId>
 						<version>1.2.1</version>
-						<executions>
-							<execution>
-								<goals>
-									<goal>java</goal>
-								</goals>
-							</execution>
-						</executions>
 						<configuration>
-							<mainClass>com.example.ClientApp</mainClass>
+							<mainClass>client.main.MainCliente</mainClass>
+							<arguments>
+								<argument>${server.hostname}</argument>
+								<argument>${server.port}</argument>
+								<argument>${demo.data}</argument>
+							</arguments>
+							<systemProperties>
+								<systemProperty>
+									<key>log4j.configuration</key>
+									<value>file:${config.files.dir}/log4j.properties</value>
+								</systemProperty>
+							</systemProperties>
 						</configuration>
 					</plugin>
 				</plugins>
@@ -180,49 +298,116 @@
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>exec-maven-plugin</artifactId>
 						<version>1.2.1</version>
-						<executions>
-							<execution>
-								<goals>
-									<goal>java</goal>
-								</goals>
-							</execution>
-						</executions>
 						<configuration>
-							<mainClass>com.example.util.PrepareData</mainClass>
+							<mainClass>server.MainServer</mainClass>
+							<arguments>
+								<argument>${server.hostname}</argument>
+								<argument>${server.port}</argument>
+								<argument>${demo.data}</argument>
+							</arguments>
+							<systemProperties>
+								<systemProperty>
+									<key>log4j.configuration</key>
+									<value>file:${config.files.dir}/log4j.properties</value>
+								</systemProperty>
+							</systemProperties>
 						</configuration>
 					</plugin>
 				</plugins>
 			</build>
 		</profile>
+		<profile>
+			<id>integration</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>1.2.1</version>
+						<configuration>
+							<mainClass>client.main.IntegrationTest</mainClass>
+							<arguments>
+								<argument>${server.hostname}</argument>
+								<argument>${server.port}</argument>
+								<argument>${demo.data}</argument>
+							</arguments>
+							<systemProperties>
+								<systemProperty>
+									<key>log4j.configuration</key>
+									<value>file:${config.files.dir}/log4j.properties</value>
+								</systemProperty>
+							</systemProperties>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		
 	</profiles>
-
+	<repositories>
+		<repository>
+			<id>DN_M2_Repo</id>
+			<name>DataNucleus Repository</name>
+			<url>http://www.datanucleus.org/downloads/maven2</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>DataNucleus_2</id>
+			<url>http://www.datanucleus.org/downloads/maven2/</url>
+		</pluginRepository>
+	</pluginRepositories>
+	
 	<reporting>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.0.1</version>
+				
+				<configuration>
+                    <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
+					<show>private</show>
+					<nohelp>true</nohelp>
+					<source>8</source>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-project-info-reports-plugin</artifactId>
-				<version>3.1.1</version>
+				<version>2.9</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>3.0.0</version>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jdepend-maven-plugin</artifactId>
+				<version>2.0</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-report-plugin</artifactId>
-				<version>3.0.0-M5</version>
+				<version>2.21.0</version>
+			</plugin>
+			<plugin>
+				<groupId>com.googlecode.maven-overview-plugin</groupId>
+				<artifactId>maven-overview-plugin</artifactId>
+				<version>1.6</version>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.3</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>3.11.0</version>
 			</plugin>
 		</plugins>
 	</reporting>
 
-	<properties>
-		<jersey.version>3.0.1</jersey.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<config.files.dir>${basedir}/src/main/resources</config.files.dir>
-		<sonar.organization>imagonzalezz</sonar.organization>
- 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-		<server.hostname>127.0.0.1</server.hostname>
-		<server.port>8080</server.port>
-		<demo.data>${basedir}/src/main/resources/demoData.csv</demo.data>
-		<policy.file>${basedir}/security/java.policy</policy.file>
-		<doxygen.config.file>${basedir}/src/main/resources/Doxyfile</doxygen.config.file>
-		<java.home.dir>C:\Program Files\Eclipse Foundation\jdk-17.0.0.35-hotspot</java.home.dir>
-		<java.version>1.17</java.version>
-	</properties>
 </project>

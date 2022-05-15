@@ -10,8 +10,8 @@ import javax.swing.border.EmptyBorder;
 
 import com.deustocine.app.conexion.Conexion;
 
-import jakarta.ws.rs.client.Client;
-import jakarta.ws.rs.client.WebTarget;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.WebTarget;
 
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
