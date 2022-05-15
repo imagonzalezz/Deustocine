@@ -27,39 +27,7 @@ public class SesionDAO {
 	
 	public void guardarSesion(Sesion s) {
 		this.guardarObjeto(s);
-	}
-	
-	public void borrarSesiones() {
-		System.out.println("Limpiando la bd...");
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction ts = pm.currentTransaction();
-		try {
-			ts.begin();
-			
-			// Getting ready for removing objects - Remove Relationships between User and other things
-			Extent<Sesion> extentU = pm.getExtent(Sesion.class, true);
-			
-		
-			// Updating the database so changes are considered before commit
-			pm.flush();
 
-			// Deleting All Products - Copies in Books will be deleted due to 'delete on cascade'
-			Query<Sesion> query2 = pm.newQuery(Sesion.class);
-			System.out.println(" * '" + query2.deletePersistentAll() + "' sesiones eliminadas de la DB.");
-
-			ts.commit();
-		} catch (Exception ex) {
-			System.err.println(" $ Error cleaning the DB: " + ex.getMessage());
-			ex.printStackTrace();
-		} finally {
-			if (ts != null && ts.isActive()) {
-				ts.rollback();
-			}
-
-			if (pm != null && !pm.isClosed()) {
-				pm.close();
-			}
-		}
 	}
 	
 	
