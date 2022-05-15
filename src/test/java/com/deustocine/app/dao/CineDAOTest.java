@@ -17,10 +17,14 @@ import javax.jdo.Transaction;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
-import com.deustocine.app.dao.CineDAO;
 import com.deustocine.app.domain.Cine;
+
+@RunWith(MockitoJUnitRunner.class)
+
 
 public class CineDAOTest {
 	@Mock

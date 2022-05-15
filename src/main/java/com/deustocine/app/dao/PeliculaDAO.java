@@ -30,7 +30,7 @@ public class PeliculaDAO {
 
 		try {
 			tx.begin();
-			System.out.println("   * Storing an Pelicula: " + object);
+			System.out.println("   *  an Pelicula: " + object);
 			pm.makePersistent(object);
 			tx.commit();
 		} catch (Exception ex) {
@@ -83,7 +83,6 @@ public class PeliculaDAO {
 		 * By default only 1 level is retrieved from the db so if we wish to fetch more
 		 * than one level, we must indicate it
 		 */
-		pm.getFetchPlan().setMaxFetchDepth(3);
 
 		Transaction tx = pm.currentTransaction();
 		List<Pelicula> peliculas = new ArrayList<>();
@@ -112,24 +111,6 @@ public class PeliculaDAO {
 		return peliculas;
 	}
 	
-	public void actualizarPelicula(Pelicula pelicula) {
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx = pm.currentTransaction();
-
-		try {
-			tx.begin();
-			pm.makePersistent(pelicula);
-			tx.commit();
-		} catch (Exception ex) {
-			System.out.println("   $ Error updating: " + ex.getMessage());
-		} finally {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-
-			pm.close();
-		}
-	}
 	
 	public void setPmf(PersistenceManagerFactory pmf) {
 		this.pmf = pmf;

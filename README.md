@@ -12,10 +12,11 @@ DROP SCHEMA IF EXISTS deustocinedb;
 
 DROP USER 'root'@'localhost';
 
+
 CREATE SCHEMA deustocinedb;
 
-CREATE USER 'root'@'localhost' IDENTIFIED BY 'root';
-GRANT ALL ON deustocine.* TO 'root'@'localhost';
+CREATE USER 'root'@'localhost' IDENTIFIED BY 'deusto';
+GRANT ALL ON deustocinedb.* TO 'root'@'localhost';
 ```
 _Despues crear las tablas en la base de datos_
 
