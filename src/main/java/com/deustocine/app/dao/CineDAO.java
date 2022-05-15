@@ -92,7 +92,6 @@ public class CineDAO {
 		 * By default only 1 level is retrieved from the db so if we wish to fetch more
 		 * than one level, we must indicate it
 		 */
-		pm.getFetchPlan().setMaxFetchDepth(3);
 
 		Transaction tx = pm.currentTransaction();
 		List<Cine> cines = new ArrayList<>();
@@ -121,41 +120,6 @@ public class CineDAO {
 		return cines;
 	}
 	
-	public void actualizarCine(Cine cine) {
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx = pm.currentTransaction();
-
-		try {
-			tx.begin();
-			pm.makePersistent(cine);
-			tx.commit();
-		} catch (Exception ex) {
-			System.out.println("   $ Error actualizando el cine: " + ex.getMessage());
-		} finally {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-
-			pm.close();
-		}
-	}
-	public Cine getCine(int cod) {
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Cine cine = null;
-
-		try {
-			cine=pm.getObjectById(Cine.class, cod);
-			pm.makeTransient(cine);
-
-		} catch (Exception ex) {
-			System.out.println("   $ Error no existe ese cine: " + ex.getMessage());
-			return null;
-		} finally {
-			pm.close();
-		}
-
-		return cine;
-	}
 	
 	
 }

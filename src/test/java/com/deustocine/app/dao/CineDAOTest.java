@@ -75,16 +75,7 @@ public class CineDAOTest {
 			assertEquals(cinesLista.size(), 1);
 		}
 		
-		@Test
-		public void testGetCine() {
-			when(pmf.getPersistenceManager()).thenReturn(pm);
-			when(pm.getObjectById(Cine.class, "1a")).thenReturn(c);
-			when(pm.getObjectById(Cine.class, "2b")).thenThrow(JDOUserException.class);
-			Cine c1=dao.getCine(1);
-			assertEquals(c,c1);
-			Cine c2=dao.getCine(2);
-			assertEquals(null,c2);
-		}
+
 		
 		
 		
