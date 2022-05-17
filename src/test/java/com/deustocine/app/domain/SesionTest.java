@@ -12,7 +12,7 @@ import com.deustocine.app.domain.Sesion;
 
 public class SesionTest {
 	
-	private Sesion s;
+	private Sesion s= new Sesion();
 	private Pelicula p;
 	private Cine c;
 
@@ -33,7 +33,7 @@ public class SesionTest {
 	
 	@Test
 	public void testConstructor() {
-		Sesion s= new Sesion(p, null, 1, 2, 3);
+		Sesion s= new Sesion(p, "10/05/2022 12:00", 1, 2, 3);
 		boolean test=false;
 		if (s.getPrecio()==1 && s.getPuntosObtiene() == 2 && s.getValorPuntos()==3) {
 			test=true;
