@@ -38,7 +38,7 @@ import javax.ws.rs.core.Response;
 <span class="nc bnc" id="L38" title="All 2 branches missed.">			for (Pelicula pelicula : lista) {</span>
 <span class="nc bnc" id="L39" title="All 2 branches missed.">				if(pelicula.getCod() == cod)</span>
 <span class="nc" id="L40">					return Response.ok(pelicula).build();</span>
-			}
+<span class="nc" id="L41">			}</span>
 		}
 <span class="nc" id="L43">		return Response.status(Response.Status.NOT_FOUND).build();</span>
 	}
@@ -63,6 +63,16 @@ import javax.ws.rs.core.Response;
 <span class="nc" id="L63">		lista.add(p);</span>
 <span class="nc" id="L64">		return Response.status(Response.Status.CREATED).entity(p).build();</span>
 	}
+
+	public PeliculaDAO getpDao() {
+<span class="nc" id="L68">		return pDao;</span>
+	}
+
+	public void setpDao(PeliculaDAO pDao) {
+<span class="nc" id="L72">		this.pDao = pDao;</span>
+<span class="nc" id="L73">	}</span>
+	
+	
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

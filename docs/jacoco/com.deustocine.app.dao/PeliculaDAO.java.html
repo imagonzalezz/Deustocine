@@ -33,7 +33,7 @@ public class PeliculaDAO {
 <span class="fc" id="L33">			System.out.println(&quot;   *  an Pelicula: &quot; + object);</span>
 <span class="nc" id="L34">			pm.makePersistent(object);</span>
 <span class="nc" id="L35">			tx.commit();</span>
-<span class="pc" id="L36">		} catch (Exception ex) {</span>
+<span class="fc" id="L36">		} catch (Exception ex) {</span>
 <span class="fc" id="L37">			System.out.println(&quot;   $ Error storing an object: &quot; + ex.getMessage());</span>
 		} finally {
 <span class="pc bpc" id="L39" title="1 of 4 branches missed.">			if (tx != null &amp;&amp; tx.isActive()) {</span>
@@ -64,7 +64,7 @@ public class PeliculaDAO {
 
 <span class="fc bfc" id="L65" title="All 2 branches covered.">			for (Pelicula p : extent) {</span>
 <span class="fc" id="L66">				peliculas.add(p);</span>
-			}
+<span class="fc" id="L67">			}</span>
 
 <span class="fc" id="L69">			tx.commit();</span>
 <span class="fc" id="L70">		} catch (Exception ex) {</span>

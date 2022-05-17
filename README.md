@@ -23,14 +23,20 @@ _Despues crear las tablas en la base de datos_
 ```
 mvn datanucleus:schema-create
 ```
+
+_Para que las clases se usen en la BD_
+
+```
+mvn datanucleus:enhance
+```
+
+_Carga los datos de prueba en la BD_
+
+```
+mvn exec:java -Pdatos
+```
 _Lanzar el servidor_
 
 ```
 mvn jetty:run
-```
-
-_Lanzar el cliente_
-
-```
-mvn exec:java -Pclient
 ```

@@ -33,9 +33,19 @@ import javax.ws.rs.core.Response;
 <span class="nc bnc" id="L33" title="All 2 branches missed.">			for (Sesion sesion : lSesiones) {</span>
 <span class="nc bnc" id="L34" title="All 2 branches missed.">				if(sesion.getCod() == cod)</span>
 <span class="nc" id="L35">					return Response.ok(sesion).build();</span>
-			}
+<span class="nc" id="L36">			}</span>
 		}
 <span class="nc" id="L38">		return Response.status(Response.Status.NOT_FOUND).build();</span>
 	}
+
+	public SesionDAO getsDao() {
+<span class="nc" id="L42">		return sDao;</span>
+	}
+
+	public void setsDao(SesionDAO sDao) {
+<span class="nc" id="L46">		this.sDao = sDao;</span>
+<span class="nc" id="L47">	}</span>
+	
+	
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

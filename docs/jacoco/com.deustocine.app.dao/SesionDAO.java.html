@@ -41,7 +41,7 @@ public class SesionDAO {
 <span class="nc" id="L41">			pm.makePersistent(o);</span>
 <span class="nc" id="L42">			ts.commit();</span>
 			
-<span class="pc" id="L44">		}catch(Exception ex){</span>
+<span class="fc" id="L44">		}catch(Exception ex){</span>
 <span class="fc" id="L45">			System.out.println(&quot;Error guardando una sesion&quot;+ex.getMessage());</span>
 		}finally {
 <span class="pc bpc" id="L47" title="1 of 4 branches missed.">			if(ts != null &amp;&amp;  ts.isActive()) {</span>
@@ -74,7 +74,7 @@ public class SesionDAO {
 <span class="fc bfc" id="L74" title="All 2 branches covered.">			for (Sesion p : extent) {</span>
 <span class="fc" id="L75">				System.out.println(p.getPelicula());</span>
 <span class="fc" id="L76">				sesiones.add(p);</span>
-			}
+<span class="fc" id="L77">			}</span>
 
 <span class="fc" id="L79">			ts.commit();</span>
 <span class="fc" id="L80">		} catch (Exception ex) {</span>
