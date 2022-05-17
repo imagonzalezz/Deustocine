@@ -23,7 +23,7 @@ public class Pelicula {
 	
 	private String titulo;
 	private String director;
-	private Date fechaSalida;
+	private String fechaSalida;
 	private String genero;
 	private String portada;
 	
@@ -35,12 +35,7 @@ public class Pelicula {
 		super();
 		this.titulo = titulo;
 		this.director = director;
-		try {
-			this.fechaSalida = sdf.parse(fechaSalida);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.fechaSalida = fechaSalida;
 		this.genero = genero;
 		this.portada = portada;
 	}
@@ -63,11 +58,11 @@ public class Pelicula {
 	public void setDirector(String director) {
 		this.director = director;
 	}
-	public Date getFechaSalida() {
+	public String getFechaSalida() {
 		return fechaSalida;
 	}
-	public void setFechaSalida(Date fechaSalida) {
-		this.fechaSalida = fechaSalida;
+	public void setFechaSalida(String string) {
+		this.fechaSalida = string;
 	}
 	public String getGenero() {
 		return genero;

@@ -64,4 +64,14 @@ public class PeliculaServicio {
 		return Response.status(Response.Status.CREATED).entity(p).build();
 	}
 
+	public PeliculaDAO getpDao() {
+		return pDao;
+	}
+
+	public void setpDao(PeliculaDAO pDao) {
+		this.pDao = pDao;
+	}
+	
+	
+
 }

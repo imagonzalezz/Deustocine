@@ -37,4 +37,14 @@ private CineDAO cDao = new CineDAO();
 		}
 		return Response.status(Response.Status.NOT_FOUND).build();
 	}
+
+	public CineDAO getcDao() {
+		return cDao;
+	}
+
+	public void setcDao(CineDAO cDao) {
+		this.cDao = cDao;
+	}
+	
+	
 }

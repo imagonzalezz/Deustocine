@@ -37,4 +37,14 @@ private SesionDAO sDao = new SesionDAO();
 		}
 		return Response.status(Response.Status.NOT_FOUND).build();
 	}
+
+	public SesionDAO getsDao() {
+		return sDao;
+	}
+
+	public void setsDao(SesionDAO sDao) {
+		this.sDao = sDao;
+	}
+	
+	
 }

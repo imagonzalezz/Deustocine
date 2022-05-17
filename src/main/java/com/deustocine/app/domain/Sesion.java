@@ -35,7 +35,7 @@ public class Sesion {
 	private Cine cine;
 	@ForeignKey
 	private Pelicula pelicula;
-	private Date fechaHora;
+	private String fechaHora;
 	private double precio;
 	private double puntosObtiene;
 	private double valorPuntos;
@@ -48,12 +48,7 @@ public class Sesion {
 			double valorPuntos) {
 		super();
 		this.pelicula = pelicula;
-		try {
-			this.fechaHora = sdf.parse(fechaHora);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.fechaHora = fechaHora;
 		this.precio = precio;
 		this.puntosObtiene = puntosObtiene;
 		this.valorPuntos = valorPuntos;
@@ -75,12 +70,12 @@ public class Sesion {
 		this.pelicula = pelicula;
 	}
 
-	public Date getFechaHora() {
+	public String getFechaHora() {
 		return fechaHora;
 	}
 
-	public void setFechaHora(Date fechaHora) {
-		this.fechaHora = fechaHora;
+	public void setFechaHora(String string) {
+		this.fechaHora = string;
 	}
 
 	public double getPrecio() {
