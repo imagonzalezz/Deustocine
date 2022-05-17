@@ -18,6 +18,14 @@ import javax.jdo.annotations.PrimaryKey;
 public class Sesion {
 	
 	private String dateFormat = "dd/MM/YYYY HH:mm";
+	public Cine getCine() {
+		return cine;
+	}
+
+	public void setCine(Cine cine) {
+		this.cine = cine;
+	}
+
 	private SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
 	
 	@PrimaryKey

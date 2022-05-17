@@ -1,6 +1,6 @@
 package com.deustocine.app.domain;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.Objects;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -13,7 +13,6 @@ public class Cine {
 	
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.INCREMENT)
-	//commit
 	
 	private int cod;
 	private String nombre;
@@ -22,7 +21,6 @@ public class Cine {
 	
 	public Cine() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Cine(int cod, String nombre, String direccion, int telefono) {

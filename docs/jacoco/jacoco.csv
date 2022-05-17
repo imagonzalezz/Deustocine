@@ -2,7 +2,7 @@ GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_
 deustocine,com.deustocine.app.conexion,Conexion,36,0,2,0,11,0,3,0,2,0
 deustocine,com.deustocine.app.domain,Cine,33,72,4,4,10,20,6,11,2,11
 deustocine,com.deustocine.app.domain,Usuario,36,31,0,0,14,6,8,3,8,3
-deustocine,com.deustocine.app.domain,Sesion,190,71,24,0,36,11,24,5,12,5
+deustocine,com.deustocine.app.domain,Sesion,145,116,24,0,18,29,16,13,4,13
 deustocine,com.deustocine.app.domain,Pelicula,76,83,8,0,19,23,8,13,4,13
 deustocine,com.deustocine.app.domain,Entrada,42,0,0,0,13,0,7,0,7,0
 deustocine,com.deustocine.app.dao,UsuarioDAO,33,125,3,7,9,35,4,8,1,6

@@ -42,6 +42,18 @@ public class Entrada {
 		this.sesion = sesion;
 	}
 
+	public int getCod() {
+		return cod;
+	}
+
+	public void setCod(int cod) {
+		this.cod = cod;
+	}
+
+	public void setSesion(Sesion sesion) {
+		this.sesion = sesion;
+	}
+
 	@Override
 	public String toString() {
 		return "Entrada [usuario=" + usuario + ", sesion=" + sesion + "]";
