@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PeliculaDAO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">deustocine</a> &gt; <a href="index.source.html" class="el_package">com.deustocine.app.dao</a> &gt; <span class="el_source">PeliculaDAO.java</span></div><h1>PeliculaDAO.java</h1><pre class="source lang-java linenums">package com.deustocine.app.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.jdo.Extent;
+import javax.jdo.JDOHelper;
+import javax.jdo.PersistenceManager;
+import javax.jdo.PersistenceManagerFactory;
+import javax.jdo.Query;
+import javax.jdo.Transaction;
+
+import com.deustocine.app.domain.Pelicula;
+
+public class PeliculaDAO {
+
+	private PersistenceManagerFactory pmf;
+
+<span class="fc" id="L19">	public PeliculaDAO() {</span>
+<span class="fc" id="L20">		pmf = JDOHelper.getPersistenceManagerFactory(&quot;datanucleus.properties&quot;);</span>
+<span class="fc" id="L21">	}</span>
+	
+	public void guardarPelicula(Pelicula pelicula) {
+<span class="fc" id="L24">		this.guardarObjeto(pelicula);</span>
+<span class="fc" id="L25">	}</span>
+	
+	public void guardarObjeto(Object object) {
+<span class="fc" id="L28">		PersistenceManager pm = pmf.getPersistenceManager();</span>
+<span class="fc" id="L29">		Transaction tx = pm.currentTransaction();</span>
+
+		try {
+<span class="fc" id="L32">			tx.begin();</span>
+<span class="fc" id="L33">			System.out.println(&quot;   *  an Pelicula: &quot; + object);</span>
+<span class="nc" id="L34">			pm.makePersistent(object);</span>
+<span class="nc" id="L35">			tx.commit();</span>
+<span class="pc" id="L36">		} catch (Exception ex) {</span>
+<span class="fc" id="L37">			System.out.println(&quot;   $ Error storing an object: &quot; + ex.getMessage());</span>
+		} finally {
+<span class="pc bpc" id="L39" title="1 of 4 branches missed.">			if (tx != null &amp;&amp; tx.isActive()) {</span>
+<span class="fc" id="L40">				tx.rollback();</span>
+			}
+
+<span class="fc" id="L43">			pm.close();</span>
+		}
+<span class="fc" id="L45">	}</span>
+	
+	
+	
+	public List&lt;Pelicula&gt; getPeliculas() {
+<span class="fc" id="L50">		PersistenceManager pm = pmf.getPersistenceManager();</span>
+		/*
+		 * By default only 1 level is retrieved from the db so if we wish to fetch more
+		 * than one level, we must indicate it
+		 */
+
+<span class="fc" id="L56">		Transaction tx = pm.currentTransaction();</span>
+<span class="fc" id="L57">		List&lt;Pelicula&gt; peliculas = new ArrayList&lt;&gt;();</span>
+
+		try {
+<span class="fc" id="L60">			System.out.println(&quot;   * Retrieving an Extent for Peliculas.&quot;);</span>
+
+<span class="fc" id="L62">			tx.begin();</span>
+<span class="fc" id="L63">			Extent&lt;Pelicula&gt; extent = pm.getExtent(Pelicula.class, true);</span>
+
+<span class="fc bfc" id="L65" title="All 2 branches covered.">			for (Pelicula p : extent) {</span>
+<span class="fc" id="L66">				peliculas.add(p);</span>
+			}
+
+<span class="fc" id="L69">			tx.commit();</span>
+<span class="fc" id="L70">		} catch (Exception ex) {</span>
+<span class="fc" id="L71">			System.out.println(&quot;   $ Error retrieving an extent: &quot; + ex.getMessage());</span>
+		} finally {
+<span class="pc bpc" id="L73" title="2 of 4 branches missed.">			if (tx != null &amp;&amp; tx.isActive()) {</span>
+<span class="fc" id="L74">				tx.rollback();</span>
+			}
+
+<span class="fc" id="L77">			pm.close();</span>
+		}
+
+<span class="fc" id="L80">		return peliculas;</span>
+	}
+	
+	public PersistenceManagerFactory getPmf() {
+<span class="fc" id="L84">		return this.pmf;</span>
+	}
+	public void setPmf(PersistenceManagerFactory pmf) {
+<span class="fc" id="L87">		this.pmf = pmf;</span>
+<span class="fc" id="L88">	}</span>
+	
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

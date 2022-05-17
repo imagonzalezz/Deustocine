@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SesionServicio.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">deustocine</a> &gt; <a href="index.source.html" class="el_package">com.deustocine.app.servicios</a> &gt; <span class="el_source">SesionServicio.java</span></div><h1>SesionServicio.java</h1><pre class="source lang-java linenums">package com.deustocine.app.servicios;
+
+import java.util.List;
+
+import com.deustocine.app.dao.SesionDAO;
+import com.deustocine.app.domain.Sesion;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+<span class="nc" id="L15">public class SesionServicio {</span>
+<span class="nc" id="L16">private SesionDAO sDao = new SesionDAO();</span>
+	
+<span class="nc" id="L18">	private List&lt;Sesion&gt; lSesiones = sDao.getSesiones();</span>
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getSesiones() {
+<span class="nc" id="L23">		return Response.ok(lSesiones).build();</span>
+	}
+	
+	@GET
+	@Path(&quot;/{cod}&quot;)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getSesion(@PathParam(&quot;cod&quot;) int cod) {
+<span class="nc" id="L30">		Sesion s = new Sesion();</span>
+<span class="nc" id="L31">		s.setCod(cod);</span>
+<span class="nc bnc" id="L32" title="All 2 branches missed.">		if(lSesiones.contains(s)) {</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">			for (Sesion sesion : lSesiones) {</span>
+<span class="nc bnc" id="L34" title="All 2 branches missed.">				if(sesion.getCod() == cod)</span>
+<span class="nc" id="L35">					return Response.ok(sesion).build();</span>
+			}
+		}
+<span class="nc" id="L38">		return Response.status(Response.Status.NOT_FOUND).build();</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

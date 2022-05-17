@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Conexion.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">deustocine</a> &gt; <a href="index.source.html" class="el_package">com.deustocine.app.conexion</a> &gt; <span class="el_source">Conexion.java</span></div><h1>Conexion.java</h1><pre class="source lang-java linenums">package com.deustocine.app.conexion;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+import javax.sql.DataSource;
+
+import org.datanucleus.store.rdbms.datasource.dbcp2.BasicDataSource;
+
+<span class="nc" id="L11">public class Conexion {</span>
+
+	// Conectamos con la base de datos
+
+	public static Connection conectar() {
+<span class="nc" id="L16">		Connection connection = null;</span>
+
+		
+		try {
+<span class="nc" id="L20">			Class.forName(&quot;com.mysql.jdbc.Driver&quot;);</span>
+
+<span class="nc" id="L22">			connection = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/deustocinedb&quot;,&quot;root&quot;, &quot;deusto&quot;);</span>
+<span class="nc bnc" id="L23" title="All 2 branches missed.">			if(	connection!=null) {</span>
+<span class="nc" id="L24">				System.out.println(&quot;se ha conectado correctamente a la BD&quot;);	</span>
+			}
+
+
+<span class="nc" id="L28">		} catch (ClassNotFoundException ex) {</span>
+<span class="nc" id="L29">			System.out.println(&quot;Error al registrar el driver de MySQL: &quot; + ex);</span>
+<span class="nc" id="L30">		} catch (SQLException e) {</span>
+			// TODO Auto-generated catch block
+<span class="nc" id="L32">			System.out.println(&quot;sin conexion&quot;);	</span>
+		}
+<span class="nc" id="L34">		return connection;}</span>
+	
+	
+	
+//		private static BasicDataSource dataSource=null;
+//		
+//		private static DataSource getDataSource() {
+//			if (dataSource==null) {
+//				dataSource= new BasicDataSource();
+//				dataSource.setDriverClassName(&quot;com.mysql.jc.jdbc.Driver&quot;);
+//				dataSource.setUsername(&quot;root&quot;);
+//				dataSource.setPassword(&quot;deusto&quot;);
+//				dataSource.setUrl(&quot;jdbc:mysql://localhost:3306/deustocinedb&quot;);
+//			
+//			}
+//			return dataSource;
+//		}
+//		
+//		public static Connection getConnection() throws SQLException {
+//			return getDataSource().getConnection();
+//		}
+//
+//	
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
