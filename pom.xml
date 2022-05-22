@@ -22,9 +22,7 @@
 		<doxygen.config.file>${basedir}/src/main/resources/Doxyfile</doxygen.config.file>
 		<java.home.dir>C:\Program Files\Eclipse Foundation\jdk-17.0.0.35-hotspot</java.home.dir>
 		<java.version>1.17</java.version>
-		<sonar.coverage.jacoco.xmlReportPaths>
-  		 ../app-it/target/site/jacoco-aggregate/jacoco.xml
- 		</sonar.coverage.jacoco.xmlReportPaths>
+		
 	</properties>
 	<dependencies>
 		<dependency>
