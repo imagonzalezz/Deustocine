@@ -1,21 +1,20 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
 	<groupId>com.deustocine.app</groupId>
 	<artifactId>deustocine</artifactId>
 	<packaging>jar</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<name>deustocine</name>
 	<url>http://maven.apache.org</url>
-
 	<properties>
 		<jersey.version>3.0.1</jersey.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<config.files.dir>${basedir}/src/main/resources</config.files.dir>
 		<sonar.organization>imagonzalezz</sonar.organization>
- 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<server.hostname>127.0.0.1</server.hostname>
 		<server.port>8080</server.port>
 		<demo.data>${basedir}/src/main/resources/demoData.csv</demo.data>
@@ -23,8 +22,10 @@
 		<doxygen.config.file>${basedir}/src/main/resources/Doxyfile</doxygen.config.file>
 		<java.home.dir>C:\Program Files\Eclipse Foundation\jdk-17.0.0.35-hotspot</java.home.dir>
 		<java.version>1.17</java.version>
+		<sonar.coverage.jacoco.xmlReportPaths>
+  		 ../app-it/target/site/jacoco-aggregate/jacoco.xml
+ 		</sonar.coverage.jacoco.xmlReportPaths>
 	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.datanucleus</groupId>
@@ -104,24 +105,20 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.25</version>
 			<scope>compile</scope>
-		</dependency> 
+		</dependency>
 		<dependency>
-		    <groupId>org.apache.maven.plugins</groupId>
-		    <artifactId>maven-surefire-plugin</artifactId>
-		    <version>3.0.0-M5</version>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-surefire-plugin</artifactId>
+			<version>3.0.0-M5</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
 			<version>2.18.0</version>
 		</dependency>
-		
-
 	</dependencies>
-
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
-		
 		<resources>
 			<resource>
 				<directory>${config.files.dir}</directory>
@@ -132,7 +129,6 @@
 				</includes>
 			</resource>
 		</resources>
-		
 		<plugins>
 			<plugin>
 				<artifactId>maven-clean-plugin</artifactId>
@@ -166,26 +162,23 @@
 					<log4jConfiguration>${config.files.dir}/log4j.properties</log4jConfiguration>
 					<verbose>true</verbose>
 					<fork>false</fork>
-                    <props>${config.files.dir}/datanucleus.properties</props>
+					<props>${config.files.dir}/datanucleus.properties</props>
 				</configuration>
-				
 			</plugin>
 			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>9.4.19.v20190610</version>
-            </plugin>
-            <plugin>
-		        <groupId>com.soebes.maven.plugins</groupId>
-		        <artifactId>doxygen-maven-plugin</artifactId>
-		        <version>1.1.0</version>
-		        <configuration>
-		        	<configurationFile>${doxygen.config.file}</configurationFile>
-		        </configuration>
-		     </plugin>
-            
-            
-            <plugin>
+			</plugin>
+			<plugin>
+				<groupId>com.soebes.maven.plugins</groupId>
+				<artifactId>doxygen-maven-plugin</artifactId>
+				<version>1.1.0</version>
+				<configuration>
+					<configurationFile>${doxygen.config.file}</configurationFile>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.8</version>
@@ -204,7 +197,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>2.6</version>
@@ -217,13 +209,13 @@
 						</goals>
 						<configuration>
 							<outputDirectory>${basedir}/docs</outputDirectory>
-								<resources>     
-									<resource>
+							<resources>
+								<resource>
 									<directory>${basedir}/target/site</directory>
 									<filtering>true</filtering>
-									</resource>
-								</resources>     
-						</configuration>            
+								</resource>
+							</resources>
+						</configuration>
 					</execution>
 					<execution>
 						<id>copy-resources-2</id>
@@ -233,13 +225,13 @@
 						</goals>
 						<configuration>
 							<outputDirectory>${basedir}/docs/doxygen</outputDirectory>
-								<resources>          
-									<resource>
+							<resources>
+								<resource>
 									<directory>${basedir}/target/doxygen</directory>
 									<filtering>true</filtering>
-									</resource>
-								</resources>      
-						</configuration>            
+								</resource>
+							</resources>
+						</configuration>
 					</execution>
 					<execution>
 						<id>copy-resources-3</id>
@@ -249,20 +241,18 @@
 						</goals>
 						<configuration>
 							<outputDirectory>${basedir}/docs/contiperf-report</outputDirectory>
-								<resources>          
-									<resource>
+							<resources>
+								<resource>
 									<directory>${basedir}/target/contiperf-report</directory>
 									<filtering>true</filtering>
-									</resource>
-								</resources>      
-						</configuration>            
+								</resource>
+							</resources>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
-            
 		</plugins>
 	</build>
-
 	<profiles>
 		<profile>
 			<id>client</id>
@@ -342,7 +332,37 @@
 				</plugins>
 			</build>
 		</profile>
-		
+		<profile>
+			<id>coverage</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+						<version>0.8.7</version>
+						<executions>
+							<execution>
+								<id>prepare-agent</id>
+								<goals>
+									<goal>prepare-agent</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>report</id>
+								<goals>
+									<goal>report</goal>
+								</goals>
+								<configuration>
+									<formats>
+										<format>XML</format>
+									</formats>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 	</profiles>
 	<repositories>
 		<repository>
@@ -357,16 +377,14 @@
 			<url>http://www.datanucleus.org/downloads/maven2/</url>
 		</pluginRepository>
 	</pluginRepositories>
-	
 	<reporting>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>3.0.1</version>
-				
 				<configuration>
-                    <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
+					<javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
 					<show>private</show>
 					<nohelp>true</nohelp>
 					<source>8</source>
@@ -409,5 +427,4 @@
 			</plugin>
 		</plugins>
 	</reporting>
-
 </project>
