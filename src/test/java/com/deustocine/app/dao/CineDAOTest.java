@@ -34,13 +34,13 @@ public class CineDAOTest {
 	@Mock
 	Transaction ts;
 	
-	CineDAO dao;
+	CineDAO daoC;
 	Cine c;
 	
 	@Before
 	public void setup() {
-		dao= new CineDAO();
-		dao.setPmf(pmf);
+		daoC= new CineDAO();
+		daoC.setPmf(pmf);
 		c = new Cine();
 		c.setCod(1);
 	}
@@ -54,9 +54,9 @@ public class CineDAOTest {
 			Cine c1= new Cine();
 			when(pm.makePersistent(c1)).thenThrow(JDOUserException.class);
 			when(ts.isActive()).thenReturn(true);
-			dao.guardarCine(c);
+			daoC.guardarCine(c);
 			when(ts.isActive()).thenReturn(false);
-			dao.guardarCine(c1);
+			daoC.guardarCine(c1);
 			assertTrue(true);
 		}
 
@@ -69,9 +69,9 @@ public class CineDAOTest {
 			when(pm.currentTransaction()).thenReturn(ts);
 			when(ts.isActive()).thenReturn(true);
 			when(pm.getExtent(Cine.class,true)).thenReturn(cines);
-			List<Cine>cinesLista=dao.getCines();
+			List<Cine>cinesLista=daoC.getCines();
 			when(pm.getExtent(Cine.class,true)).thenThrow(JDOUserException.class);
-			dao.getCines();
+			daoC.getCines();
 			assertEquals(cinesLista.size(), 1);
 		}
 		
@@ -83,8 +83,8 @@ public class CineDAOTest {
 
 		@Test
 		public void testPmf() {
-			dao.setPmf(pmf);
-			assertEquals(pmf, dao.getPmf());
+			daoC.setPmf(pmf);
+			assertEquals(pmf, daoC.getPmf());
 		}
 		
 		
