@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CrearUsuario.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">deustocine</a> &gt; <a href="index.source.html" class="el_package">com.deustocine.app.ventanas</a> &gt; <span class="el_source">CrearUsuario.java</span></div><h1>CrearUsuario.java</h1><pre class="source lang-java linenums">package com.deustocine.app.ventanas;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import com.deustocine.app.conexion.Conexion;
+
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import javax.swing.JPasswordField;
+import javax.swing.JLabel;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.awt.event.ActionEvent;
+
+public class CrearUsuario extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField nom;
+	private JTextField corr;
+	private JPasswordField passwordField;
+
+	DefaultTableModel modelo;
+	private JLabel lblNewLabel_1;
+	private JTextField txtDni;
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+<span class="nc" id="L36">		EventQueue.invokeLater(new Runnable() {</span>
+			public void run() {
+				try {
+<span class="nc" id="L39">					CrearUsuario frame = new CrearUsuario();</span>
+<span class="nc" id="L40">					frame.setVisible(true);</span>
+<span class="nc" id="L41">				} catch (Exception e) {</span>
+<span class="nc" id="L42">					e.printStackTrace();</span>
+<span class="nc" id="L43">				}</span>
+<span class="nc" id="L44">			}</span>
+		});
+<span class="nc" id="L46">	}</span>
+
+	/**
+	 * Create the frame.
+	 */
+	
+	
+	
+<span class="nc" id="L54">	public CrearUsuario() {</span>
+<span class="nc" id="L55">		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L56">		setBounds(100, 100, 450, 300);</span>
+<span class="nc" id="L57">		contentPane = new JPanel();</span>
+<span class="nc" id="L58">		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));</span>
+<span class="nc" id="L59">		setContentPane(contentPane);</span>
+<span class="nc" id="L60">		contentPane.setLayout(null);</span>
+
+<span class="nc" id="L62">		nom = new JTextField();</span>
+<span class="nc" id="L63">		nom.setBounds(143, 62, 96, 20);</span>
+<span class="nc" id="L64">		contentPane.add(nom);</span>
+<span class="nc" id="L65">		nom.setColumns(10);</span>
+
+<span class="nc" id="L67">		corr = new JTextField();</span>
+<span class="nc" id="L68">		corr.setColumns(10);</span>
+<span class="nc" id="L69">		corr.setBounds(143, 108, 96, 20);</span>
+<span class="nc" id="L70">		contentPane.add(corr);</span>
+
+<span class="nc" id="L72">		passwordField = new JPasswordField();</span>
+<span class="nc" id="L73">		passwordField.setBounds(143, 158, 96, 20);</span>
+<span class="nc" id="L74">		contentPane.add(passwordField);</span>
+
+<span class="nc" id="L76">		JLabel lblNewLabel = new JLabel(&quot;Nombre&quot;);</span>
+<span class="nc" id="L77">		lblNewLabel.setBounds(27, 65, 49, 14);</span>
+<span class="nc" id="L78">		contentPane.add(lblNewLabel);</span>
+
+<span class="nc" id="L80">		JLabel lblCorreo = new JLabel(&quot;Correo&quot;);</span>
+<span class="nc" id="L81">		lblCorreo.setBounds(27, 111, 49, 14);</span>
+<span class="nc" id="L82">		contentPane.add(lblCorreo);</span>
+
+<span class="nc" id="L84">		JLabel lblContrasea = new JLabel(&quot;Contraseña&quot;);</span>
+<span class="nc" id="L85">		lblContrasea.setBounds(27, 161, 62, 14);</span>
+<span class="nc" id="L86">		contentPane.add(lblContrasea);</span>
+		
+<span class="nc" id="L88">		lblNewLabel_1 = new JLabel(&quot;New label&quot;);</span>
+<span class="nc" id="L89">		lblNewLabel_1.setBounds(27, 11, 49, 14);</span>
+<span class="nc" id="L90">		contentPane.add(lblNewLabel_1);</span>
+		
+<span class="nc" id="L92">		txtDni = new JTextField();</span>
+<span class="nc" id="L93">		txtDni.setBounds(143, 8, 96, 20);</span>
+<span class="nc" id="L94">		contentPane.add(txtDni);</span>
+<span class="nc" id="L95">		txtDni.setColumns(10);</span>
+		
+<span class="nc" id="L97">		JButton btnNewButton = new JButton(&quot;Crear usuario&quot;);</span>
+<span class="nc" id="L98">		btnNewButton.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L100">				Conexion mysql= new Conexion();</span>
+<span class="nc" id="L101">				Connection cn= mysql.conectar();</span>
+<span class="nc" id="L102">				String sSQL=&quot;&quot;;</span>
+				String nombres, correo, contrasenya,dni;
+<span class="nc" id="L104">				dni= txtDni.getText();</span>
+<span class="nc" id="L105">				nombres= nom.getText();</span>
+<span class="nc" id="L106">				correo= corr.getText();</span>
+<span class="nc" id="L107">				contrasenya= passwordField.getText();</span>
+
+<span class="nc" id="L109">				sSQL= &quot;INSERT INTO usuarios(nombres,correo,contrasenya)&quot;+</span>
+						&quot;VALUES (?,?,?)&quot;;
+				try {
+<span class="nc" id="L112">					PreparedStatement pst= cn.prepareStatement(sSQL);</span>
+<span class="nc" id="L113">					pst.setString(1, dni);</span>
+
+<span class="nc" id="L115">					pst.setString(2, nombres);</span>
+<span class="nc" id="L116">					pst.setString(3, correo);</span>
+					
+<span class="nc" id="L118">					int n=pst.executeUpdate();</span>
+					
+<span class="nc bnc" id="L120" title="All 2 branches missed.">					if (n&gt;0) {</span>
+<span class="nc" id="L121">						System.out.println(&quot;El registro se ha completado&quot;);</span>
+						
+					}
+					
+<span class="nc" id="L125">				} catch (Exception e2) {</span>
+					
+<span class="nc" id="L127">					System.out.println(&quot;Error al registrar&quot; + e2);</span>
+<span class="nc" id="L128">				}</span>
+
+<span class="nc" id="L130">			}</span>
+		});
+<span class="nc" id="L132">		btnNewButton.setBounds(273, 209, 118, 23);</span>
+<span class="nc" id="L133">		contentPane.add(btnNewButton);</span>
+		
+		
+		
+		;
+<span class="nc" id="L138">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

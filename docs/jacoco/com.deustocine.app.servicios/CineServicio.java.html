@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CineServicio.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">deustocine</a> &gt; <a href="index.source.html" class="el_package">com.deustocine.app.servicios</a> &gt; <span class="el_source">CineServicio.java</span></div><h1>CineServicio.java</h1><pre class="source lang-java linenums">package com.deustocine.app.servicios;
+
+import java.util.List;
+
+import com.deustocine.app.dao.CineDAO;
+import com.deustocine.app.domain.Cine;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+<span class="nc" id="L15">public class CineServicio {</span>
+<span class="nc" id="L16">private CineDAO cDao = new CineDAO();</span>
+	
+<span class="nc" id="L18">	private List&lt;Cine&gt; lCines = cDao.getCines();</span>
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getSesiones() {
+<span class="nc" id="L23">		return Response.ok(lCines).build();</span>
+	}
+	
+	@GET
+	@Path(&quot;/{cod}&quot;)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getSesion(@PathParam(&quot;cod&quot;) int cod) {
+<span class="nc" id="L30">		Cine c = new Cine();</span>
+<span class="nc" id="L31">		c.setCod(cod);</span>
+<span class="nc bnc" id="L32" title="All 2 branches missed.">		if(lCines.contains(c)) {</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">			for (Cine cine : lCines) {</span>
+<span class="nc bnc" id="L34" title="All 2 branches missed.">				if(cine.getCod() == cod)</span>
+<span class="nc" id="L35">					return Response.ok(cine).build();</span>
+<span class="nc" id="L36">			}</span>
+		}
+<span class="nc" id="L38">		return Response.status(Response.Status.NOT_FOUND).build();</span>
+	}
+
+	public CineDAO getcDao() {
+<span class="nc" id="L42">		return cDao;</span>
+	}
+
+	public void setcDao(CineDAO cDao) {
+<span class="nc" id="L46">		this.cDao = cDao;</span>
+<span class="nc" id="L47">	}</span>
+	
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

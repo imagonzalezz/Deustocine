@@ -9,6 +9,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.deustocine.app.conexion.Conexion;
+import com.deustocine.app.dao.UsuarioDAO;
+import 	com.deustocine.app.domain.Usuario;
+
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
@@ -16,6 +19,7 @@ import javax.ws.rs.client.WebTarget;
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.jdo.JDOUserException;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -93,4 +97,20 @@ public class InicioSesion extends JFrame {
 		// TODO Auto-generated constructor stub
 	}
 
+//	
+//	public boolean logIn(String email, String contrasena) {	
+//		try {
+//			Usuario u;
+//			u= UsuarioDAO.getUsuario(email);
+//			if (u!=null) {
+//				if (u.getContrasenya().contentEquals(contrasena)) {
+//					return true;
+//				}
+//			}
+//			return false;
+//		}catch(JDOUserException exception) {
+//			return false;
+//		}
+//		
+//	}
 }
