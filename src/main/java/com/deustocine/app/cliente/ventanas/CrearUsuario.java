@@ -1,4 +1,4 @@
-package com.deustocine.app.ventanas;
+package com.deustocine.app.cliente.ventanas;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;

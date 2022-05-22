@@ -5,6 +5,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.mockito.Mock;
 
+import com.deustocine.app.cliente.ventanas.InicioSesion;
+
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
 
