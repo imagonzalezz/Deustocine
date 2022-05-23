@@ -42,9 +42,7 @@ public class PeliculasController {
 		pContenedor.setLayout(new BoxLayout(pContenedor, BoxLayout.Y_AXIS));
 		JPanel pPelicula = new JPanel();
 		pPelicula.add(new JLabel(p.getTitulo()));
-		pPelicula.add(new JLabel(p.getDirector()));
 		pPelicula.add(new JLabel(p.getFechaSalida()));
-		pPelicula.add(new JLabel(p.getGenero()));
 		JButton btnIrASesiones = new JButton("Ver detalles");
 		pPelicula.add(btnIrASesiones);
 		btnIrASesiones.addActionListener(new ActionListener() {
