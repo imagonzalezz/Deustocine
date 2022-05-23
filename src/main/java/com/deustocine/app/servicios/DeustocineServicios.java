@@ -61,23 +61,6 @@ public class DeustocineServicios {
 	public List<Cine> getCines(){
 		return cDao.getCines();
 	}
-	public Usuario getUsuario(String dni) {
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Usuario usuario = null;
-
-		try {
-			usuario=pm.getObjectById(Usuario.class, dni);
-			pm.makeTransient(usuario);
-
-		} catch (Exception ex) {
-			System.out.println("   $ Error no existe ese usuario: " + ex.getMessage());
-			return null;
-		} finally {
-			pm.close();
-		}
-
-		return usuario;
-	}
 	
 	public CineDAO getcDao() {
 		return cDao;
@@ -94,8 +77,6 @@ public class DeustocineServicios {
 		this.pDao = pDao;
 	}
 	
-	
-
 	public SesionDAO getsDao() {
 		return sDao;
 	}
@@ -110,6 +91,23 @@ public class DeustocineServicios {
 
 	public void setuDao(UsuarioDAO uDao) {
 		this.uDao = uDao;
+	}
+	public Usuario getUsuario(String dni) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Usuario usuario = null;
+
+		try {
+			usuario=pm.getObjectById(Usuario.class, dni);
+			pm.makeTransient(usuario);
+
+		} catch (Exception ex) {
+			System.out.println("   $ Error no existe ese usuario: " + ex.getMessage());
+			return null;
+		} finally {
+			pm.close();
+		}
+
+		return usuario;
 	}
 	
 	

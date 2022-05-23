@@ -31,6 +31,7 @@ public class InicioSesionController {
 			u.setDni(dni);
 			u.setContrasenya(password);
 			System.out.println(webTarget.getUri());
+			//
 			Response response = invocationBuilder.post(Entity.entity(u, MediaType.APPLICATION_JSON));
 
 			if (response.getStatus() != Status.OK.getStatusCode()) {
@@ -52,8 +53,8 @@ public class InicioSesionController {
 		}
 	}
 
-	public Usuario getUsuario(String email) {
-		WebTarget webTarget = this.webTarget.path("collector/getUsuario/" + email);
+	public Usuario getUsuario(String dni) {
+		WebTarget webTarget = this.webTarget.path("getUsuario/" + dni);
 		Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
 		Response response = invocationBuilder.get();
 		if (response.getStatus() == Status.OK.getStatusCode()) {

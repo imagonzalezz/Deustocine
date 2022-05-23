@@ -32,7 +32,7 @@ public class DeustocineServer {
 	
 	@POST
 	@Path("/login")
-	public boolean logIn(String dni, String contrasena) {	
+	public boolean login(String dni, String contrasena) {	
 		try {
 			Usuario u= ds.getUsuario(dni);
 			if (u!=null) {
@@ -56,7 +56,7 @@ public class DeustocineServer {
 	
 	
 	@GET
-	@Path("/{cod}")
+	@Path("peliculas/{cod}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getPelicula(@PathParam("cod") int cod) {
 		Pelicula p = new Pelicula();
@@ -70,8 +70,15 @@ public class DeustocineServer {
 		return Response.status(Response.Status.NOT_FOUND).build();
 	}
 	
+	@GET
+	@Path("/cines")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getCines() {
+		return Response.ok(ds.getCines()).build();
+	}
+	
 	@DELETE
-	@Path("/{cod}")
+	@Path("cines/{cod}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response borrarPelicula(@PathParam("cod") int cod) {
 		Pelicula p = new Pelicula();
@@ -99,7 +106,7 @@ public class DeustocineServer {
 	}
 	
 	@GET
-	@Path("/{cod}")
+	@Path("sesiones/{cod}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getSesion(@PathParam("cod") int cod) {
 		Sesion s = new Sesion();
