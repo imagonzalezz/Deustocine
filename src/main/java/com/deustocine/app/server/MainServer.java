@@ -5,16 +5,11 @@ import com.deustocine.app.domain.Entrada;
 import com.deustocine.app.domain.Pelicula;
 import com.deustocine.app.domain.Sesion;
 import com.deustocine.app.domain.Usuario;
-import com.deustocine.app.servicios.CineServicio;
 import com.deustocine.app.servicios.DeustocineServicios;
-import com.deustocine.app.servicios.PeliculaServicio;
-import com.deustocine.app.servicios.SesionServicio;
-import com.deustocine.app.servicios.UsuarioServicio;
 
 public class MainServer {
 	public static void main(String[] args) {
 		DeustocineServicios ds = new DeustocineServicios();
-		
 		
 		Cine c1 = new Cine();
 		c1.setCod(1);

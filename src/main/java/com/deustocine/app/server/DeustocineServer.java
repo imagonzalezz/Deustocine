@@ -28,22 +28,13 @@ import com.deustocine.app.servicios.DeustocineServicios;
 public class DeustocineServer {
 	
 	DeustocineServicios ds = new DeustocineServicios();
-	@GET
-	@Path("/getUsuario/{x}")
-	public Response getUsuario(@PathParam("x") String x) {
-		System.out.println(x);
-		Usuario usuario=ds.getUsuario(x);
-		return Response.ok(usuario).build();
-	}
-	
-	
 	
 	
 	@POST
 	@Path("/login")
 	public boolean logIn(String dni, String contrasena) {	
 		try {
-			Usuario u= uDao.getUsuario(dni);
+			Usuario u= ds.getUsuario(dni);
 			if (u!=null) {
 				if (u.getContrasenya().contentEquals(contrasena)) {
 					return true;
@@ -55,38 +46,14 @@ public class DeustocineServer {
 		}
 		
 	}
-private List<Cine> lCines = cDao.getCines();
 	
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response getSesiones() {
-		return Response.ok(lCines).build();
-	}
-	
-	@GET
-	@Path("/{cod}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response getSesion(@PathParam("cod") int cod) {
-		Cine c = new Cine();
-		c.setCod(cod);
-		if(lCines.contains(c)) {
-			for (Cine cine : lCines) {
-				if(cine.getCod() == cod)
-					return Response.ok(cine).build();
-			}
-		}
-		return Response.status(Response.Status.NOT_FOUND).build();
-	}
-	
-private PeliculaDAO pDao = new PeliculaDAO();
-	
-	private List<Pelicula> lista = pDao.getPeliculas();
-	
-	@GET
+	@Path("/peliculas")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getPeliculas() {
-		return Response.ok(lista).build();
+		return Response.ok(ds.getPeliculas()).build();
 	}
+	
 	
 	@GET
 	@Path("/{cod}")
@@ -94,8 +61,8 @@ private PeliculaDAO pDao = new PeliculaDAO();
 	public Response getPelicula(@PathParam("cod") int cod) {
 		Pelicula p = new Pelicula();
 		p.setCod(cod);
-		if(lista.contains(p)) {
-			for (Pelicula pelicula : lista) {
+		if(ds.getPeliculas().contains(p)) {
+			for (Pelicula pelicula : ds.getPeliculas()) {
 				if(pelicula.getCod() == cod)
 					return Response.ok(pelicula).build();
 			}
@@ -109,8 +76,8 @@ private PeliculaDAO pDao = new PeliculaDAO();
 	public Response borrarPelicula(@PathParam("cod") int cod) {
 		Pelicula p = new Pelicula();
 		p.setCod(cod);
-		if(lista.contains(p)) {
-			lista.remove(p);
+		if(ds.getPeliculas().contains(p)) {
+			ds.getPeliculas().remove(p);
 			return Response.ok().build();
 		}
 		return Response.status(Response.Status.NOT_FOUND).build();
@@ -120,16 +87,15 @@ private PeliculaDAO pDao = new PeliculaDAO();
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response guardarPelicula(Pelicula p) {
-		lista.add(p);
+		ds.getPeliculas().add(p);
 		return Response.status(Response.Status.CREATED).entity(p).build();
 	}
-private SesionDAO sDao = new SesionDAO();
-	
-	private List<Sesion> lSesiones = sDao.getSesiones();
+
 	@GET
+	@Path("/sesiones")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getSesiones() {
-		return Response.ok(lSesiones).build();
+		return Response.ok(ds.getSesiones()).build();
 	}
 	
 	@GET
@@ -138,8 +104,8 @@ private SesionDAO sDao = new SesionDAO();
 	public Response getSesion(@PathParam("cod") int cod) {
 		Sesion s = new Sesion();
 		s.setCod(cod);
-		if(lSesiones.contains(s)) {
-			for (Sesion sesion : lSesiones) {
+		if(ds.getSesiones().contains(s)) {
+			for (Sesion sesion : ds.getSesiones()) {
 				if(sesion.getCod() == cod)
 					return Response.ok(sesion).build();
 			}
@@ -147,19 +113,14 @@ private SesionDAO sDao = new SesionDAO();
 		return Response.status(Response.Status.NOT_FOUND).build();
 	}
 	
-	private UsuarioDAO uDao = new UsuarioDAO();
-
-private List<Usuario> lUsuarios = uDao.getUsuarios();
 	
 	@GET
+	@Path("/usuarios")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getUsuarios() {
-		return Response.ok(lUsuarios).build();
+		return Response.ok(ds.getUsuarios()).build();
 	}
 	
-	public Usuario getUsuario(String dni) {
-		return uDao.getUsuario(dni);
-	}
 	
 	@DELETE
 	@Path("/{cod}")
@@ -167,8 +128,8 @@ private List<Usuario> lUsuarios = uDao.getUsuarios();
 	public Response borrarUsuario(@PathParam("dni") String dni) {
 		Usuario u = new Usuario();
 		u.setDni(dni);
-		if(lUsuarios.contains(u)) {
-			lUsuarios.remove(u);
+		if(ds.getUsuarios().contains(u)) {
+			ds.getUsuarios().remove(u);
 			return Response.ok().build();
 		}
 		return Response.status(Response.Status.NOT_FOUND).build();
@@ -178,8 +139,15 @@ private List<Usuario> lUsuarios = uDao.getUsuarios();
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response guardarUsuario(Usuario u) {
-		lUsuarios.add(u);
+		ds.getUsuarios().add(u);
 		return Response.status(Response.Status.CREATED).entity(u).build();
+	}
+	@GET
+	@Path("/getUsuario/{x}")
+	public Response getUsuario(@PathParam("x") String x) {
+		System.out.println(x);
+		Usuario usuario=ds.getUsuario(x);
+		return Response.ok(usuario).build();
 	}
 	
 	

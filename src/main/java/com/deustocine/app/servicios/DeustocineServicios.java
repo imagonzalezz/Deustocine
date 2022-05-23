@@ -12,6 +12,8 @@ import com.deustocine.app.dao.CineDAO;
 import com.deustocine.app.dao.PeliculaDAO;
 import com.deustocine.app.dao.SesionDAO;
 import com.deustocine.app.dao.UsuarioDAO;
+import com.deustocine.app.domain.Cine;
+import com.deustocine.app.domain.Pelicula;
 import com.deustocine.app.domain.Sesion;
 import com.deustocine.app.domain.Usuario;
 
@@ -50,7 +52,15 @@ public class DeustocineServicios {
 	public List<Usuario> getUsuarios(){
 		return uDao.getUsuarios();
 	}
-	
+	public List<Pelicula> getPeliculas(){
+		return pDao.getPeliculas();
+	}
+	public List<Sesion> getSesiones(){
+		return sDao.getSesiones();
+	}
+	public List<Cine> getCines(){
+		return cDao.getCines();
+	}
 	public Usuario getUsuario(String dni) {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Usuario usuario = null;
@@ -75,6 +85,13 @@ public class DeustocineServicios {
 
 	public void setcDao(CineDAO cDao) {
 		this.cDao = cDao;
+	}
+	public PeliculaDAO getpDao() {
+		return pDao;
+	}
+
+	public void setpDao(PeliculaDAO pDao) {
+		this.pDao = pDao;
 	}
 	
 	

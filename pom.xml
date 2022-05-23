@@ -340,7 +340,7 @@
 						<artifactId>exec-maven-plugin</artifactId>
 						<version>1.2.1</version>
 						<configuration>
-							<mainClass>client.main.MainCliente</mainClass>
+							<mainClass>com.deustocine.app.cliente.main.MainCliente</mainClass>
 							<arguments>
 								<argument>${server.hostname}</argument>
 								<argument>${server.port}</argument>
@@ -366,7 +366,7 @@
 						<artifactId>exec-maven-plugin</artifactId>
 						<version>1.2.1</version>
 						<configuration>
-							<mainClass>server.MainServer</mainClass>
+							<mainClass>com.deustocine.app.server.MainServer</mainClass>
 							<arguments>
 								<argument>${server.hostname}</argument>
 								<argument>${server.port}</argument>
