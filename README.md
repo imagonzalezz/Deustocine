@@ -44,3 +44,8 @@ _Lanzar el servidor_
 ```
 mvn jetty:run
 ```
+_Lanzar la parte cliente
+
+```
+mvn exec:java -Pclient
+```
