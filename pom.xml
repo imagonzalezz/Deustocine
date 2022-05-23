@@ -1,29 +1,28 @@
-<project
-	xmlns="http://maven.apache.org/POM/4.0.0"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.deustocine.app</groupId>
+
+	<groupId>bspq22-S07</groupId>
 	<artifactId>deustocine</artifactId>
-	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+
 	<name>deustocine</name>
 	<url>http://maven.apache.org</url>
+
 	<properties>
-		<jersey.version>3.0.1</jersey.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<config.files.dir>${basedir}/src/main/resources</config.files.dir>
-		<sonar.organization>imagonzalezz</sonar.organization>
-		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<server.hostname>127.0.0.1</server.hostname>
 		<server.port>8080</server.port>
 		<demo.data>${basedir}/src/main/resources/demoData.csv</demo.data>
 		<policy.file>${basedir}/security/java.policy</policy.file>
+		<config.files.dir>${basedir}/src/main/resources</config.files.dir>
 		<doxygen.config.file>${basedir}/src/main/resources/Doxyfile</doxygen.config.file>
 		<java.home.dir>C:\Program Files\Eclipse Foundation\jdk-17.0.0.35-hotspot</java.home.dir>
-		<java.version>1.17</java.version>
-		
 	</properties>
+
+	<!-- search for the latest version of dependencies in http://mvnrepository.com -->
 	<dependencies>
 		<dependency>
 			<groupId>org.datanucleus</groupId>
@@ -103,13 +102,49 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.25</version>
 			<scope>compile</scope>
-		</dependency>
+		</dependency> 
+		<!-- dependency>
+		    <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-surefire-plugin</artifactId>
+		    <version>3.0.0-M5</version>
+		</dependency>  -->
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
 			<version>2.18.0</version>
 		</dependency>
+		
+
+	   <!-- <dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-servlet</artifactId>
+			<version>9.4.17.v20190418</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-server</artifactId>
+			<version>9.4.17.v20190418</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.9.2</version>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-webapp</artifactId>
+			<version>8.1.7.v20120910</version>
+			<scope>provided</scope>
+		</dependency> -->
 	</dependencies>
+
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
 		
@@ -187,7 +222,7 @@
             <plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.8</version>
+				<version>0.8.6</version>
 				<executions>
 					<execution>
 						<goals>
@@ -384,14 +419,6 @@
 								<include>**/*</include>
 							</includes>
 							<excludedGroups>categories.IntegrationTest</excludedGroups>
-							<excludes>
-								<exclude>**/TestVentanaChat.java</exclude>
-								<exclude>**/TestVentanaCompras.java</exclude>
-								<exclude>**/TestVentanaLogin.java</exclude>
-								<exclude>**/TestVentanaProducto.java</exclude>
-								<exclude>**/TestVentanaRegistro.java</exclude>
-								<exclude>**/TestVentanaVentas.java</exclude>
-							</excludes>
 						</configuration>
 						<executions>
 							<execution>
