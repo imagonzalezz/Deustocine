@@ -25,7 +25,7 @@ public class InicioSesionController {
 
 	public boolean logIn(String dni, String password, JLabel lError, InicioSesion vl) {
 		try {
-			WebTarget webTarget = this.webTarget.path("/logIn");
+			WebTarget webTarget = this.webTarget.path("/login");
 			Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
 			Usuario u = new Usuario();
 			u.setDni(dni);

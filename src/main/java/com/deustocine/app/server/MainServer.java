@@ -6,17 +6,15 @@ import com.deustocine.app.domain.Pelicula;
 import com.deustocine.app.domain.Sesion;
 import com.deustocine.app.domain.Usuario;
 import com.deustocine.app.servicios.CineServicio;
+import com.deustocine.app.servicios.DeustocineServicios;
 import com.deustocine.app.servicios.PeliculaServicio;
 import com.deustocine.app.servicios.SesionServicio;
 import com.deustocine.app.servicios.UsuarioServicio;
 
 public class MainServer {
 	public static void main(String[] args) {
+		DeustocineServicios ds = new DeustocineServicios();
 		
-		UsuarioServicio us = new UsuarioServicio();
-		CineServicio cs = new CineServicio();
-		PeliculaServicio ps = new PeliculaServicio();
-		SesionServicio ss = new SesionServicio();
 		
 		Cine c1 = new Cine();
 		c1.setCod(1);
@@ -30,8 +28,8 @@ public class MainServer {
 		c2.setNombre("Yelmo Cines");
 		c2.setTelefono(944636476);
 		
-		cs.getcDao().guardarCine(c1);
-		cs.getcDao().guardarCine(c2);
+		ds.getcDao().guardarCine(c1);
+		ds.getcDao().guardarCine(c2);
 
 		Pelicula p1 = new Pelicula();
 		p1.setCod(1);
@@ -49,8 +47,8 @@ public class MainServer {
 		p2.setPortada(null);
 		p2.setFechaSalida("31/04/2008 00:00");
 		
-		ps.getpDao().guardarPelicula(p1);
-		ps.getpDao().guardarPelicula(p2);
+		ds.getpDao().guardarPelicula(p1);
+		ds.getpDao().guardarPelicula(p2);
 
 		Usuario u1 = new Usuario();
 		u1.setDni("71237123D");
@@ -64,8 +62,8 @@ public class MainServer {
 		u2.setPuntos(54);
 		u2.setUsuario("Inigo");
 		
-		us.getuDao().guardarUsuario(u1);
-		us.getuDao().guardarUsuario(u2);
+		ds.getuDao().guardarUsuario(u1);
+		ds.getuDao().guardarUsuario(u2);
 
 		Sesion s1 = new Sesion();
 		s1.setCod(1);
@@ -85,8 +83,8 @@ public class MainServer {
 		s2.setPelicula(p2);
 		s2.setCine(c2);
 		
-		ss.getsDao().guardarSesion(s1);
-		ss.getsDao().guardarSesion(s2);
+		ds.getsDao().guardarSesion(s1);
+		ds.getsDao().guardarSesion(s2);
 
 		Entrada e1 = new Entrada();
 		e1.setCod(1);
