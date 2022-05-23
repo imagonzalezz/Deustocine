@@ -1,5 +1,6 @@
 package com.deustocine.app.server;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.jdo.JDOUserException;
@@ -49,7 +50,6 @@ public class DeustocineServer {
 	
 	@GET
 	@Path("/peliculas")
-	@Produces(MediaType.APPLICATION_JSON)
 	public Response getPeliculas() {
 		return Response.ok(ds.getPeliculas()).build();
 	}
@@ -68,6 +68,18 @@ public class DeustocineServer {
 			}
 		}
 		return Response.status(Response.Status.NOT_FOUND).build();
+	}
+	
+	@GET
+	@Path("peliculas/{cod}/sesiones")
+	public ArrayList<Sesion> getSesionesPelicula(@PathParam("cod") int cod) {
+		ArrayList<Sesion> lSesionesPelicula = new ArrayList<>();
+			for (Sesion sesion : ds.getSesiones()) {
+				if(sesion.getPelicula().getCod() == cod) {
+					lSesionesPelicula.add(sesion);
+					}	
+			}
+			return lSesionesPelicula;
 	}
 	
 	@GET
