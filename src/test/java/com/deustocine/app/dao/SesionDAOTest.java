@@ -46,7 +46,7 @@ public class SesionDAOTest {
 	}
 	
 	@Test
-	public void testGuardar() {
+	public void testGuardarSesion() {
 		when(pmf.getPersistenceManager()).thenReturn(pm);
 		when(pm.currentTransaction()).thenReturn(ts);
 		when(pm.makePersistent(s)).thenThrow(JDOUserException.class);

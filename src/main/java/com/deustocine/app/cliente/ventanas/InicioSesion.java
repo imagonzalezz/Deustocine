@@ -1,25 +1,30 @@
 package com.deustocine.app.cliente.ventanas;
 
 import java.awt.BorderLayout;
-
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
+import java.awt.LayoutManager;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.deustocine.app.cliente.controller.InicioSesionController;
 import com.deustocine.app.conexion.Conexion;
 import com.deustocine.app.dao.UsuarioDAO;
 import 	com.deustocine.app.domain.Usuario;
 
 
 import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.jdo.JDOUserException;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -29,6 +34,16 @@ public class InicioSesion extends JFrame {
 	private JPanel contentPane;
 	private JPasswordField passwordField;
 	private JTextField textField;
+	private Client cliente;
+	private WebTarget wt;
+	private InicioSesionController isc;
+	private InicioSesion is;
+	private JButton login,cerrar,registrarse;
+	private JPanel pSur,pCentro,pNorte;
+	private JLabel lError;
+	private JTextField usuario;
+	private JPasswordField contraseina;
+	
 
 
 	/**
@@ -38,7 +53,9 @@ public class InicioSesion extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					InicioSesion frame = new InicioSesion();
+					Client c= ClientBuilder.newClient();
+					WebTarget wt =c.target(String.format("http://%s:%s/rest", "localhost","8080"));
+					InicioSesion frame = new InicioSesion(c, wt);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,66 +68,102 @@ public class InicioSesion extends JFrame {
 	 * Create the frame.
 	 */
 	public InicioSesion(Client cliente, WebTarget webTarget) {
+		super();
+		this.cliente=cliente;
+		this.wt=webTarget;
+		this.isc = new InicioSesionController(cliente, webTarget);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100,100,450,300);
+		setLocationRelativeTo(null);
+		is=this;
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout((LayoutManager) new BoxLayout(contentPane, BoxLayout.Y_AXIS));
+		
+		contentPane.setBackground(Color.WHITE);
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		login = new JButton("Login");
+		cerrar = new JButton("Cerrar");
+		registrarse = new JButton("Registrate");
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(181, 134, 165, 26);
-		contentPane.add(passwordField);
+		pSur= new JPanel();
+		pSur.setBackground(Color.WHITE);
 		
-		JLabel lblNewLabel = new JLabel("Password");
-		lblNewLabel.setBounds(81, 137, 69, 20);
-		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Usuario");
-		lblNewLabel_1.setBounds(81, 63, 69, 20);
-		contentPane.add(lblNewLabel_1);
+		pNorte = new JPanel();
+		pNorte.setBackground(Color.WHITE);
 		
-		textField = new JTextField();
-		textField.setBounds(181, 60, 165, 26);
-		contentPane.add(textField);
-		textField.setColumns(10);
 		
-
+		pCentro = new JPanel();
+		pCentro.setBackground(Color.WHITE);
+		pCentro.setLayout(new BoxLayout(pCentro, BoxLayout.Y_AXIS));
 		
-		JButton btnNewButton = new JButton("Iniciar");
-		btnNewButton.addActionListener(new ActionListener() {
+		
+		lError= new JLabel();
+		
+		JLabel lblInicie = new JLabel("Inicio de sesion");
+		pNorte.add(lblInicie);
+		
+		JPanel pEmail= new JPanel();
+		JLabel lblUsuario = new JLabel("DNI: ");
+		usuario = new JTextField();
+		pEmail.add(lblUsuario);
+		pEmail.add(usuario);
+		usuario.setColumns(10);
+		
+		pEmail.setBackground(Color.WHITE);
+		pEmail.setLayout(new FlowLayout(FlowLayout.LEFT));
+		
+		pCentro.add(pEmail);
+		
+	
+		
+		JPanel pContrasena= new JPanel();
+		JLabel lblContraseina = new JLabel("Contraseña: ");
+		pContrasena.add(lblContraseina);
+		pContrasena.setBackground(Color.WHITE);
+		pContrasena.setLayout(new FlowLayout(FlowLayout.LEFT));
+		
+		
+		
+		contraseina = new JPasswordField();
+		contraseina.setColumns(10);
+		pContrasena.add(contraseina);
+		
+		pCentro.add(pContrasena);
+		pCentro.add(lError);
+		lError.setForeground(Color.RED);
+		pSur.add(login);
+		pCentro.setBackground(Color.WHITE);
+		
+		login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
-				Conexion mysql= new Conexion();
-				
-				mysql.conectar();
-				
-				
+				try {
+					String email=usuario.getText();
+					String password=contraseina.getText();
+					boolean valido=isc.logIn(email, password, lError,is);
+					if (valido) {
+						//VentanaCompras v= new VentanaCompras(new ComprasController(webTarget, email),VentanaLogin.this.cliente, VentanaLogin.this.webTarget, email);
+						//VentanaChat v1 = new VentanaChat(VentanaLogin.this.cliente,VentanaLogin.this.webTarget,email);
+						InicioSesion.this.dispose();
+					}
+				}catch(Exception ex) {
+					ex.printStackTrace();
+				}
 			}
 		});
-		btnNewButton.setBounds(138, 201, 115, 29);
-		contentPane.add(btnNewButton);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		
+		contentPane.add(pNorte, BorderLayout.NORTH);
+		contentPane.add(pCentro, BorderLayout.CENTER);
+		
+		contentPane.add(pSur);
+		
+		setVisible(true);
+		this.pack();
+		setLocationRelativeTo(null);
+		
 	}
 
-	public InicioSesion() {
-		// TODO Auto-generated constructor stub
-	}
 
-//	
-//	public boolean logIn(String email, String contrasena) {	
-//		try {
-//			Usuario u;
-//			u= UsuarioDAO.getUsuario(email);
-//			if (u!=null) {
-//				if (u.getContrasenya().contentEquals(contrasena)) {
-//					return true;
-//				}
-//			}
-//			return false;
-//		}catch(JDOUserException exception) {
-//			return false;
-//		}
-//		
-//	}
 }
