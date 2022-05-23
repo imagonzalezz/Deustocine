@@ -22,17 +22,16 @@ _Comando para compilar el codigo _
 mvn clean compile
 ```
 
+_Para que las clases se usen en la BD_
+
+```
+mvn datanucleus:enhance
+```
 
 _Despues crear las tablas en la base de datos_
 
 ```
 mvn datanucleus:schema-create
-```
-
-_Para que las clases se usen en la BD_
-
-```
-mvn datanucleus:enhance
 ```
 
 _Carga los datos de prueba en la BD_
