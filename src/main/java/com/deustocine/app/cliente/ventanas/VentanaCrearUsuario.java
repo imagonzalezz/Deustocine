@@ -19,7 +19,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.awt.event.ActionEvent;
 
-public class CrearUsuario extends JFrame {
+public class VentanaCrearUsuario extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField nom;
@@ -36,7 +36,7 @@ public class CrearUsuario extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CrearUsuario frame = new CrearUsuario();
+					VentanaCrearUsuario frame = new VentanaCrearUsuario();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,7 +51,7 @@ public class CrearUsuario extends JFrame {
 	
 	
 	
-	public CrearUsuario() {
+	public VentanaCrearUsuario() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

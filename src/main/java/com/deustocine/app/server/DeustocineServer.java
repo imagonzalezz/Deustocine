@@ -1,5 +1,6 @@
 package com.deustocine.app.server;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.jdo.JDOUserException;
@@ -49,15 +50,13 @@ public class DeustocineServer {
 	
 	@GET
 	@Path("/peliculas")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response getPeliculas() {
-		return Response.ok(ds.getPeliculas()).build();
+	public List<Pelicula> getPeliculas() {
+		return ds.getPeliculas();
 	}
 	
 	
 	@GET
 	@Path("peliculas/{cod}")
-	@Produces(MediaType.APPLICATION_JSON)
 	public Response getPelicula(@PathParam("cod") int cod) {
 		Pelicula p = new Pelicula();
 		p.setCod(cod);
@@ -71,15 +70,25 @@ public class DeustocineServer {
 	}
 	
 	@GET
+	@Path("peliculas/{cod}/sesiones")
+	public ArrayList<Sesion> getSesionesPelicula(@PathParam("cod") int cod) {
+		ArrayList<Sesion> lSesionesPelicula = new ArrayList<>();
+			for (Sesion sesion : ds.getSesiones()) {
+				if(sesion.getPelicula().getCod() == cod) {
+					lSesionesPelicula.add(sesion);
+					}	
+			}
+			return lSesionesPelicula;
+	}
+	
+	@GET
 	@Path("/cines")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response getCines() {
-		return Response.ok(ds.getCines()).build();
+	public List<Cine> getCines() {
+		return ds.getCines();
 	}
 	
 	@DELETE
 	@Path("cines/{cod}")
-	@Produces(MediaType.APPLICATION_JSON)
 	public Response borrarPelicula(@PathParam("cod") int cod) {
 		Pelicula p = new Pelicula();
 		p.setCod(cod);
@@ -91,8 +100,7 @@ public class DeustocineServer {
 	}
 	
 	@POST
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("/peliculas")
 	public Response guardarPelicula(Pelicula p) {
 		ds.getPeliculas().add(p);
 		return Response.status(Response.Status.CREATED).entity(p).build();
@@ -100,14 +108,12 @@ public class DeustocineServer {
 
 	@GET
 	@Path("/sesiones")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response getSesiones() {
-		return Response.ok(ds.getSesiones()).build();
+	public List <Sesion> getSesiones() {
+		return ds.getSesiones();
 	}
 	
 	@GET
 	@Path("sesiones/{cod}")
-	@Produces(MediaType.APPLICATION_JSON)
 	public Response getSesion(@PathParam("cod") int cod) {
 		Sesion s = new Sesion();
 		s.setCod(cod);
@@ -123,15 +129,13 @@ public class DeustocineServer {
 	
 	@GET
 	@Path("/usuarios")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response getUsuarios() {
-		return Response.ok(ds.getUsuarios()).build();
+	public List<Usuario> getUsuarios() {
+		return ds.getUsuarios();
 	}
 	
 	
 	@DELETE
-	@Path("/{cod}")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Path("usuarios/{cod}")
 	public Response borrarUsuario(@PathParam("dni") String dni) {
 		Usuario u = new Usuario();
 		u.setDni(dni);
@@ -143,8 +147,7 @@ public class DeustocineServer {
 	}
 	
 	@POST
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("usuarios")
 	public Response guardarUsuario(Usuario u) {
 		ds.getUsuarios().add(u);
 		return Response.status(Response.Status.CREATED).entity(u).build();

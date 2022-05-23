@@ -36,7 +36,7 @@ public class CinesController {
 	}
 
 
-	public void crearPanelPelicula(Cine c, JPanel pCentro) {
+	public void crearPanelCine(Cine c, JPanel pCentro) {
 		this.cine = c;
 		JPanel pContenedor = new JPanel();
 		pContenedor.setLayout(new BoxLayout(pContenedor, BoxLayout.Y_AXIS));

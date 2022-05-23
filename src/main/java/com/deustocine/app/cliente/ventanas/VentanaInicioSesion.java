@@ -29,7 +29,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class InicioSesion extends JFrame {
+public class VentanaInicioSesion extends JFrame {
 
 	private JPanel contentPane;
 	private JPasswordField passwordField;
@@ -37,7 +37,7 @@ public class InicioSesion extends JFrame {
 	private Client cliente;
 	private WebTarget wt;
 	private InicioSesionController isc;
-	private InicioSesion is;
+	private VentanaInicioSesion is;
 	private JButton login,cerrar,registrarse;
 	private JPanel pSur,pCentro,pNorte;
 	private JLabel lError;
@@ -55,7 +55,7 @@ public class InicioSesion extends JFrame {
 				try {
 					Client c= ClientBuilder.newClient();
 					WebTarget wt =c.target(String.format("http://%s:%s/rest", "localhost","8080"));
-					InicioSesion frame = new InicioSesion(c, wt);
+					VentanaInicioSesion frame = new VentanaInicioSesion(c, wt);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -67,7 +67,7 @@ public class InicioSesion extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public InicioSesion(Client cliente, WebTarget webTarget) {
+	public VentanaInicioSesion(Client cliente, WebTarget webTarget) {
 		super();
 		this.cliente=cliente;
 		this.wt=webTarget;
@@ -145,7 +145,7 @@ public class InicioSesion extends JFrame {
 					if (valido) {
 						//VentanaCompras v= new VentanaCompras(new ComprasController(webTarget, email),VentanaLogin.this.cliente, VentanaLogin.this.webTarget, email);
 						//VentanaChat v1 = new VentanaChat(VentanaLogin.this.cliente,VentanaLogin.this.webTarget,email);
-						InicioSesion.this.dispose();
+						VentanaInicioSesion.this.dispose();
 					}
 				}catch(Exception ex) {
 					ex.printStackTrace();
