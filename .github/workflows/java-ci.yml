@@ -1,22 +1,52 @@
-name: Build
+name: Deustocine
+
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
-    types: [opened, synchronize, reopened]
+    branches: [ main ]
+
 jobs:
   build:
-    name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      - name: Set up JDK 11
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
+    - uses: actions/checkout@v2
+    - name: Set up JDK 15
+      uses: actions/setup-java@v2
+      with:
+        java-version: '15'
+        distribution: 'adopt'   
+    - uses: shogo82148/actions-setup-mysql@v1
+      with:
+        mysql-version: '8.0'
+    - name: create database in mysql-server
+      run: mysql -uroot -h127.0.0.1 < src/sql/deustoReventa.sql  
+    - name: compile the code
+      run: mvn clean compile
+    - name: Test with Maven
+      run: mvn test -Punit
+    - name: Datanucleus enhance
+      run: mvn datanucleus:enhance
+    - name: Create Datanucleus schema
+      run: mvn datanucleus:schema-create
+    - name: Launch the server in background mode 
+      run: mvn jetty:run &
+    - name: Sleep for 10 seconds
+      uses: jakejarvis/wait-action@master
+      with:
+        time: '10s'
+    - name: Data
+      run: mvn exec:java -Pdatos
+    - name: Run Integration Test
+      run: mvn test -Pintegration
+    - name: Install doxygen
+      run: sudo apt-get install -y doxygen
+    - name: Install graphviz
+      run: sudo apt-get install -y graphviz
+    - name: Generate documentation
+      run: mvn doxygen:report
+    - name: Copy some information into docs folder
+      run: mvn validate
       - name: Cache SonarCloud packages
         uses: actions/cache@v1
         with:
@@ -34,3 +64,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=imagonzalezz_Deustocine
+
+
+
