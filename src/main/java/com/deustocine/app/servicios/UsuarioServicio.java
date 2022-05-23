@@ -15,6 +15,7 @@ import javax.ws.rs.core.Response;
 
 import com.deustocine.app.dao.UsuarioDAO;
 import com.deustocine.app.domain.Usuario;
+@Path("/usuarios")
 
 public class UsuarioServicio {
 	
