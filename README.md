@@ -1,9 +1,5 @@
 #DeustoCine
-_Código para compilar y hacer una instalación limpia de mvn_
 
-```
-mvn clean install
-```
 ### Base de datos
 _Crear una base de datos llamada deustocinedb en MySQL y dar permisos al usuario por defecto_
 
@@ -18,6 +14,15 @@ CREATE SCHEMA deustocinedb;
 CREATE USER 'root'@'localhost' IDENTIFIED BY 'deusto';
 GRANT ALL ON deustocinedb.* TO 'root'@'localhost';
 ```
+
+
+_Comando para compilar el codigo _
+
+```
+mvn clean compile
+```
+
+
 _Despues crear las tablas en la base de datos_
 
 ```
