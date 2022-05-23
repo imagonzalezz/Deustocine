@@ -9,7 +9,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import com.deustocine.app.cliente.ventanas.InicioSesion;
+import com.deustocine.app.cliente.ventanas.VentanaInicioSesion;
 import com.deustocine.app.domain.Usuario;
 
 public class InicioSesionController {
@@ -23,7 +23,7 @@ public class InicioSesionController {
 		this.webTarget = webTarget;
 	}
 
-	public boolean logIn(String dni, String password, JLabel lError, InicioSesion vl) {
+	public boolean logIn(String dni, String password, JLabel lError, VentanaInicioSesion vl) {
 		try {
 			WebTarget webTarget = this.webTarget.path("/deustocine/login");
 			Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
