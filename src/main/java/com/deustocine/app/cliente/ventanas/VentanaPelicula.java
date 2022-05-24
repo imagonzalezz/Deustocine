@@ -14,6 +14,10 @@ import com.deustocine.app.cliente.controller.PeliculaController;
 import com.deustocine.app.domain.Pelicula;
 import com.deustocine.app.domain.Sesion;
 
+/**
+ * @author Lander
+ * Ventana de cada pelicula donde por cada una de ellas habrá diferentes sesiones
+ */
 public class VentanaPelicula extends JFrame {
 	
 	private Client cliente;
@@ -25,6 +29,7 @@ public class VentanaPelicula extends JFrame {
 	private ArrayList<Sesion> sesiones;
 	
 	
+	
 	public VentanaPelicula(PeliculaController pc,Pelicula p, Client cliente, WebTarget webTarget) {
 		this.pc = pc;
 		this.p = p;
@@ -33,6 +38,7 @@ public class VentanaPelicula extends JFrame {
 		pCentro = new JPanel();
 		pCentro.setLayout(new BoxLayout(pCentro,BoxLayout.Y_AXIS));
 		
+		//Se creará un panel por cada sesion que haya para cada pelicula
 		sesiones = pc.getSesionesPelicula(p);
 		for(Sesion s: sesiones) {
 			pc.crearPanelSesion(s, p, pCentro);
