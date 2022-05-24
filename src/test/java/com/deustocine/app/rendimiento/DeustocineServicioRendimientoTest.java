@@ -2,6 +2,8 @@ package com.deustocine.app.rendimiento;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.databene.contiperf.PerfTest;
 import org.databene.contiperf.Required;
 import org.databene.contiperf.junit.ContiPerfRule;
@@ -14,6 +16,8 @@ import com.deustocine.app.domain.Pelicula;
 import com.deustocine.app.domain.Sesion;
 import com.deustocine.app.domain.Usuario;
 import com.deustocine.app.servicios.DeustocineServicios;
+
+
 
 
 /**
@@ -37,7 +41,7 @@ public class DeustocineServicioRendimientoTest {
 		//Asignar datos al usuario
 		u= new Usuario();
 		u.setDni("71237123D");
-		u.setContrasenya("Contrasenya");
+		u.setContrasenya("Contrasensya");
 		//Asignar datos a la pelicula
 		p= new Pelicula();
 		p.setCod(1);
@@ -49,13 +53,57 @@ public class DeustocineServicioRendimientoTest {
 	}
 	//Comprobaciones en el test
 	@Test 
-    @PerfTest(invocations = 1000, threads = 20)
-    @Required(max = 3000, average = 1500)
+    @PerfTest(invocations = 400, threads = 8)
+    @Required(max = 2000, average = 200)
 	public void testLogIn() {	
-		//assertTrue(ds.logIn("71237123D", "Contrasenya")); //FIXME
+		assertTrue(ds.logIn("71237123D", "Contrasenya"));
 		assertFalse(ds.logIn(null, "c1"));
 		assertFalse(ds.logIn("c1", "c2"));
 		assertFalse(ds.logIn("c2", "c3"));
 	}
+	@Test
+	@PerfTest(invocations = 400, threads = 8)
+    @Required(max = 2400, average = 200)
+	public void testGetPeliculas() {
+		List<Pelicula> pos = ds.getPeliculas();
+		assertEquals(ds.getPeliculas().size(),4);
+	}
+	
+	@Test
+	@PerfTest(invocations = 400, threads = 8)
+    @Required(max = 2400, average = 200)
+	public void testGetSesiones() {
+		List<Sesion> pos = ds.getSesiones();
+		assertEquals(ds.getSesiones().size(),2);
+	}
+	@Test
+	@PerfTest(invocations = 400, threads = 8)
+    @Required(max = 2400, average = 200)
+	public void testGetUsuarios() {
+		List<Usuario> pos = ds.getUsuarios();
+		assertEquals(ds.getUsuarios().size(),2);
+	}
+	
+	@Test
+	@PerfTest(invocations = 400, threads = 8)
+    @Required(max = 2400, average = 200)
+	public void testGetCines() {
+		List<Cine> pos = ds.getCines();
+		assertEquals(ds.getCines().size(),4);
+	}
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
