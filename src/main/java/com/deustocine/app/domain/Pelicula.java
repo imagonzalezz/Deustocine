@@ -24,13 +24,13 @@ public class Pelicula {
 	
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.INCREMENT)
-	private int cod; /**< Codigo identificativo de la pelicula */
+	private int cod;
 	
-	private String titulo; /**< Titulo de la pelicula */
-	private String director; /**< Director de la pelicula */
-	private String fechaSalida; /**< Fecha de salida de la pelicula */
-	private String genero; /**< Genero de la pelicula */
-	private String portada; /**< Ruta de la portada de la pelicula */
+	private String titulo; 
+	private String director; 
+	private String fechaSalida; 
+	private String genero; 
+	private String portada; 
 	
 	/**
 	 * Constructor por defecto

@@ -18,10 +18,10 @@ public class Cine {
 	
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.INCREMENT)
-	private int cod; /**< Codigo identificativo del cine */
-	private String nombre; /**< Nombre del cine */
-	private String direccion; /**< Direccion del cine */
-	private int telefono; /**< Telefono de contacto del cine */
+	private int cod;
+	private String nombre;
+	private String direccion;
+	private int telefono;
 	
 	/**
 	 * Constructor por defecto
