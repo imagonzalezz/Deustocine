@@ -28,8 +28,12 @@ import com.deustocine.app.servicios.DeustocineServicios;
 
 public class DeustocineServer {
 	
-	DeustocineServicios ds = new DeustocineServicios();
+	DeustocineServicios ds ;
 	
+	
+	public DeustocineServer() {
+		ds = new DeustocineServicios();
+	}
 	
 	@POST
 	@Path("/login")
