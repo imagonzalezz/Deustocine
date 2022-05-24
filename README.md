@@ -28,6 +28,12 @@ _Para que las clases se usen en la BD_
 mvn datanucleus:enhance
 ```
 
+_Para probar los test_
+
+```
+mvn test
+```
+
 _Despues crear las tablas en la base de datos_
 
 ```
