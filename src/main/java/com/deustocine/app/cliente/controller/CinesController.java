@@ -15,17 +15,24 @@ import javax.ws.rs.core.MediaType;
 
 import com.deustocine.app.domain.Cine;
 
+
+/**
+ * @author Lander
+ * Clase que implementa la logica de la ventana cines
+ * Crea una lista de cines 
+ * Por cada cine que exista se crea un panel con el correspondiente cine
+ */
 public class CinesController {
 
 	private WebTarget webTarget;
-	private List<Cine> cines;
+	private List<Cine> cines; /*lista de cines existentes*/
 	private Cine cine;
 	
 	public CinesController(WebTarget webTarget) {
 		this.webTarget = webTarget;
 	}
 	
-	
+	/*Recibe todos los cines que hay y los mete en la lista de cines */
 	public List<Cine> getCines() {
 		WebTarget webTarget = this.webTarget.path("deustocine/cines");
 		List<Cine> lCines = webTarget.request(MediaType.APPLICATION_JSON).get( new GenericType<List<Cine>>() {
@@ -35,7 +42,7 @@ public class CinesController {
 		return alCines;
 	}
 
-
+	/*Crea un panel por cada cine que hay*/
 	public void crearPanelCine(Cine c, JPanel pCentro) {
 		this.cine = c;
 		JPanel pContenedor = new JPanel();
