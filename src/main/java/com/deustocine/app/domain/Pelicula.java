@@ -59,7 +59,7 @@ public class Pelicula {
 	
 	/**
 	 * Devuelve el codigo identificativo de la pelicula
-	 * @return
+	 * @return Codigo identificativo
 	 */
 	public int getCod() {
 		return cod;
@@ -83,7 +83,7 @@ public class Pelicula {
 	
 	/**
 	 * Establece el titulo de la pelicula
-	 * @param titulo
+	 * @param titulo Titulo de la pelicula
 	 */
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
