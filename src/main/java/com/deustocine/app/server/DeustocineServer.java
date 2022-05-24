@@ -80,6 +80,7 @@ public class DeustocineServer {
 	
 	@POST
 	@Path("/registro")
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response registro(Usuario u) {
 		boolean registro=ds.registro(u);
 		System.out.println("*Realizando registro*");
