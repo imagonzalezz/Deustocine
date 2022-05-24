@@ -2,6 +2,7 @@ package com.deustocine.app.cliente.ventanas;
 
 import java.awt.BorderLayout;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -26,12 +27,11 @@ public class VentanaPelicula extends JFrame {
 	private VentanaPelicula vp;
 	private JPanel pCentro;
 	private PeliculaController pc;
-	private ArrayList<Sesion> sesiones;
+	private List<Sesion> sesiones;
 	
 	
 	
-	public VentanaPelicula(PeliculaController pc,Pelicula p, Client cliente, WebTarget webTarget) {
-		this.pc = pc;
+	public VentanaPelicula(Pelicula p, WebTarget webTarget) {
 		this.p = p;
 		this.webTarget = webTarget;
 		vp = this;
@@ -40,9 +40,7 @@ public class VentanaPelicula extends JFrame {
 		
 		//Se creará un panel por cada sesion que haya para cada pelicula
 		sesiones = pc.getSesionesPelicula(p);
-		for(Sesion s: sesiones) {
-			pc.crearPanelSesion(s, p, pCentro);
-		}
+		pc.crearPanelSesion(p, pCentro);
 		JScrollPane scroll = new JScrollPane(pCentro);
 		
 		vp.getContentPane().add(scroll,BorderLayout.CENTER);
