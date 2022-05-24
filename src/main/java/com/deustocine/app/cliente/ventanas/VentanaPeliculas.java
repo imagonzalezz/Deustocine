@@ -30,9 +30,9 @@ public class VentanaPeliculas extends JFrame{
 	private JPanel pNorte;
 	private JPanel pCentro;
 	
-	public VentanaPeliculas(PeliculasController pc, Client cliente, WebTarget webTarget) {
-		this.controller = pc;
+	public VentanaPeliculas(Client cliente, WebTarget webTarget) {
 		this.webTarget = webTarget;
+		this.controller = new PeliculasController(webTarget);
 		v = this;
 		pCentro = new JPanel();
 		pCentro.setLayout(new BoxLayout(pCentro,BoxLayout.Y_AXIS));
