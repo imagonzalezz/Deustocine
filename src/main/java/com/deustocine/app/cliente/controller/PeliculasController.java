@@ -13,6 +13,7 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 
+import com.deustocine.app.cliente.ventanas.VentanaPelicula;
 import com.deustocine.app.domain.Pelicula;
 /**
  * @author Lander
@@ -54,7 +55,8 @@ public class PeliculasController {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//TODO
+				VentanaPelicula vp = new VentanaPelicula(p, webTarget);
+				
 			}
 		});
 		

@@ -8,6 +8,9 @@ import javax.jdo.JDOHelper;
 import javax.jdo.JDOUserException;
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
 
 import com.deustocine.app.dao.CineDAO;
 import com.deustocine.app.dao.PeliculaDAO;
@@ -56,28 +59,65 @@ public class DeustocineServicios {
 		
 	}
 	public List<Usuario> getUsuarios(){
-		return uDao.getUsuarios();
-	}
-	public List<Pelicula> getPeliculas() {
 		PersistenceManager pm = pmf.getPersistenceManager();
-		List<Pelicula> p = new ArrayList<Pelicula>();
+		List<Usuario> usuarios = new ArrayList<Usuario>();
 		try {
-			p=pDao.getPeliculas();
+			usuarios = uDao.getUsuarios();
 		}catch(Exception e) {
-			System.out.println("* Error el producto no existe *S");
+			System.out.println("* Error no hay usuarios *S");
 		}finally {
 			pm.close();
 		}
-		return p;
+		return usuarios;
 	}
-		
-	//Todos los getters y setters necesarios
+	public List<Pelicula> getPeliculas() {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		List<Pelicula> peliculas = new ArrayList<Pelicula>();
+		try {
+			peliculas = pDao.getPeliculas();
+		}catch(Exception e) {
+			System.out.println("* Error no hay peliculas *S");
+		}finally {
+			pm.close();
+		}
+		return peliculas;
+	}
 	
 	public List<Sesion> getSesiones(){
-		return sDao.getSesiones();
+		PersistenceManager pm = pmf.getPersistenceManager();
+		List<Sesion> sesiones = new ArrayList<Sesion>();
+		try {
+			sesiones = sDao.getSesiones() ;
+		}catch(Exception e) {
+			System.out.println("* Error no hay sesiones *S");
+		}finally {
+			pm.close();
+		}
+		return sesiones;
 	}
 	public List<Cine> getCines(){
-		return cDao.getCines();
+		PersistenceManager pm = pmf.getPersistenceManager();
+		List<Cine> cines = new ArrayList<Cine>();
+		try {
+			cines = cDao.getCines() ;
+		}catch(Exception e) {
+			System.out.println("* Error no hay cines *S");
+		}finally {
+			pm.close();
+		}
+		return cines;
+	}
+	
+	//Metodo que recibe las sesiones que tiene la pelicula
+	//Las sesiones de cada pelicula se agrupan en un ArrayList
+	public ArrayList<Sesion> getSesionesPelicula(Pelicula p) {
+		ArrayList<Sesion> lSesiones = new ArrayList<Sesion>();
+		for(Sesion sesion : sDao.getSesiones()) {
+			if(sesion.getPelicula().getCod() == p.getCod()) {
+				lSesiones.add(sesion);
+			}
+		}
+		return lSesiones;
 	}
 	
 	public CineDAO getcDao() {
