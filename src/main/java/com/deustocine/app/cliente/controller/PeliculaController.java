@@ -32,17 +32,17 @@ public class PeliculaController {
 		this.webTarget = webTarget;
 	}
 	
-	//Metodo que recibe las sesiones que tiene la pelicula
-	//Las sesiones de cada pelicula se agrupan en un ArrayList
-	public ArrayList<Sesion> getSesionesPelicula(Pelicula p) {
-		WebTarget webTarget = this.webTarget.path("peliculas/{cod}/sesiones");
-		ArrayList<Sesion> lSesiones = webTarget.request(MediaType.APPLICATION_JSON).get( new GenericType<ArrayList<Sesion>>() {
+	//Metodo que recibe las peliculas que hay y las agrupa en un ArrayList
+	public List<Sesion> getSesionesPelicula(Pelicula pelicula) {
+		WebTarget webTarget = this.webTarget.path("deustocine/{cod}/");
+		List<Sesion> lSesiones = webTarget.request(MediaType.APPLICATION_JSON).get( new GenericType<List<Sesion>>() {
 	     } );
-		return lSesiones;
-	}
-	
+		List<Sesion> alSesiones = new ArrayList<>();
+		alSesiones.addAll(lSesiones);
+		return alSesiones;
+		}
 	//Crea el panel por cada sesion que haya con sus diferentes caracteristicas
-	public void crearPanelSesion(Sesion s,Pelicula p, JPanel pCentro) {
+	public void crearPanelSesion(Pelicula p, JPanel pCentro) {
 		this.s = s;
 		this.pelicula = p;
 		

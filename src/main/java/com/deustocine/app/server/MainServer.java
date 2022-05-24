@@ -36,15 +36,13 @@ public class MainServer {
 		p1.setTitulo("Iron Man");
 		p1.setDirector("Jon Favreau");
 		p1.setGenero("Ficcion");
-		p1.setPortada(null);
 		p1.setFechaSalida("30/04/2008 00:00");
 		
 		Pelicula p2 = new Pelicula();
-		p2.setCod(1);
+		p2.setCod(2);
 		p2.setTitulo("Interstellar");
 		p2.setDirector("Christopher Nolan");
 		p2.setGenero("Ficcion");
-		p2.setPortada(null);
 		p2.setFechaSalida("31/04/2008 00:00");
 		
 		ds.getpDao().guardarPelicula(p1);

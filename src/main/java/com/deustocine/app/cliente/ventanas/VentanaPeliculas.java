@@ -40,7 +40,7 @@ public class VentanaPeliculas extends JFrame{
 		//por cada pelicula que haya se crea un panel
 		peliculas = controller.getPeliculas();
 		for (Pelicula p : peliculas) {
-			controller.crearPanelPelicula(p,pCentro);
+			controller.crearPanelPelicula(v,p,pCentro);
 		}
 		
 		JScrollPane scroll = new JScrollPane(pCentro);

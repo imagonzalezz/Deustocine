@@ -61,25 +61,11 @@ public class DeustocineServer {
 	
 	
 	@GET
-	@Path("peliculas/{cod}")
-	public Response getPelicula(@PathParam("cod") int cod) {
-		Pelicula p = new Pelicula();
-		p.setCod(cod);
-		if(ds.getPeliculas().contains(p)) {
-			for (Pelicula pelicula : ds.getPeliculas()) {
-				if(pelicula.getCod() == cod)
-					return Response.ok(pelicula).build();
-			}
-		}
-		return Response.status(Response.Status.NOT_FOUND).build();
-	}
-	
-	@GET
-	@Path("peliculas/{cod}/sesiones")
-	public ArrayList<Sesion> getSesionesPelicula(@PathParam("cod") int cod) {
+	@Path("peliculas/{cod}/")
+	public ArrayList<Sesion> getSesionesPelicula(Pelicula p) {
 		ArrayList<Sesion> lSesionesPelicula = new ArrayList<>();
 			for (Sesion sesion : ds.getSesiones()) {
-				if(sesion.getPelicula().getCod() == cod) {
+				if(sesion.getPelicula().getCod() == p.getCod()) {
 					lSesionesPelicula.add(sesion);
 					}	
 			}

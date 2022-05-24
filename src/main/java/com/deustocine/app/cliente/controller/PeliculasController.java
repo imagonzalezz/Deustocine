@@ -13,6 +13,8 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 
+import com.deustocine.app.cliente.ventanas.VentanaPelicula;
+import com.deustocine.app.cliente.ventanas.VentanaPeliculas;
 import com.deustocine.app.domain.Pelicula;
 /**
  * @author Lander
@@ -25,6 +27,7 @@ public class PeliculasController {
 	private WebTarget webTarget;
 	private List<Pelicula> peliculas;//lista de peliculas que hay
 	private Pelicula pelicula;
+	private VentanaPeliculas v;
 	
 	public PeliculasController(WebTarget webTarget) {
 		this.webTarget = webTarget;
@@ -41,8 +44,9 @@ public class PeliculasController {
 	}
 
 	//Metodo que crea un panel por cada pelicula que haya con sus diferentes caracteristicas
-	public void crearPanelPelicula(Pelicula p, JPanel pCentro) {
+	public void crearPanelPelicula(VentanaPeliculas v,Pelicula p, JPanel pCentro) {
 		this.pelicula = p;
+		this.v = v;
 		JPanel pContenedor = new JPanel();
 		pContenedor.setLayout(new BoxLayout(pContenedor, BoxLayout.Y_AXIS));
 		JPanel pPelicula = new JPanel();
@@ -54,7 +58,8 @@ public class PeliculasController {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//TODO
+				v.dispose();
+				VentanaPelicula vp = new VentanaPelicula(p, webTarget);
 			}
 		});
 		
