@@ -20,6 +20,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.awt.event.ActionEvent;
 
+/**
+ * @author Lander
+ * Ventana que permite crear nuevo usuarios con su nombre, dni, correo y contraseña.
+ *
+ */
 public class VentanaCrearUsuario extends JFrame {
 
 	private JPanel contentPane;
@@ -51,14 +56,22 @@ public class VentanaCrearUsuario extends JFrame {
 	 * Create the frame.
 	 */
 
+	
+	/**
+	 * TextFields y passwordField para introducir los datos del usuario para registrarse.
+	 */
+	
 	public VentanaCrearUsuario() {
+		//creacion y propiedades de la ventana
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
+		
+		
+		
 		nom = new JTextField();
 		nom.setBounds(143, 62, 96, 20);
 		contentPane.add(nom);
@@ -86,7 +99,11 @@ public class VentanaCrearUsuario extends JFrame {
 		txtDni.setBounds(143, 8, 96, 20);
 		contentPane.add(txtDni);
 		txtDni.setColumns(10);
-
+		
+		/**
+		 * Boton para crear el usuario una vez introducidos los datos.
+		 */
+		
 		JButton btnNewButton = new JButton("Crear usuario");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

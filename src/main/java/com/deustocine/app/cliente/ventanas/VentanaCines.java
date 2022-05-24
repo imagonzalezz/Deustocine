@@ -14,13 +14,19 @@ import javax.ws.rs.client.WebTarget;
 import com.deustocine.app.cliente.controller.CinesController;
 import com.deustocine.app.domain.Cine;
 
+/** 
+ * @author Lander
+ * Ventana donde se mostraran los cines que hay en la BD.
+ * Se mostrará un cine en un panel nuevoo por cada cine que exista en la BD.
+ */
+
 public class VentanaCines extends JFrame{
 	
 	private Client cliente;
 	private WebTarget webTarget;
-	private List<Cine> cines;
+	private List<Cine> cines; //lista de cines que existen en la BD
 	
-	private CinesController controller;
+	private CinesController controller; //controller que implementa la lógica de la ventana
 	private static VentanaCines v;
 	private JPanel pNorte;
 	private JPanel pCentro;
@@ -31,7 +37,7 @@ public class VentanaCines extends JFrame{
 		v = this;
 		pCentro = new JPanel();
 		pCentro.setLayout(new BoxLayout(pCentro,BoxLayout.Y_AXIS));
-		
+		//por cada cine se crea un panel nuevo con el nuevo cine
 		cines = controller.getCines();
 		for (Cine c : cines) {
 			controller.crearPanelCine(c,pCentro);

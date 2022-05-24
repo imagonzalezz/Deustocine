@@ -1,6 +1,7 @@
 package com.deustocine.app.cliente.ventanas;
 
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
@@ -28,6 +29,12 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+
+
+/**
+ * @author Lander
+ * Ventana para iniciar sesion los usuarios que ya esten registrados en la BD.
+ */
 public class VentanaInicioSesion extends JFrame {
 
 	private JPanel contentPane;
@@ -65,6 +72,12 @@ public class VentanaInicioSesion extends JFrame {
 
 	/**
 	 * Create the frame.
+	 */
+	
+	/**
+	 * Panel en el que se pueden introducir los datos de los usuarios para poder ver las peliculas, cines...
+	 * @param cliente
+	 * @param webTarget
 	 */
 	public VentanaInicioSesion(Client cliente, WebTarget webTarget) {
 		super();
@@ -134,6 +147,10 @@ public class VentanaInicioSesion extends JFrame {
 		lError.setForeground(Color.RED);
 		pSur.add(login);
 		pCentro.setBackground(Color.WHITE);
+		
+		/**
+		 * Al loggearse comprueba si el usuario y la contraseña están en BD y comprueba a ver si coinciden el usuario y la contraseña.
+		 */
 		
 		login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
