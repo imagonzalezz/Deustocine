@@ -7,6 +7,11 @@ import com.deustocine.app.domain.Sesion;
 import com.deustocine.app.domain.Usuario;
 import com.deustocine.app.servicios.DeustocineServicios;
 
+/**
+ * @author Lander
+ * main del servidor
+ * 
+ */
 public class MainServer {
 	public static void main(String[] args) {
 		DeustocineServicios ds = new DeustocineServicios();

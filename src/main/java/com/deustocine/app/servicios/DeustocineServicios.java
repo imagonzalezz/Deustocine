@@ -19,6 +19,11 @@ import com.deustocine.app.domain.Sesion;
 import com.deustocine.app.domain.Usuario;
 
 
+/**
+ * @author Lander
+ * clase servicios deustocine
+ * 
+ */
 public class DeustocineServicios {
 	CineDAO cDao;
 	PeliculaDAO pDao;
@@ -66,6 +71,7 @@ public class DeustocineServicios {
 		return p;
 	}
 		
+	//Todos los getters y setters necesarios
 	
 	public List<Sesion> getSesiones(){
 		return sDao.getSesiones();
