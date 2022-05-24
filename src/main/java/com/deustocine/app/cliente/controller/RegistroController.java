@@ -9,7 +9,12 @@ import javax.ws.rs.core.Response.Status;
 
 import com.deustocine.app.domain.Usuario;
 import com.deustocine.app.util.CineException;
-
+/**
+ * @author Lander
+ * Clase que implementa la logica de la ventana registro
+ * Permite registrarse a usuarios
+ * 
+ */
 public class RegistroController {
 
 	private WebTarget webTarget;
@@ -17,7 +22,7 @@ public class RegistroController {
 	public RegistroController(WebTarget webTarget) {
 		this.webTarget = webTarget;
 	}
-
+//Metodo utilizado para registrarse
 	public void registrar(Usuario u) throws CineException {
 		WebTarget webTarget = this.webTarget.path("/deustocine/registro");
 		Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
