@@ -59,6 +59,7 @@ public class PeliculasController {
 		});
 		
 		pContenedor.add(pPelicula);
+		pCentro.add(pContenedor);
 		pCentro.revalidate();
 		pCentro.repaint();
 		
