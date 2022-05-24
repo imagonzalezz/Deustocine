@@ -61,8 +61,8 @@ public class DeustocineServer {
 	
 	
 	@GET
-	@Path("peliculas/{cod}/")
-	public ArrayList<Sesion> getSesionesPelicula(Pelicula p) {
+	@Path("peliculas/sesiones/")
+	public List<Sesion> getSesionesPelicula(Pelicula p) {
 		ArrayList<Sesion> lSesionesPelicula = new ArrayList<>();
 			for (Sesion sesion : ds.getSesiones()) {
 				if(sesion.getPelicula().getCod() == p.getCod()) {

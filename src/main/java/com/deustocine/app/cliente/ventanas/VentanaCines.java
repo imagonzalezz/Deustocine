@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 
 import com.deustocine.app.cliente.controller.CinesController;
@@ -31,8 +32,8 @@ public class VentanaCines extends JFrame{
 	private JPanel pNorte;
 	private JPanel pCentro;
 	
-	public VentanaCines(CinesController cc, Client cliente, WebTarget webTarget) {
-		this.controller = cc;
+	public VentanaCines(Client cliente, WebTarget webTarget) {
+		controller = new CinesController(webTarget);
 		this.webTarget = webTarget;
 		v = this;
 		pCentro = new JPanel();
@@ -53,5 +54,4 @@ public class VentanaCines extends JFrame{
 		setVisible(true);
 		
 	}
-	
 }
