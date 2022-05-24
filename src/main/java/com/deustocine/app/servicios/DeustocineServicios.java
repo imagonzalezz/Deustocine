@@ -1,6 +1,7 @@
 package com.deustocine.app.servicios;
 //logica
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.jdo.JDOHelper;
@@ -52,9 +53,20 @@ public class DeustocineServicios {
 	public List<Usuario> getUsuarios(){
 		return uDao.getUsuarios();
 	}
-	public List<Pelicula> getPeliculas(){
-		return pDao.getPeliculas();
+	public List<Pelicula> getPeliculas() {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		List<Pelicula> p = new ArrayList<Pelicula>();
+		try {
+			p=pDao.getPeliculas();
+		}catch(Exception e) {
+			System.out.println("* Error el producto no existe *S");
+		}finally {
+			pm.close();
+		}
+		return p;
 	}
+		
+	
 	public List<Sesion> getSesiones(){
 		return sDao.getSesiones();
 	}

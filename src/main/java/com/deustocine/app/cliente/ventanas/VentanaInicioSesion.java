@@ -147,8 +147,7 @@ public class VentanaInicioSesion extends JFrame {
 					String password=contraseina.getText();
 					boolean valido=isc.logIn(dni, password, lError,is);
 					if (valido) {
-						//VentanaCompras v= new VentanaCompras(new ComprasController(webTarget, email),VentanaLogin.this.cliente, VentanaLogin.this.webTarget, email);
-						//VentanaChat v1 = new VentanaChat(VentanaLogin.this.cliente,VentanaLogin.this.webTarget,email);
+						VentanaPeliculas vp = new VentanaPeliculas(is.cliente, is.wt);
 						VentanaInicioSesion.this.dispose();
 						
 					}
