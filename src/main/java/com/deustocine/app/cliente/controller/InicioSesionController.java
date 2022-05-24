@@ -45,7 +45,7 @@ public class InicioSesionController {
 			}
 			return logIn;
 		} catch (Exception e) {
-			lError.setText("Algo ha fallado al realizar el LogIn");
+			lError.setText("Error Login");
 			System.out.println("* Error " + e.getMessage() + "*");
 			vl.pack();
 			vl.setLocationRelativeTo(null);

@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.deustocine.app.cliente.controller.InicioSesionController;
-import com.deustocine.app.conexion.Conexion;
 import com.deustocine.app.dao.UsuarioDAO;
 import 	com.deustocine.app.domain.Usuario;
 

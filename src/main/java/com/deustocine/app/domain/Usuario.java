@@ -9,7 +9,7 @@ public class Usuario {
 	@PrimaryKey
 	private String dni;
 	
-	private String usuario;
+	private String nombre;
 	private String contrasenya;
 	private double puntos = 0;
 	
@@ -18,18 +18,18 @@ public class Usuario {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Usuario(String usuario, String contrasenya) {
+	public Usuario(String nombre, String contrasenya) {
 		super();
-		this.usuario = usuario;
+		this.nombre = nombre;
 		this.contrasenya = contrasenya;
 	}
 
-	public String getUsuario() {
-		return usuario;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public String getContrasenya() {
@@ -50,7 +50,7 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Usuario [usuario=" + usuario + ", contrasenya=" + contrasenya + ", puntos=" + puntos + "]";
+		return "Usuario [usuario=" + nombre + ", contrasenya=" + contrasenya + ", puntos=" + puntos + "]";
 	}
 
 	public String getDni() {

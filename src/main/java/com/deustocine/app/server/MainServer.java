@@ -49,13 +49,13 @@ public class MainServer {
 		u1.setDni("71237123D");
 		u1.setContrasenya("Contrasenya");
 		u1.setPuntos(54);
-		u1.setUsuario("Imanol");
+		u1.setNombre("Imanol");
 		
 		Usuario u2 = new Usuario();
 		u2.setDni("71237123F");
 		u2.setContrasenya("Contrasenya2");
 		u2.setPuntos(54);
-		u2.setUsuario("Inigo");
+		u2.setNombre("Inigo");
 		
 		ds.getuDao().guardarUsuario(u1);
 		ds.getuDao().guardarUsuario(u2);
