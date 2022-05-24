@@ -37,11 +37,12 @@ public class DeustocineServer {
 	
 	@POST
 	@Path("/login")
-	public boolean login(String dni, String contrasena) {	
+	@Consumes(MediaType.APPLICATION_JSON)
+	public boolean login(Usuario usuario) {	
 		try {
-			Usuario u= ds.getUsuario(dni);
+			Usuario u= ds.getUsuario(usuario.getDni());
 			if (u!=null) {
-				if (u.getContrasenya().contentEquals(contrasena)) {
+				if (usuario.getContrasenya().contentEquals(u.getContrasenya())) {
 					return true;
 				}
 			}
@@ -89,6 +90,14 @@ public class DeustocineServer {
 	@Path("/cines")
 	public List<Cine> getCines() {
 		return ds.getCines();
+	}
+	
+	@POST
+	@Path("/registro")
+	public Response registro(Usuario u) {
+		boolean registro=ds.registro(u);
+		System.out.println("*Realizando registro*");
+		return Response.ok(registro).build();
 	}
 	
 	@DELETE

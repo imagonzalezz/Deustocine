@@ -88,6 +88,15 @@ public class DeustocineServicios {
 	public UsuarioDAO getuDao() {
 		return uDao;
 	}
+	
+	public boolean registro(Usuario u) {
+		if (uDao.getUsuario(u.getDni())==null) {
+			uDao.guardarUsuario(u);
+			return true;
+		}
+		System.out.println("*No se ha realizado el registro*");
+		return false;	
+	}
 
 	public void setuDao(UsuarioDAO uDao) {
 		this.uDao = uDao;
