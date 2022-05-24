@@ -19,7 +19,7 @@ public class RegistroController {
 	}
 
 	public void registrar(Usuario u) throws CineException {
-		WebTarget webTarget = this.webTarget.path("reventa/registro");
+		WebTarget webTarget = this.webTarget.path("/deustocine/registro");
 		Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
 		Response response = invocationBuilder.post(Entity.entity(u, MediaType.APPLICATION_JSON));
 		if (response.getStatus() != Status.OK.getStatusCode()) {

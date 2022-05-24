@@ -138,13 +138,14 @@ public class VentanaInicioSesion extends JFrame {
 		login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					String email=usuario.getText();
+					String dni=usuario.getText();
 					String password=contraseina.getText();
-					boolean valido=isc.logIn(email, password, lError,is);
+					boolean valido=isc.logIn(dni, password, lError,is);
 					if (valido) {
 						//VentanaCompras v= new VentanaCompras(new ComprasController(webTarget, email),VentanaLogin.this.cliente, VentanaLogin.this.webTarget, email);
 						//VentanaChat v1 = new VentanaChat(VentanaLogin.this.cliente,VentanaLogin.this.webTarget,email);
 						VentanaInicioSesion.this.dispose();
+						
 					}
 				}catch(Exception ex) {
 					ex.printStackTrace();

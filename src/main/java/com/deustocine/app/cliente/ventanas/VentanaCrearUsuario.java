@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.WebTarget;
 
 import com.deustocine.app.cliente.controller.RegistroController;
 import com.deustocine.app.domain.Usuario;
@@ -31,27 +33,17 @@ public class VentanaCrearUsuario extends JFrame {
 	private JLabel lblNewLabel_1;
 	private JTextField txtDni;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaCrearUsuario frame = new VentanaCrearUsuario();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private WebTarget webTarget;	
+	private Client client;
 
-	/**
-	 * Create the frame.
-	 */
-
-	public VentanaCrearUsuario() {
+	public VentanaCrearUsuario(Client cliente, WebTarget wt) {
+		super();
+		
+		this.client=cliente;
+		this.webTarget=wt;
+		this.rc= new RegistroController(webTarget);
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -97,6 +89,7 @@ public class VentanaCrearUsuario extends JFrame {
 
 				try {
 					rc.registrar(u);
+					System.out.println("registro correcto");
 				} catch (Exception e2) {
 					System.out.println("error en el registro");
 				}
@@ -107,6 +100,9 @@ public class VentanaCrearUsuario extends JFrame {
 		btnNewButton.setBounds(273, 209, 118, 23);
 		contentPane.add(btnNewButton);
 
-		;
+		setVisible(true);
+		this.pack();
+		setLocationRelativeTo(null);
+		
 	}
 }
