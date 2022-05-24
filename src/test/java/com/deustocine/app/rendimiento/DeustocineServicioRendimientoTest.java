@@ -16,33 +16,38 @@ import com.deustocine.app.domain.Usuario;
 import com.deustocine.app.servicios.DeustocineServicios;
 
 
+/**
+ * @author Lander
+ * test de rendimiento de los servicios de Deustocine
+ * 
+ */
 public class DeustocineServicioRendimientoTest {
 
 	DeustocineServicios ds;
-	private Usuario u;
-	private Pelicula p;
-	private Sesion s;
-	private Cine c;      
+	private Usuario u; //Usuario
+	private Pelicula p; //Pelicula
+	private Sesion s; //Sesion de la pelicula
+	private Cine c; //Cine
 	
 	@Rule public ContiPerfRule rule = new ContiPerfRule();
 	
 	@Before
 	public void setUp() {
 		ds= new DeustocineServicios();
-		
+		//Asignar datos al usuario
 		u= new Usuario();
 		u.setDni("71237123D");
 		u.setContrasenya("Contrasenya");
-		
+		//Asignar datos a la pelicula
 		p= new Pelicula();
 		p.setCod(1);
 		p.setTitulo("Iron Man");
-		
+		//Asignar datos a la sesion
 		s= new Sesion();
 		s.setCod(1);
 		s.setPrecio(10);
 	}
-	
+	//Comprobaciones en el test
 	@Test 
     @PerfTest(invocations = 1000, threads = 20)
     @Required(max = 3000, average = 1500)

@@ -14,36 +14,45 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
+/**
+ * Clase sesion
+ * @author Iker
+ *
+ */
 @PersistenceCapable
 public class Sesion {
 	
 	private String dateFormat = "dd/MM/YYYY HH:mm";
-	public Cine getCine() {
-		return cine;
-	}
-
-	public void setCine(Cine cine) {
-		this.cine = cine;
-	}
-
 	private SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
 	
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.INCREMENT)
 	private int cod;
 	@ForeignKey
-	private Cine cine;
+	private Cine cine; 
 	@ForeignKey
-	private Pelicula pelicula;
-	private String fechaHora;
-	private double precio;
-	private double puntosObtiene;
-	private double valorPuntos;
+	private Pelicula pelicula; 
+	private String fechaHora; 
+	private double precio; 
+	private double puntosObtiene; 
+	private double valorPuntos; 
+	
+	/**
+	 * Constructor por defecto
+	 */
 	public Sesion() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
+	/**
+	 * Constructor con parametros
+	 * @param pelicula Pelicula que corresponde a la sesion
+	 * @param fechaHora Fecha y hora de la sesion
+	 * @param precio Precio de la sesion
+	 * @param puntosObtiene Puntos que otorga al usuario por su compra
+	 * @param valorPuntos Valor en puntos
+	 */
 	public Sesion(Pelicula pelicula, String fechaHora, double precio, double puntosObtiene,
 			double valorPuntos) {
 		super();
@@ -54,54 +63,121 @@ public class Sesion {
 		this.valorPuntos = valorPuntos;
 	}
 	
+	/**
+	 * Devuelve el codigo identificativo de la sesion
+	 * @return Codigo identificativo
+	 */
 	public int getCod() {
 		return cod;
 	}
 
+	/**
+	 * Establece el codigo identificativo de la sesion
+	 * @param cod Codigo identificativo
+	 */
 	public void setCod(int cod) {
 		this.cod = cod;
 	}
+	
+	/**
+	 * Devuelve el cine que corresponde a la sesion
+	 * @return Cine
+	 */
+	public Cine getCine() {
+		return cine;
+	}
 
+	/**
+	 * Establece el cine que corresponde a la sesion
+	 * @param cine Cine a establecer
+	 */
+	public void setCine(Cine cine) {
+		this.cine = cine;
+	}
+
+	/**
+	 * Devuelve la pelicula que corresponde a la sesion
+	 * @return Pelicula
+	 */
 	public Pelicula getPelicula() {
 		return pelicula;
 	}
 
+	/**
+	 * Establece la pelicula que corresponde a la sesion
+	 * @param pelicula Pelicula a establecer
+	 */
 	public void setPelicula(Pelicula pelicula) {
 		this.pelicula = pelicula;
 	}
 
+	/**
+	 * Devuelve la fecha y hora de la sesion
+	 * @return Fecha y hora
+	 */
 	public String getFechaHora() {
 		return fechaHora;
 	}
 
+	/**
+	 * Establece la fecha y hora de la sesion
+	 * @param string Fecha y hora
+	 */
 	public void setFechaHora(String string) {
 		this.fechaHora = string;
 	}
 
+	/**
+	 * Devuelve el precio de la sesion
+	 * @return Precio
+	 */
 	public double getPrecio() {
 		return precio;
 	}
 
+	/**
+	 * Establece el precio de la sesion
+	 * @param precio Precio a establecer
+	 */
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
 
+	/**
+	 * Devuelve los puntos que otorga al usuario por su compra
+	 * @return Puntos
+	 */
 	public double getPuntosObtiene() {
 		return puntosObtiene;
 	}
 
+	/**
+	 * Establece los puntos que otorga al usuario por su compra
+	 * @param puntosObtiene Puntos a establecer
+	 */
 	public void setPuntosObtiene(double puntosObtiene) {
 		this.puntosObtiene = puntosObtiene;
 	}
 
+	/**
+	 * Devuelve el valor en puntos de la sesion
+	 * @return Puntos
+	 */
 	public double getValorPuntos() {
 		return valorPuntos;
 	}
-
+	
+	/**
+	 * Establece el valor en puntos de la sesion
+	 * @param valorPuntos puntos
+	 */
 	public void setValorPuntos(double valorPuntos) {
 		this.valorPuntos = valorPuntos;
 	}
 
+	/**
+	 * Imprime los datos de la sesion
+	 */
 	@Override
 	public String toString() {
 		return "Sesion [cod=" + cod + ", pelicula=" + pelicula + ", fechaHora=" + fechaHora + ", precio=" + precio
@@ -113,6 +189,9 @@ public class Sesion {
 		return Objects.hash(cine, cod, dateFormat, fechaHora, pelicula, precio, puntosObtiene, sdf, valorPuntos);
 	}
 
+	/**
+	 * Indica si dos sesiones son iguales
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

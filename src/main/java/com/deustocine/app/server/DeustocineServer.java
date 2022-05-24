@@ -25,7 +25,7 @@ import com.deustocine.app.domain.Usuario;
 import com.deustocine.app.servicios.DeustocineServicios;
 
 @Path("/deustocine")
-
+@Produces(MediaType.APPLICATION_JSON)
 public class DeustocineServer {
 	
 	DeustocineServicios ds ;

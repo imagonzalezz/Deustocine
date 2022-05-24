@@ -22,11 +22,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.awt.event.ActionEvent;
 
+/**
+ * @author Lander
+ * Ventana que permite crear nuevo usuarios con su nombre, dni, correo y contraseña.
+ *
+ */
 public class VentanaCrearUsuario extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField nom;
-	private JTextField corr;
+	private JTextField nombre;
+	private JTextField dni;
 	private JPasswordField passwordField;
 	private RegistroController rc;
 	DefaultTableModel modelo;
@@ -36,6 +41,19 @@ public class VentanaCrearUsuario extends JFrame {
 	private WebTarget webTarget;	
 	private Client client;
 
+
+	/**
+	 * Create the frame.
+	 */
+
+	
+	/**
+	 * TextFields y passwordField para introducir los datos del usuario para registrarse.
+	 */
+	
+	
+		//creacion y propiedades de la ventana
+
 	public VentanaCrearUsuario(Client cliente, WebTarget wt) {
 		super();
 		
@@ -43,34 +61,35 @@ public class VentanaCrearUsuario extends JFrame {
 		this.webTarget=wt;
 		this.rc= new RegistroController(webTarget);
 		
-		
+	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100,100,550,600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
-		nom = new JTextField();
-		nom.setBounds(143, 62, 96, 20);
-		contentPane.add(nom);
-		nom.setColumns(10);
+		
+		
+		nombre = new JTextField();
+		nombre.setBounds(143, 62, 96, 20);
+		contentPane.add(nombre);
+		nombre.setColumns(10);
 
 		passwordField = new JPasswordField();
 		passwordField.setBounds(143, 158, 96, 20);
 		contentPane.add(passwordField);
 
-		JLabel lblNewLabel = new JLabel("Nombre");
+		JLabel lblNewLabel = new JLabel("Nombre: ");
 		lblNewLabel.setBounds(27, 65, 49, 14);
 		contentPane.add(lblNewLabel);
 
 	
 
-		JLabel lblContrasea = new JLabel("Contraseña");
+		JLabel lblContrasea = new JLabel("Contrasenya: ");
 		lblContrasea.setBounds(27, 161, 62, 14);
 		contentPane.add(lblContrasea);
 
-		lblNewLabel_1 = new JLabel("New label");
+		lblNewLabel_1 = new JLabel("DNI: ");
 		lblNewLabel_1.setBounds(27, 11, 49, 14);
 		contentPane.add(lblNewLabel_1);
 
@@ -78,14 +97,18 @@ public class VentanaCrearUsuario extends JFrame {
 		txtDni.setBounds(143, 8, 96, 20);
 		contentPane.add(txtDni);
 		txtDni.setColumns(10);
-
+		
+		/**
+		 * Boton para crear el usuario una vez introducidos los datos.
+		 */
+		
 		JButton btnNewButton = new JButton("Crear usuario");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Usuario u = new Usuario();
 				u.setDni(txtDni.getText());
 				u.setContrasenya(passwordField.getText());
-				u.setNombre(nom.getText());
+				u.setNombre(nombre.getText());
 
 				try {
 					rc.registrar(u);

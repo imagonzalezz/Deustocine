@@ -16,7 +16,7 @@ GRANT ALL ON deustocinedb.* TO 'root'@'localhost';
 ```
 
 
-_Comando para compilar el codigo _
+_Comando para compilar el codigo_
 
 ```
 mvn clean compile
@@ -39,13 +39,27 @@ _Carga los datos de prueba en la BD_
 ```
 mvn exec:java -Pdatos
 ```
+
+_Para probar los test_
+
+```
+mvn test
+```
+
 _Lanzar el servidor_
 
 ```
 mvn jetty:run
 ```
-_Lanzar la parte cliente
+
+_Generar documentación_
 
 ```
-mvn exec:java -Pclient
+mvn doxygen:report
+```
+
+_Generar documentación en PDF con latex_
+
+```
+En Deustocine\target\doxygen\latex ejecutar Make
 ```
