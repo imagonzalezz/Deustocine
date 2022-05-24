@@ -16,6 +16,12 @@ import javax.ws.rs.core.MediaType;
 import com.deustocine.app.domain.Pelicula;
 import com.deustocine.app.domain.Sesion;
 
+/**
+ * @author Lander
+ * Clase que implementa la logica de la ventana pelicula
+ * Permite mostrar la pelicula y las sesiones que tiene cada una de ellas
+ * Por cada sesion que exista se creara un panel
+ */
 public class PeliculaController {
 	
 	private WebTarget webTarget;
@@ -26,7 +32,8 @@ public class PeliculaController {
 		this.webTarget = webTarget;
 	}
 	
-	
+	//Metodo que recibe las sesiones que tiene la pelicula
+	//Las sesiones de cada pelicula se agrupan en un ArrayList
 	public ArrayList<Sesion> getSesionesPelicula(Pelicula p) {
 		WebTarget webTarget = this.webTarget.path("peliculas/{cod}/sesiones");
 		ArrayList<Sesion> lSesiones = webTarget.request(MediaType.APPLICATION_JSON).get( new GenericType<ArrayList<Sesion>>() {
@@ -34,7 +41,7 @@ public class PeliculaController {
 		return lSesiones;
 	}
 	
-	
+	//Crea el panel por cada sesion que haya con sus diferentes caracteristicas
 	public void crearPanelSesion(Sesion s,Pelicula p, JPanel pCentro) {
 		this.s = s;
 		this.pelicula = p;
