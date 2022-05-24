@@ -12,11 +12,11 @@ import javax.jdo.annotations.PrimaryKey;
 public class Usuario {
 	
 	@PrimaryKey
-	private String dni; /**< DNI del usuario */
+	private String dni; 
 	
-	private String nombre; /**< Nombre del usuario */
-	private String contrasenya; /**< Contraseña del usuario */
-	private double puntos = 0; /**< Puntos del usuario */
+	private String nombre;
+	private String contrasenya; 
+	private double puntos = 0;
 	
 	/**
 	 * Constructor por defecto

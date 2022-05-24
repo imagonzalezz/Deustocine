@@ -14,11 +14,11 @@ import javax.jdo.annotations.PrimaryKey;
 public class Entrada {
 	
 	@PrimaryKey
-	private int cod; /**< Codigo identificativo de la entrada */
+	private int cod; 
 	@ForeignKey
-	private Usuario usuario; /**< Usuario que posee la entrada */
+	private Usuario usuario;
 	@ForeignKey
-	private Sesion sesion; /**< Sesion que corresponde a la entrada */
+	private Sesion sesion;
 	
 	/**
 	 * Constructor por defecto

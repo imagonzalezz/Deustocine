@@ -27,15 +27,15 @@ public class Sesion {
 	
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.INCREMENT)
-	private int cod; /**< Codigo identificativo de la sesion */
+	private int cod;
 	@ForeignKey
-	private Cine cine; /**< Cine que corresponde a la sesion */
+	private Cine cine; 
 	@ForeignKey
-	private Pelicula pelicula; /**< Pelicula que corresponde a la sesion */
-	private String fechaHora; /**< Fecha y hora de la sesion */
-	private double precio; /**< Precio de la sesion */
-	private double puntosObtiene; /** Puntos que obtiene un usuario por adquirir una entrada de la sesion */
-	private double valorPuntos; /** Valor en puntos de la sesion */
+	private Pelicula pelicula; 
+	private String fechaHora; 
+	private double precio; 
+	private double puntosObtiene; 
+	private double valorPuntos; 
 	
 	/**
 	 * Constructor por defecto
