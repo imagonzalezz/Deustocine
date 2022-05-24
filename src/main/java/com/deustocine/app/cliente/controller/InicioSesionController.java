@@ -12,6 +12,12 @@ import javax.ws.rs.core.Response.Status;
 import com.deustocine.app.cliente.ventanas.VentanaInicioSesion;
 import com.deustocine.app.domain.Usuario;
 
+/**
+ * @author Lander
+ * Clase que implementa la logica de la ventana de inicio sesion
+ * Permite iniciar sesion con el dni y la contrasena
+ * Por cada cine que exista se crea un panel con el correspondiente cine
+ */
 public class InicioSesionController {
 
 	private WebTarget webTarget;
@@ -22,6 +28,8 @@ public class InicioSesionController {
 		this.cliente = cliente;
 		this.webTarget = webTarget;
 	}
+	
+	//Metodo que recibe una respuesta acerca de si coincide el dni y la contrasena
 
 	public boolean logIn(String dni, String password, JLabel lError, VentanaInicioSesion vl) {
 		try {
@@ -52,6 +60,7 @@ public class InicioSesionController {
 			return false;
 		}
 	}
+	//Metodo que recibe el usuario a traves de su dni
 
 	public Usuario getUsuario(String dni) {
 		WebTarget webTarget = this.webTarget.path("getUsuario/" + dni);
