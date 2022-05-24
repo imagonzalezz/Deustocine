@@ -13,7 +13,7 @@ public class MainCliente {
 		Client c= ClientBuilder.newClient();
 		WebTarget wt =c.target(String.format("http://%s:%s/rest", "localhost","8080"));
 		System.out.println(wt.toString());
-		VentanaCrearUsuario is = new VentanaCrearUsuario(c, wt);
+		VentanaInicioSesion vis = new VentanaInicioSesion(c, wt);
 	}
 
 }

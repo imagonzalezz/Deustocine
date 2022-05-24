@@ -49,26 +49,10 @@ public class VentanaInicioSesion extends JFrame {
 	private JLabel lError;
 	private JTextField usuario;
 	private JPasswordField contraseina;
-	
-
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Client c= ClientBuilder.newClient();
-					WebTarget wt =c.target(String.format("http://%s:%s/rest", "localhost","8080"));
-					VentanaInicioSesion frame = new VentanaInicioSesion(c, wt);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -85,7 +69,7 @@ public class VentanaInicioSesion extends JFrame {
 		this.wt=webTarget;
 		this.isc = new InicioSesionController(cliente, webTarget);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100,100,450,300);
+		setBounds(100,100,550,600);
 		setLocationRelativeTo(null);
 		is=this;
 		contentPane = new JPanel();
@@ -95,8 +79,7 @@ public class VentanaInicioSesion extends JFrame {
 		contentPane.setBackground(Color.WHITE);
 		setContentPane(contentPane);
 		login = new JButton("Login");
-		cerrar = new JButton("Cerrar");
-		registrarse = new JButton("Registrate");
+		registrarse = new JButton("Registrarse");
 		
 		pSur= new JPanel();
 		pSur.setBackground(Color.WHITE);
@@ -129,7 +112,6 @@ public class VentanaInicioSesion extends JFrame {
 		pCentro.add(pEmail);
 		
 	
-		
 		JPanel pContrasena= new JPanel();
 		JLabel lblContraseina = new JLabel("Contraseña: ");
 		pContrasena.add(lblContraseina);
@@ -146,12 +128,18 @@ public class VentanaInicioSesion extends JFrame {
 		pCentro.add(lError);
 		lError.setForeground(Color.RED);
 		pSur.add(login);
+		pSur.add(registrarse);
 		pCentro.setBackground(Color.WHITE);
 		
 		/**
 		 * Al loggearse comprueba si el usuario y la contraseña están en BD y comprueba a ver si coinciden el usuario y la contraseña.
 		 */
-		
+		registrarse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaCrearUsuario v= new VentanaCrearUsuario(is.cliente, is.wt);
+				is.dispose();
+			}
+		});
 		login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -173,7 +161,6 @@ public class VentanaInicioSesion extends JFrame {
 		
 		contentPane.add(pNorte, BorderLayout.NORTH);
 		contentPane.add(pCentro, BorderLayout.CENTER);
-		
 		contentPane.add(pSur);
 		
 		setVisible(true);
