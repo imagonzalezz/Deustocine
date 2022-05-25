@@ -25,7 +25,6 @@ public class Pelicula {
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.INCREMENT)
 	private int cod;
-	
 	private String titulo; 
 	private String director; 
 	private String fechaSalida; 

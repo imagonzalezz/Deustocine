@@ -110,7 +110,7 @@ public class DeustocineServicios {
 	
 	//Metodo que recibe las sesiones que tiene la pelicula
 	//Las sesiones de cada pelicula se agrupan en un ArrayList
-	public ArrayList<Sesion> getSesionesPelicula(Pelicula p) {
+	public List<Sesion> getSesionesPelicula(Pelicula p) {
 		ArrayList<Sesion> lSesiones = new ArrayList<Sesion>();
 		for(Sesion sesion : sDao.getSesiones()) {
 			if(sesion.getPelicula().getCod() == p.getCod()) {

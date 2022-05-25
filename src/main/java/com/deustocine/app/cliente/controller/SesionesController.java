@@ -14,51 +14,50 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 
 import com.deustocine.app.domain.Cine;
-
+import com.deustocine.app.domain.Pelicula;
+import com.deustocine.app.domain.Sesion;
 
 /**
  * @author Lander
- * Clase que implementa la logica de la ventana cines
- * Crea una lista de cines 
- * Por cada cine que exista se crea un panel con el correspondiente cine
+ * Clase que implementa la logica de la ventana pelicula
+ * Permite mostrar la pelicula y las sesiones que tiene cada una de ellas
+ * Por cada sesion que exista se creara un panel
  */
-public class CinesController {
-
-	private WebTarget webTarget;
-	private List<Cine> cines; /*lista de cines existentes*/
-	private Cine cine;
+public class SesionesController {
 	
-	public CinesController(WebTarget webTarget) {
+	private WebTarget webTarget;
+	private Pelicula pelicula;
+	private Sesion s;
+	
+	public SesionesController(WebTarget webTarget) {
 		this.webTarget = webTarget;
 	}
 	
+	
 	/*Recibe todos los cines que hay y los mete en la lista de cines */
-	public List<Cine> getCines() {
-		WebTarget webTarget = this.webTarget.path("deustocine/cines");
-		List<Cine> lCines = webTarget.request(MediaType.APPLICATION_JSON).get( new GenericType<List<Cine>>() {
+	public List<Sesion> getSesiones() {
+		WebTarget webTarget = this.webTarget.path("deustocine/sesiones");
+		List<Sesion> lCines = webTarget.request(MediaType.APPLICATION_JSON).get( new GenericType<List<Sesion>>() {
 	     } );
-		List<Cine> alCines = new ArrayList<>();
+		List<Sesion> alCines = new ArrayList<>();
 		alCines.addAll(lCines);
 		return alCines;
 	}
 
 	/*Crea un panel por cada cine que hay*/
-	public void crearPanelCine(Cine c, JPanel pCentro) {
-		this.cine = c;
+	public void crearPanelSesion(Sesion c, JPanel pCentro) {
+		this.s = c;
 		JPanel pContenedor = new JPanel();
 		pContenedor.setLayout(new BoxLayout(pContenedor, BoxLayout.Y_AXIS));
 		JPanel pCine = new JPanel();
-		pCine.add(new JLabel(c.getNombre()));
-		pCine.add(new JLabel(c.getDireccion()));
-		pCine.add(new JLabel (String.valueOf(c.getTelefono())));
+		pCine.add(new JLabel(c.getFechaHora()));
+		pCine.add(new JLabel(String.valueOf(c.getPrecio())));
+		
 		
 		pContenedor.add(pCine);
 		pCentro.add(pContenedor);
 		pCentro.revalidate();
 		pCentro.repaint();
-		
-		
 	}
-	
-	
+
 }
