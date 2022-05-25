@@ -16,6 +16,7 @@ import org.junit.experimental.categories.Category;
 import com.deustocine.app.categories.IntegrationTest;
 import com.deustocine.app.cliente.controller.InicioSesionController;
 import com.deustocine.app.cliente.controller.RegistroController;
+import com.deustocine.app.domain.Pelicula;
 import com.deustocine.app.domain.Usuario;
 import com.deustocine.app.util.CineException;
 
@@ -53,5 +54,29 @@ public class ControllerIntegrationTest {
     	PersistenceManager pm = pmf.getPersistenceManager();
     	//TODO
 	}
+	@After
+    public void limpiadoBd() {
+    	pmf=JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+    	PersistenceManager pm=pmf.getPersistenceManager();
+    	Usuario u=pm.getObjectById(Usuario.class,"u@gmail.com");
+    	Pelicula p=pm.getObjectById(Pelicula.class,21);
+    	Pelicula p2=pm.getObjectById(Pelicula.class,11);
+    	/*
+    	for (int i=u.getPeliculas().size()-1;i>=0;i--) {
+    		if (u.getOfertasEnviadas().get(i).getId()==11) {
+    			u.getOfertasEnviadas().remove(i);
+    		}
+    	}
+    	
+    	for (int i=u.getCompras().size()-1;i>=0;i--) {
+    		if (u.getCompras().get(i).getId()==1) {
+    			u.getCompras().remove(i);
+    		}
+    	}
+    	
+    	*/
+    	
+    	
+    }
 
 }
