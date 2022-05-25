@@ -14,10 +14,14 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 import com.deustocine.app.categories.IntegrationTest;
+import com.deustocine.app.cliente.controller.CinesController;
 import com.deustocine.app.cliente.controller.InicioSesionController;
 import com.deustocine.app.cliente.controller.RegistroController;
+import com.deustocine.app.cliente.controller.SesionesController;
+import com.deustocine.app.cliente.controller.PeliculasController;
 import com.deustocine.app.domain.Pelicula;
 import com.deustocine.app.domain.Usuario;
+import com.deustocine.app.domain.Cine;
 import com.deustocine.app.util.CineException;
 
 @Category(IntegrationTest.class)
@@ -54,6 +58,42 @@ public class ControllerIntegrationTest {
     	PersistenceManager pm = pmf.getPersistenceManager();
     	//TODO
 	}
+	/*
+	CinesController cc2= new CinesController(wt);
+	try {
+		cc2.crearPanelCine(null, null);;
+	} catch (CineException e2) {
+		// TODO Auto-generated catch block
+		e2.printStackTrace();
+		throw e2;
+	}
+	
+	CinesController cc= new CinesController(wt);
+	try {
+		cc.getCines();
+	} catch (CineException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		throw e;
+	}
+	SesionesController sc= new SesionesController(wt);
+	sc.crearPanelSesion(null, null);
+	
+	}
+	
+	SesionesController sc2= new SesionesController(wt);
+	sc2.getSesiones();
+	*/
+	/*
+	PeliculasController pc= new PeliculasController(wt);
+	pc.crearPanelPelicula(null, null);
+	
+	
+	
+	PeliculasController pc2= new PeliculasController(wt);
+	sc2.getPeliculas();
+	
+	*/
 	@After
     public void limpiadoBd() {
     	pmf=JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
@@ -61,22 +101,14 @@ public class ControllerIntegrationTest {
     	Usuario u=pm.getObjectById(Usuario.class,"u@gmail.com");
     	Pelicula p=pm.getObjectById(Pelicula.class,21);
     	Pelicula p2=pm.getObjectById(Pelicula.class,11);
-    	/*
-    	for (int i=u.getPeliculas().size()-1;i>=0;i--) {
-    		if (u.getOfertasEnviadas().get(i).getId()==11) {
-    			u.getOfertasEnviadas().remove(i);
-    		}
     	}
     	
-    	for (int i=u.getCompras().size()-1;i>=0;i--) {
-    		if (u.getCompras().get(i).getId()==1) {
-    			u.getCompras().remove(i);
-    		}
-    	}
     	
-    	*/
+    	
+    	
+    	
     	
     	
     }
 
-}
+
