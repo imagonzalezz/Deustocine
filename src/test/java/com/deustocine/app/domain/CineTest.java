@@ -3,6 +3,8 @@ package com.deustocine.app.domain;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -50,6 +52,13 @@ public class CineTest {
 		
 		c2.setTelefono(999999999);
 		assertEquals(c2.getTelefono(),999999999);
+	}
+	@Test
+	public void testListaCines() {
+		ArrayList<Cine>cines= new ArrayList<>();
+		cines.add(c);
+		cines.add(c2);
+		assertEquals(cines.size(),2);
 	}
 	
 	
