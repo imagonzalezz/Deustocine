@@ -3,6 +3,8 @@ package com.deustocine.app.domain;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -46,6 +48,12 @@ public class PeliculaTest {
 	public void testGenero() {
 		p.setGenero("Genero");
 		assertTrue(p.getGenero().equals("Genero"));
+	}
+	@Test
+	public void testListaPeliculas() {
+		ArrayList<Pelicula>peliculas= new ArrayList<>();
+		peliculas.add(p);
+		assertEquals(peliculas.size(),1);
 	}
 	
 }
