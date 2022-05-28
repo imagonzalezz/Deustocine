@@ -2,6 +2,8 @@ package com.deustocine.app.client.controller;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
@@ -93,7 +95,7 @@ public class ControllerIntegrationTest {
 	PeliculasController pc2= new PeliculasController(wt);
 	sc2.getPeliculas();
 	
-	*/
+	
 	@After
     public void limpiadoBd() {
     	pmf=JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
@@ -102,7 +104,7 @@ public class ControllerIntegrationTest {
     	Pelicula p=pm.getObjectById(Pelicula.class,21);
     	Pelicula p2=pm.getObjectById(Pelicula.class,11);
     	}
-    	
+    	*/
     	
     	
     	
