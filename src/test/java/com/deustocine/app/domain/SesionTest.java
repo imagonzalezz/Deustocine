@@ -3,6 +3,8 @@ package com.deustocine.app.domain;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -69,6 +71,12 @@ public class SesionTest {
 	public void testValorPuntos() {
 		s.setValorPuntos(3);
 		assertTrue(s.getValorPuntos()== 3);
+	}
+	@Test
+	public void testListaSesiones() {
+		ArrayList<Sesion>sesiones= new ArrayList<>();
+		sesiones.add(s);
+		assertEquals(sesiones.size(),1);
 	}
 	
 	
