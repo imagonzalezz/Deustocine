@@ -46,14 +46,6 @@ public class UsuarioTest {
 		assertTrue(u2.getContrasenya().equals("CBA"));
 	}
 	
-	@Test
-	public void testPuntos() {
-		u.setPuntos(125);
-		assertEquals(125, u.getPuntos());
-		
-		u2.setPuntos(12500);
-		assertEquals(12500, u2.getPuntos());
-	}
 	
 	
 	
