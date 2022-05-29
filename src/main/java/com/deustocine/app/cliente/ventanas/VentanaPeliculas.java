@@ -1,10 +1,13 @@
 package com.deustocine.app.cliente.ventanas;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -28,7 +31,8 @@ public class VentanaPeliculas extends JFrame{
 	private PeliculasController controller;
 	private static VentanaPeliculas v;
 	private JPanel pNorte;
-	private JPanel pCentro;
+	private JPanel pCentro,pSur;
+	private JButton btnCines;
 	
 	public VentanaPeliculas(Client cliente, WebTarget webTarget) {
 		this.webTarget = webTarget;
@@ -49,7 +53,6 @@ public class VentanaPeliculas extends JFrame{
 		
 		this.pack();
 		v.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setLocationRelativeTo(null);
 		setVisible(true);
 		
 	}

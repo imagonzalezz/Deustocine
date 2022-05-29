@@ -37,7 +37,7 @@ public class VentanaCrearUsuario extends JFrame {
 	DefaultTableModel modelo;
 	private JLabel lblNewLabel_1;
 	private JTextField txtDni;
-
+	private VentanaCrearUsuario vcu;
 	private WebTarget webTarget;	
 	private Client client;
 
@@ -56,14 +56,14 @@ public class VentanaCrearUsuario extends JFrame {
 
 	public VentanaCrearUsuario(Client cliente, WebTarget wt) {
 		super();
-		
+		vcu = this;
 		this.client=cliente;
 		this.webTarget=wt;
 		this.rc= new RegistroController(webTarget);
 		
 	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100,100,550,600);
+		setSize(600, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -121,7 +121,19 @@ public class VentanaCrearUsuario extends JFrame {
 
 		});
 		btnNewButton.setBounds(273, 209, 118, 23);
+		JButton btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				vcu.dispose();
+				VentanaInicioSesion vi = new VentanaInicioSesion(cliente, wt);
+				
+			}
+		});
+		btnSalir.setBounds(433, 209, 118, 23);
 		contentPane.add(btnNewButton);
+		contentPane.add(btnSalir);
 
 		setVisible(true);
 		this.pack();

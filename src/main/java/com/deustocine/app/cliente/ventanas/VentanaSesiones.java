@@ -1,10 +1,13 @@
 package com.deustocine.app.cliente.ventanas;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -47,17 +50,10 @@ public class VentanaSesiones extends JFrame {
 		JScrollPane scroll = new JScrollPane(pCentro);
 		
 		vp.getContentPane().add(scroll,BorderLayout.CENTER);
-		
 		this.pack();
 		vp.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setVisible(true);
-	}
-	public static void main(String[] args) {
-		Client c= ClientBuilder.newClient();
-		WebTarget wt =c.target(String.format("http://%s:%s/rest", "localhost","8080"));
-		VentanaSesiones vs = new VentanaSesiones(wt);
-				
 	}
 	
 

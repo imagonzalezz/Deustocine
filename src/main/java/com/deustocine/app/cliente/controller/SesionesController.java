@@ -52,7 +52,7 @@ public class SesionesController {
 		JPanel pCine = new JPanel();
 		pCine.add(new JLabel(c.getFechaHora()));
 		pCine.add(new JLabel(String.valueOf(c.getPrecio())));
-		
+		pCine.add(new JLabel(c.toString()));
 		
 		pContenedor.add(pCine);
 		pCentro.add(pContenedor);

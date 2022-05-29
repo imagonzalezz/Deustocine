@@ -1,10 +1,13 @@
 package com.deustocine.app.cliente.ventanas;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -29,11 +32,11 @@ public class VentanaCines extends JFrame{
 	
 	private CinesController controller; //controller que implementa la lógica de la ventana
 	private static VentanaCines v;
-	private JPanel pNorte;
 	private JPanel pCentro;
 	
 	public VentanaCines(Client cliente, WebTarget webTarget) {
 		controller = new CinesController(webTarget);
+		this.cliente = cliente;
 		this.webTarget = webTarget;
 		v = this;
 		pCentro = new JPanel();
@@ -47,7 +50,7 @@ public class VentanaCines extends JFrame{
 		JScrollPane scroll = new JScrollPane(pCentro);
 		
 		v.getContentPane().add(scroll,BorderLayout.CENTER);
-		
+
 		this.pack();
 		v.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);

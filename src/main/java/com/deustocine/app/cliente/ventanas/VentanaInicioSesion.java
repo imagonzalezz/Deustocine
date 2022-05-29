@@ -69,8 +69,7 @@ public class VentanaInicioSesion extends JFrame {
 		this.wt=webTarget;
 		this.isc = new InicioSesionController(cliente, webTarget);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100,100,550,600);
-		setLocationRelativeTo(null);
+		setSize(600, 400);
 		is=this;
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
