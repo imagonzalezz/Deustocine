@@ -49,6 +49,7 @@ public class VentanaInicioSesion extends JFrame {
 	private JLabel lError;
 	private JTextField usuario;
 	private JPasswordField contraseina;
+	private JButton btnCines;
 
 	/**
 	 * Launch the application.
@@ -128,6 +129,8 @@ public class VentanaInicioSesion extends JFrame {
 		lError.setForeground(Color.RED);
 		pSur.add(login);
 		pSur.add(registrarse);
+		btnCines = new JButton("Mostrar Cines");
+		pSur.add(btnCines);
 		pCentro.setBackground(Color.WHITE);
 		
 		/**
@@ -155,6 +158,16 @@ public class VentanaInicioSesion extends JFrame {
 				}
 			}
 		});
+		btnCines.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				is.dispose();
+				VentanaCines vc = new VentanaCines(cliente, webTarget);
+				
+			}
+		});
+		
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 		contentPane.add(pNorte, BorderLayout.NORTH);

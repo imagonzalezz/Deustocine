@@ -30,9 +30,7 @@ public class VentanaPeliculas extends JFrame{
 	
 	private PeliculasController controller;
 	private static VentanaPeliculas v;
-	private JPanel pNorte;
-	private JPanel pCentro,pSur;
-	private JButton btnCines;
+	private JPanel pCentro;
 	
 	public VentanaPeliculas(Client cliente, WebTarget webTarget) {
 		this.webTarget = webTarget;
