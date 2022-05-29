@@ -22,12 +22,6 @@ _Comando para compilar el codigo_
 mvn clean compile
 ```
 
-_Para que las clases se usen en la BD_
-
-```
-mvn datanucleus:enhance
-```
-
 _Despues crear las tablas en la base de datos_
 
 ```
@@ -40,16 +34,22 @@ _Carga los datos de prueba en la BD_
 mvn exec:java -Pdatos
 ```
 
-_Para probar los test_
+_Para que las clases se usen en la BD_
 
 ```
-mvn test
+mvn datanucleus:enhance
 ```
 
 _Lanzar el servidor_
 
 ```
 mvn jetty:run
+```
+
+_Para probar los test_
+
+```
+mvn test
 ```
 
 _Lanzar el cliente_
@@ -62,6 +62,7 @@ _Generar documentación_
 
 ```
 mvn doxygen:report
+Abrir Deustocine\src\main\reosurces\Doxyfile con Doxywizard y hacer run
 ```
 
 _Generar documentación en PDF con latex_
