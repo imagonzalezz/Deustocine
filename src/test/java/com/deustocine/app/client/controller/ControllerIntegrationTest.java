@@ -2,11 +2,15 @@ package com.deustocine.app.client.controller;
 
 import static org.junit.Assert.*;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
+import javax.jdo.datastore.JDOConnection;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -22,6 +26,7 @@ import com.deustocine.app.cliente.controller.RegistroController;
 import com.deustocine.app.cliente.controller.SesionesController;
 import com.deustocine.app.cliente.controller.PeliculasController;
 import com.deustocine.app.domain.Pelicula;
+import com.deustocine.app.domain.Sesion;
 import com.deustocine.app.domain.Usuario;
 import com.deustocine.app.domain.Cine;
 import com.deustocine.app.util.CineException;
@@ -51,66 +56,44 @@ public class ControllerIntegrationTest {
 		}
 		
 		InicioSesionController inicioSesionController = new InicioSesionController(c, wt);
-		assertTrue(inicioSesionController.logIn("71237123D", "Contrasenya", null, null));
+		assertTrue(inicioSesionController.logIn("49201745Y", "con", null, null));
+		
+		PeliculasController peliculasController = new PeliculasController(wt);
+		List<Pelicula> peliculas = peliculasController.getPeliculas();
+		
+		SesionesController sesionesController = new SesionesController(wt);
+		List<Sesion> sesiones = sesionesController.getSesiones();
+		
+		CinesController cinesController = new CinesController(wt);
+		List<Cine> cine = cinesController.getCines();
 	}
 	
 	@After
 	public void borrarObjetos() {
 		pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
     	PersistenceManager pm = pmf.getPersistenceManager();
-    	//TODO
-	}
-	/*
-	CinesController cc2= new CinesController(wt);
-	try {
-		cc2.crearPanelCine(null, null);;
-	} catch (CineException e2) {
-		// TODO Auto-generated catch block
-		e2.printStackTrace();
-		throw e2;
-	}
-	
-	CinesController cc= new CinesController(wt);
-	try {
-		cc.getCines();
-	} catch (CineException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-		throw e;
-	}
-	SesionesController sc= new SesionesController(wt);
-	sc.crearPanelSesion(null, null);
-	
-	}
-	
-	SesionesController sc2= new SesionesController(wt);
-	sc2.getSesiones();
-	*/
-	/*
-	PeliculasController pc= new PeliculasController(wt);
-	pc.crearPanelPelicula(null, null);
-	
-	
-	
-	PeliculasController pc2= new PeliculasController(wt);
-	sc2.getPeliculas();
-	
-	
-	@After
-    public void limpiadoBd() {
-    	pmf=JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
-    	PersistenceManager pm=pmf.getPersistenceManager();
-    	Usuario u=pm.getObjectById(Usuario.class,"u@gmail.com");
-    	Pelicula p=pm.getObjectById(Pelicula.class,21);
-    	Pelicula p2=pm.getObjectById(Pelicula.class,11);
-    	}
-    	*/
+    	Usuario u = pm.getObjectById(Usuario.class,"49201745Y");
     	
-    	
-    	
-    	
-    	
-    	
-    }
+    	JDOConnection jCon = pm.getDataStoreConnection();
+    	Object con = jCon.getNativeConnection();
+    	if (con instanceof Connection) {
+    		try {
+				((Connection) con).setSchema("deustocinedb");
+				((Connection) con).setAutoCommit(true);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}try {
+			Statement s = ((Connection) con).createStatement();
+			s.executeUpdate("DELETE FROM `deustocinedb`.`usuario` WHERE (`DNI` = '49201745Y');");
+			s.close();
+			((Connection) con).close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}	
+}
 
 
