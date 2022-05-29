@@ -24,6 +24,11 @@ import com.deustocine.app.domain.Sesion;
 import com.deustocine.app.domain.Usuario;
 import com.deustocine.app.servicios.DeustocineServicios;
 
+/**
+ * Clase con los metodos del servidor
+ * @author Iker
+ *
+ */
 @Path("/deustocine")
 @Produces(MediaType.APPLICATION_JSON)
 public class DeustocineServer {
@@ -35,6 +40,11 @@ public class DeustocineServer {
 		ds = new DeustocineServicios();
 	}
 	
+	/**
+	 * Metodo para iniciar sesion
+	 * @param usuario Usuario
+	 * @return true si el login es correcto y false si no lo es
+	 */
 	@POST
 	@Path("/login")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -53,13 +63,21 @@ public class DeustocineServer {
 		
 	}
 	
+	/**
+	 * Metodo que devuelve las peliculas que hay en la base de datos
+	 * @return Lista de peliculas
+	 */
 	@GET
 	@Path("/peliculas")
 	public List<Pelicula> getPeliculas() {
 		return ds.getPeliculas();
 	}
 	
-	
+	/**
+	 * Metodo que devuelve las sesiones correspondientes a una pelicula
+	 * @param p Pelicula
+	 * @return Lista de sesiones de la pelicula
+	 */
 	@GET
 	@Path("peliculas/sesiones/")
 	public List<Sesion> getSesionesPelicula(Pelicula p) {
@@ -72,12 +90,21 @@ public class DeustocineServer {
 			return lSesionesPelicula;
 	}
 	
+	/**
+	 * Metodo que devuelve la lista de cines que hay en la bd
+	 * @return Lista de cines
+	 */
 	@GET
 	@Path("/cines")
 	public List<Cine> getCines() {
 		return ds.getCines();
 	}
 	
+	/**
+	 * Metodo para registrar un usuario
+	 * @param u usuario
+	 * @return Respuesta
+	 */
 	@POST
 	@Path("/registro")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -87,8 +114,13 @@ public class DeustocineServer {
 		return Response.ok(registro).build();
 	}
 	
+	/**
+	 * Metodo que borra una pelicula
+	 * @param cod
+	 * @return
+	 */
 	@DELETE
-	@Path("cines/{cod}")
+	@Path("pelicula/{cod}")
 	public Response borrarPelicula(@PathParam("cod") int cod) {
 		Pelicula p = new Pelicula();
 		p.setCod(cod);
@@ -99,6 +131,11 @@ public class DeustocineServer {
 		return Response.status(Response.Status.NOT_FOUND).build();
 	}
 	
+	/**
+	 * Metodo que guarda una pelicula
+	 * @param p Pelicula
+	 * @return Respuesta
+	 */
 	@POST
 	@Path("/peliculas")
 	public Response guardarPelicula(Pelicula p) {
@@ -106,12 +143,21 @@ public class DeustocineServer {
 		return Response.status(Response.Status.CREATED).entity(p).build();
 	}
 
+	/**
+	 * Metodo que devuelve todas las sesiones que hay en la bd
+	 * @return Lista de sesiones
+	 */
 	@GET
 	@Path("/sesiones")
 	public List <Sesion> getSesiones() {
 		return ds.getSesiones();
 	}
 	
+	/**
+	 * Metodo que devuelve una sesion
+	 * @param cod codigo de la sesion
+	 * @return Respuesta
+	 */
 	@GET
 	@Path("sesiones/{cod}")
 	public Response getSesion(@PathParam("cod") int cod) {
@@ -127,13 +173,21 @@ public class DeustocineServer {
 	}
 	
 	
+	/**
+	 * Metodo que devuelve los usuarios que hay en la bd
+	 * @return Lista de usuarios
+	 */
 	@GET
 	@Path("/usuarios")
 	public List<Usuario> getUsuarios() {
 		return ds.getUsuarios();
 	}
 	
-	
+	/**
+	 * Metodo que borra un usuario
+	 * @param dni dni del usuario
+	 * @return Respuesta
+	 */
 	@DELETE
 	@Path("usuarios/{cod}")
 	public Response borrarUsuario(@PathParam("dni") String dni) {
@@ -146,14 +200,25 @@ public class DeustocineServer {
 		return Response.status(Response.Status.NOT_FOUND).build();
 	}
 	
+	/**
+	 * Metodo que guarda un usuario
+	 * @param u Usuario
+	 * @return Respuesta
+	 */
 	@POST
 	@Path("usuarios")
 	public Response guardarUsuario(Usuario u) {
 		ds.getUsuarios().add(u);
 		return Response.status(Response.Status.CREATED).entity(u).build();
 	}
+	
+	/**
+	 * Metodo que devuelve un usuario
+	 * @param x codigo del usuario 
+	 * @return Respuesta
+	 */
 	@GET
-	@Path("/getUsuario/{x}")
+	@Path("/usuarios/{x}")
 	public Response getUsuario(@PathParam("x") String x) {
 		System.out.println(x);
 		Usuario usuario=ds.getUsuario(x);
