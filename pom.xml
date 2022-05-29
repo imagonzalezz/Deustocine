@@ -446,7 +446,10 @@
 							<includes>
 								<include>**/*</include>
 							</includes>
-							<excludedGroups>categories.IntegrationTest</excludedGroups>
+							<excludes>
+								<exclude>**/DeustocineServicioRendimientoTest.java</exclude>
+								<exclude>**/ControllerIntegrationTest.java</exclude>
+							</excludes>
 						</configuration>
 						<executions>
 							<execution>
