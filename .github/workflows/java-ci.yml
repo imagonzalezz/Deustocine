@@ -20,8 +20,8 @@ jobs:
       with:
         mysql-version: '8.0'
     - name: create database in mysql-server
-      run: mysql -uroot -h127.0.0.1 < src/sql/deustoReventa.sql  
-    - name: compile the code
+      run: mysql -uroot -h127.0.0.1 < src/sql/deustocinedb.sql  
+  - name: compile the code
       run: mvn clean compile
     - name: Test with Maven
       run: mvn test -Punit
@@ -51,3 +51,4 @@ jobs:
         build_dir: target/doxygen/html
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
